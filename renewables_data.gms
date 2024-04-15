@@ -1,5 +1,4 @@
-*Ciao questa e una prova
-*ciao prova 2
+
  
 $include "Data/utopia_data.gms"
 
