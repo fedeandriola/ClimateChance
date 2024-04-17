@@ -69,25 +69,46 @@ $include "Model/osemosys_init.gms"
 
 * let's start with the refineries.
 * here, we are saying that one unit of activity of refineries (e.g. one barrel of crude oil processed) requires one unit of crude oil
-InputActivityRatio(r,"refineries","crude_oil",m,y) = 1;
+InputActivityRatio(r,"refineries","oil_crude",m,y) = 1;
 * and that one unit of activity of refineries produces 0.9 units of gasoline
-OutputActivityRatio(r,"refineries","gasoline",m,y) = 0.9;
+OutputActivityRatio(r,"refineries","oil_ref",m,y) = 0.9;
 * therefore, the overall efficiency of the refineries is 90%
 
 * now, the oil power plant
 * here, we are saying that one unit of activity of the oil power plant (e.g. one MWh of electricity produced) requires 3 units of gasoline
-* this is equivalent of assuming an efficiency of 33.3%
-InputActivityRatio(r,"oil_power_plant","gasoline",m,y) = 3;
+* this is equivalent of assuming an efficiency of 35%
+InputActivityRatio(r,"oil_pp","oil_ref",m,y) = 2,86;
 * and that one MWh of electricity produced by the power plant produced 0.95 MWh of electricity (due to grid losses)
-OutputActivityRatio(r,"oil_power_plant","electricity",m,y) = 0.95;
+OutputActivityRatio(r,"oil_pp","electricity",m,y) = 0.95;
 * as you can imagine, the total efficiency of the oil power plant in producing electricity is 31.7% (i.e. 0.95/3)
 
 * finally, the light bulbs
 * here, we are saying that one unit of activity of the light bulbs (e.g. one MWh of electricity consumed) requires 1 unit of electricity    
-InputActivityRatio(r,"light_bulbs","electricity",m,y) = 1;
+#InputActivityRatio(r,"light_bulbs","electricity",m,y) = 1;
 * and that one unit of activity of the light bulbs produces 0.2 unit of lighting (80% is wasted as heat)
-OutputActivityRatio(r,"light_bulbs","lighting",m,y) = 0.2;
+#OutputActivityRatio(r,"light_bulbs","lighting",m,y) = 0.2;
 * NB this introduces the concept of useful energy, a deeper concept than final energy (final energy is the energy that reaches the end user, useful energy is the energy that is actually used for the intended purpose)
+
+*coal power plant: eta=0,38
+InputActivityRatio(r,"coal_pp","coal",m,y) = 2.63;
+OutputActivityRatio(r,"coal_pp","electricity",m,y) = 0.95;
+
+*coal USC: eta=0,43
+InputActivityRatio(r,"coal_usc_pp","coal",m,y) = 2,33 ;
+OutputActivityRatio(r,"coal_usc_pp","electricity",m,y) = 0.95;
+
+*ccgt: eta=0,56
+InputActivityRatio(r,"ccgt_pp","gas",m,y) = 1,79 ;
+OutputActivityRatio(r,"ccgt_pp","electricity",m,y) = 0.95;
+
+*bio: eta=0,35 
+InputActivityRatio(r,"bio_pp","biomass",m,y) = 2,86 ;
+OutputActivityRatio(r,"bio_pp","electricity",m,y) = 0.95;
+
+*wte: eta=0,28
+InputActivityRatio(r,"wte_pp","waste",m,y) = 3,57 ;
+OutputActivityRatio(r,"wte_pp","electricity",m,y) = 0.95;
+
 
 *** WE NOW BUILT THE SKELETON (i.e. THE NODES AND CONNECTIONS) OF THE MODEL
 *** NOW LET'S DEFINE THE FINAL DEMANDS AND CHARACTERIZE TECHNOLOGIES.
