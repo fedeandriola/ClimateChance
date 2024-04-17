@@ -69,18 +69,17 @@ $include "Model/osemosys_init.gms"
 
 * let's start with the refineries.
 * here, we are saying that one unit of activity of refineries (e.g. one barrel of crude oil processed) requires one unit of crude oil
-InputActivityRatio(r,"refineries","oil_crude",m,y) = 1;
 * and that one unit of activity of refineries produces 0.9 units of gasoline
+InputActivityRatio(r,"refineries","oil_crude",m,y) = 1;
 OutputActivityRatio(r,"refineries","oil_ref",m,y) = 0.9;
-* therefore, the overall efficiency of the refineries is 90%
 
 * now, the oil power plant
 * here, we are saying that one unit of activity of the oil power plant (e.g. one MWh of electricity produced) requires 3 units of gasoline
+* and that one MWh of electricity produced by the power plant produced 0.95 MWh of electricity (due to grid losses)
+* as you can imagine, the total efficiency of the oil power plant in producing electricity is 31.7% (i.e. 0.95/3)
 * this is equivalent of assuming an efficiency of 35%
 InputActivityRatio(r,"oil_pp","oil_ref",m,y) = 2,86;
-* and that one MWh of electricity produced by the power plant produced 0.95 MWh of electricity (due to grid losses)
 OutputActivityRatio(r,"oil_pp","electricity",m,y) = 0.95;
-* as you can imagine, the total efficiency of the oil power plant in producing electricity is 31.7% (i.e. 0.95/3)
 
 * finally, the light bulbs
 * here, we are saying that one unit of activity of the light bulbs (e.g. one MWh of electricity consumed) requires 1 unit of electricity    
@@ -116,7 +115,7 @@ OutputActivityRatio(r,"wte_pp","electricity",m,y) = 0.95;
 * let's start with the final demands
 * we have only one final demand, lighting
 * we need to define the demand for lighting in each year (let's assume constant, for now)
-AccumulatedAnnualDemand(r,"lighting",y) = 10;
+AccumulatedAnnualDemand(r,"appliances",y) = ;
 
 * NB we can also specify a time profile for the demand, but we will do it later
 
