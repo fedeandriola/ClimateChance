@@ -2,7 +2,7 @@
 CIAO BABE TEST
 *Define the time horizon 
 SLAY queen ROSSSSSSSS 
-AAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAaaaaaaa
 set     YEAR    / 2020*2050 /;
 * mode of operations are a characteristic of technologies, useful for certain type of technologies that can be used in two different ways 
 * e.g. a cogeneration power plant can be used in electricity generation mode or in heat generation mode
