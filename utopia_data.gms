@@ -66,17 +66,17 @@ set     DAILYTIMEBRACKET / 1, 2 /;
 set     STORAGE / DAM /;
 
 # characterize technologies 
-set power_plants(TECHNOLOGY) / COAL, NUCLEAR, HYDRO, DIESEL_GEN /;
+set power_plants(TECHNOLOGY) / coal_pp, coal_usc_pp, ccgt_pp, oil_pp,geothermal_pp,hydro_roff_pp,hydro_dam_pp,psh_pp,bio_pp,wte_pp /;
 set storage_plants(TECHNOLOGY) / STOR_HYDRO /;
-set fuel_transformation(TECHNOLOGY) / SRE /;
-set appliances(TECHNOLOGY) / RHE, RHO, RL1, TXD, TXE, TXG /;
-set unmet_demand(TECHNOLOGY) / /;
-set transport(TECHNOLOGY) / TXD, TXE, TXG /;
+set fuel_transformation(TECHNOLOGY) / refineries_pp /;
+set appliances(TECHNOLOGY) /electricity /;
+#set unmet_demand(TECHNOLOGY) / /;
+#set transport(TECHNOLOGY) / TXD, TXE, TXG /;
 set primary_imports(TECHNOLOGY) / IMPHCO1, IMPOIL1, IMPURN1 /;
 set secondary_imports(TECHNOLOGY) / IMPDSL1, IMPGSL1 /;
 
 set renewable_tech(TECHNOLOGY) /HYDRO/; 
-set renewable_fuel(FUEL) /HYD/; 
+set renewable_fuel(FUEL) /water,biomass,waste/; 
 
 set fuel_production(TECHNOLOGY);
 set fuel_production_fict(TECHNOLOGY) /RIV/;
