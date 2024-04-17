@@ -31,14 +31,14 @@ renewable_tech(t) = no;
 
 *Define the fuels of the model. We have three: crude oil (primary energy), gasoline (secondary) and electricity (secondary)
 *but note that final demand is also defined as a fuel! So it's actually four...
-set     FUEL    / "coal_market","gas_market","oil_market","waste_market","rainfall","biomass" /;
+set     FUEL    / "coal","gas","oil_crude","waste","rainfall","biomass","water", "electricity","oil_ref","fd_electricity","fd_water" /;
 
 ** NOTE THAT ALL TYPE OF FUELS (i.e. ENERGY FLOWS) ARE DEFINED AS FUELS
 * we can conceptualize divide them as primary, secondary, and final demand. 
 * primary fuels are input to the system, but not outputs (i.e. they are not produced by any technology)
-set primary_fuel(FUEL) / "coal_market","gas_market","oil_market","waste_market","rainfall","biomass" /;
+set primary_fuel(FUEL) / "coal","gas","oil_crude","waste","rainfall","biomass" /;
 * secondary fuels are both input and output of the system
-set secondary_carrier(FUEL) / "water", "electricity" /;
+set secondary_carrier(FUEL) / "water", "electricity","oil_ref" /;
 * final demand is only output of the system
 set final_demand(FUEL) / "fd_electricity","fd_water" /;
 
