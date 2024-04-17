@@ -22,26 +22,19 @@
 * Sets       
 *------------------------------------------------------------------------
 
-set     YEAR    / 1990*2010 /;
+set     YEAR    / 2020*2100 /;
 set     TECHNOLOGY      /
-        COAL 'Coal power plants'
-        NUCLEAR 'Nuclear power plants'
-        HYDRO 'Hydroelectric power plants'
-        STOR_HYDRO 'Pumped storage'
-        DIESEL_GEN 'Diesel power plants'
-        IMPDSL1 'Diesel imports'
-        IMPGSL1 'Gasoline imports'
-        IMPHCO1 'Coal imports'
-        IMPOIL1 'Crude oil imports'
-        IMPURN1 'Uranium imports'
-        RHE 'Residential heaters - electric'
-        RHO 'Residential heaters - oil'
-        RL1 'Residential light bulbs'
-        SRE 'Crude oil refinery'
-        TXD 'Personal vehicles - diesel'
-        TXE 'Personal vehicles - electric'
-        TXG 'Personal vehicles - gasoline'
-        RIV 'River'
+        coal_pp'coal'
+        coal_usc_pp 'coal usc'
+        ccgt_pp 'combined cycle gas turbine'
+        refineries_pp 'refineries'
+        oil_pp 'oil power plant'
+        geothermal_pp 'geothermal'
+        hydro_roff_pp 'hydro run of river'
+        hydro_dam_pp 'hydro dam'
+        psh_pp 'pumped hydro and storage'
+        bio_pp 'bio energy'
+        wte_pp 'waste to energy'
 /;
 
 set     TIMESLICE       /
@@ -54,21 +47,19 @@ set     TIMESLICE       /
 /;
 
 set     FUEL    /
-        DSL 'Diesel'
-        ELC 'Electricity'
-        GSL 'Gasoline'
-        HCO 'Coal'
-        HYD 'Hydro'
-        OIL 'Crude oil'
-        URN 'Uranium'
-        RH 'Demand for residential heating'
-        RL 'Demand for residential lighting'
-        TX 'Demand for personal transport'
+        coal'Coal Market'
+        gas'Gas Market'
+        oil_crude 'Oil Market'
+        waste 'Waste Source'
+        biomass'Biomass Source'
+        electricity 'electricity'
+        water 'water'
+        oil_ref 'oil refined'
 /;
 
-set     EMISSION        / CO2, NOX /;
-set     MODE_OF_OPERATION       / 1, 2 /;
-set     REGION  / UTOPIA /;
+set     EMISSION        / CO2 /;
+#set     MODE_OF_OPERATION       / 1, 2 /;
+set     REGION  / ITALY /;
 set     SEASON / 1, 2, 3 /;
 set     DAYTYPE / 1 /;
 set     DAILYTIMEBRACKET / 1, 2 /;
