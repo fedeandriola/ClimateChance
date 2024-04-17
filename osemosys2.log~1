@@ -1,0 +1,106 @@
+
+--- Job osemosys.gms Start 03/26/24 15:27:44 40.4.0 d540b52e WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\40\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input "C:\Users\pietr\OneDrive - Politecnico di Milano\OSEMOSYS\Utopia\osemosys.gms"
+    PageSize 0
+    ScrDir "C:\Users\pietr\OneDrive - Politecnico di Milano\OSEMOSYS\Utopia\225a\"
+    SysDir C:\GAMS\40\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+    --data renewables
+    --storage 1
+    --mip 1
+Licensee: Course License                                 S240213|0002AO-GEN
+          Fondazione CMCC, Complesso Ecotekne                       DCE3258
+          C:\Users\pietr\Documents\GAMS\gamslice.txt
+          License Admin: Massimo Tavoni, massimo.tavoni@polimi.it          
+          Course license for use within the course and related course work
+Processor information: 1 socket(s), 4 core(s), and 8 thread(s) available
+GAMS 40.4.0   Copyright (C) 1987-2022 GAMS Development. All rights reserved
+--- Starting compilation
+--- osemosys.gms(33) 2 Mb
+--- . osemosys_dec.gms(799) 2 Mb
+--- osemosys.gms(35) 2 Mb
+--- . renewables_data.gms(1) 2 Mb
+--- .. utopia_data.gms(761) 3 Mb
+--- . renewables_data.gms(60) 3 Mb
+--- osemosys.gms(37) 3 Mb
+--- . compute_data.gms(8) 3 Mb
+--- osemosys.gms(39) 3 Mb
+--- . osemosys_equ.gms(657) 3 Mb
+--- osemosys.gms(55) 3 Mb
+--- . osemosys_res.gms(90) 3 Mb
+--- osemosys.gms(56) 3 Mb
+--- . report.gms(148) 3 Mb
+--- osemosys.gms(88) 3 Mb
+--- Starting execution: elapsed 0:00:00.036
+--- osemosys.gms(2329) 4 Mb
+--- Generating MIP model osemosys
+--- osemosys.gms(2333) 57 Mb
+---   185,677 rows  182,221 columns  451,995 non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E-01, 1.000E+05] - Zero values observed as well
+--- Bound     [min, max] : [ 9.990E+02, 9.990E+02] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E-05, 5.000E+03]
+--- Executing COPT (Solvelink=2): elapsed 0:00:00.910
+
+COPT             40.4.0 d540b52e Oct 3, 2022           WEI x86 64bit/MS Window
+
+Passing GAMS variable and equation levels and marginals as LP starting point to COPT.
+
+Cardinal Optimizer v5.0.4. Build date Aug 19 2022
+Copyright Cardinal Operations 2022. All Rights Reserved
+
+Modified COPT parameters:
+TimeLimit                 1e+10
+AbsGap                    0
+LogToConsole              0
+ReqFarkasRay              1
+Threads                   1
+
+Model fingerprint: 533aa932
+
+Hardware has 4 cores and 8 threads. Using instruction set X86_AVX512_E1 (14)
+Minimizing an LP problem
+
+The original problem has:
+    185676 rows, 182220 columns and 451973 non-zero elements
+The folded problem has:
+    53043 rows, 52400 columns and 135234 non-zero elements
+The presolved problem has:
+    4088 rows, 3803 columns and 22420 non-zero elements
+
+Starting the simplex solver using 1 thread
+
+Method   Iteration           Objective  Primal.NInf   Dual.NInf        Time
+Dual             0   -1.5754738889e+07         1084           0       0.32s
+Dual           452    1.8264319824e+04          815           0       0.33s
+Dual           981    2.1884300997e+04         1107           0       0.34s
+Dual          1551    3.8027901170e+04          723           0       0.36s
+Dual          2153    4.0175005470e+04          107           0       0.37s
+Dual          2388    4.0194845044e+04            0           0       0.38s
+Postsolving
+Dual          2388    4.0194831976e+04            0           0       0.46s
+Unfolding
+Dual          3093    4.0194831976e+04            0           0       1.17s
+
+Solving finished
+Status: Optimal  Objective: 4.0194831976e+04  Iterations: 3093  Time: 1.20s
+--- Reading solution for model osemosys
+--- osemosys.gms(2333) 57 Mb  5 secs
+--- Executing after solve: elapsed 0:00:06.240
+--- osemosys.gms(2555) 57 Mb
+*** Error at line 2555: division by zero (0)
+--- osemosys.gms(2558) 57 Mb 1 Error
+--- GDX File (execute_unload) C:\Users\pietr\OneDrive - Politecnico di Milano\OSEMOSYS\Utopia\Results\report_base.gdx
+--- osemosys.gms(2572) 57 Mb
+--- GDX File (execute_unload) C:\Users\pietr\OneDrive - Politecnico di Milano\OSEMOSYS\Utopia\Results\results_SCENbase_DATArenewables.gdx
+--- Putfile ANT C:\Users\pietr\OneDrive - Politecnico di Milano\OSEMOSYS\Utopia\SelResults.CSV
+--- osemosys.gms(2572) 57 Mb 1 Error
+*** Status: Execution error(s)
+--- Job osemosys.gms Stop 03/26/24 15:27:51 elapsed 0:00:06.449
