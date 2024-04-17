@@ -20,18 +20,18 @@ set     EMISSION / "CO2" /;
 * LET's NOW START WITH OUR SUPER SIMPLE ENERGY SISTEM
 
 *Define the technologies of the model. We have three: refineries, oil power plant, and our final appliance (say light bulbs)
-set     TECHNOLOGY   / "coal_pp","coal_usc_pp","ccgt_pp","refineries_pp","oil_pp","geothermal_pp","hydro_roff_pp","hydro_dam_pp","psh_pp","bio_pp","wte_pp" /;
+set     TECHNOLOGY   / "coal_pp","coal_usc_pp","ccgt_pp","refineries_pp","oil_pp","geothermal_pp","hydro_roff_pp","hydro_dam_pp","psh_pp","bio_pp","wte_pp","appliances" /;
 
 * let's also classify them in different categories (might become useful for reporting)
 set power_plants(TECHNOLOGY) / "coal_pp","coal_usc_pp","ccgt_pp","oil_pp","geothermal_pp","hydro_roff_pp","hydro_dam_pp","psh_pp","bio_pp","wte_pp" /;
 set fuel_transformation(TECHNOLOGY) / "refineries_pp" /;
-set appliances(TECHNOLOGY) /"appliances","water_use" /;
+set appliances(TECHNOLOGY) /"appliances", /;
 
 renewable_tech(t) = no;
 
 *Define the fuels of the model. We have three: crude oil (primary energy), gasoline (secondary) and electricity (secondary)
 *but note that final demand is also defined as a fuel! So it's actually four...
-set     FUEL    / "coal","gas","oil_crude","waste","rainfall","biomass","water", "electricity","oil_ref","fd_electricity","fd_water" /;
+set     FUEL    / "coal","gas","oil_crude","waste","rainfall","biomass","water", "electricity","oil_ref" /;
 
 ** NOTE THAT ALL TYPE OF FUELS (i.e. ENERGY FLOWS) ARE DEFINED AS FUELS
 * we can conceptualize divide them as primary, secondary, and final demand. 
@@ -40,7 +40,7 @@ set primary_fuel(FUEL) / "coal","gas","oil_crude","waste","rainfall","biomass" /
 * secondary fuels are both input and output of the system
 set secondary_carrier(FUEL) / "water", "electricity","oil_ref" /;
 * final demand is only output of the system
-set final_demand(FUEL) / "fd_electricity","fd_water" /;
+set final_demand(FUEL) /  /;
 
 renewable_fuel(f) = no;
 ** what I just described is a modelling convention. Osemosys is flexible enough to allow more complex interactions. 
@@ -123,29 +123,70 @@ AccumulatedAnnualDemand(r,"lighting",y) = 10;
 * now, let's define the technologies: each is characterized by costs (capital, fixed and variable), capacity and availability factors
 *** costs (per year)
 *overnight costs of construction
-CapitalCost(r,"refineries",y) = 100;
-CapitalCost(r,"oil_power_plant",y) = 1000;
-CapitalCost(r,"light_bulbs",y) = 0.001;
+CapitalCost(r,"coal_pp",y) = ;
+CapitalCost(r,"coal_usc_pp",y) = ;
+CapitalCost(r,"ccgt_pp",y) = ;
+CapitalCost(r,"refineries",y) = ;
+CapitalCost(r,"oil_pp",y) = ;
+CapitalCost(r,"geothermal_pp",y) = ;
+CapitalCost(r,"hydro_roff_pp",y) = ;
+CapitalCost(r,"hydro_dam_pp",y) = ;
+CapitalCost(r,"psh_pp",y) = ;
+CapitalCost(r,"bio_pp",y) = ;
+CapitalCost(r,"wte_pp",y) = ;
 
 ** yearly fixed cost (regardless of activity)
-FixedCost(r,"refineries",y) = 50;
-FixedCost(r,"oil_power_plant",y) = 30;
-FixedCost(r,"light_bulbs",y) = 0;
+FixedCost(r,"coal_pp",y) = ;
+FixedCost(r,"coal_usc_pp",y) = ;
+FixedCost(r,"ccgt_pp",y) = ;
+FixedCost(r,"refineries",y) = ;
+FixedCost(r,"oil_pp",y) = ;
+FixedCost(r,"geothermal_pp",y) = ;
+FixedCost(r,"hydro_roff_pp",y) = ;
+FixedCost(r,"hydro_dam_pp",y) = ;
+FixedCost(r,"psh_pp",y) = ;
+FixedCost(r,"bio_pp",y) = ;
+FixedCost(r,"wte_pp",y) = ;
+
 
 ** variable cost (per unit of activity)
-VariableCost(r,"refineries",m,y) = 10;
-VariableCost(r,"oil_power_plant",m,y) = .4;
-VariableCost(r,"light_bulbs",m,y) = 0;
+VariableCost(r,"coal_pp",y) = ;
+VariableCost(r,"coal_usc_pp",y) = ;
+VariableCost(r,"ccgt_pp",y) = ;
+VariableCost(r,"refineries",y) = ;
+VariableCost(r,"oil_pp",y) = ;
+VariableCost(r,"geothermal_pp",y) = ;
+VariableCost(r,"hydro_roff_pp",y) = ;
+VariableCost(r,"hydro_dam_pp",y) = ;
+VariableCost(r,"psh_pp",y) = ;
+VariableCost(r,"bio_pp",y) = ;
+VariableCost(r,"wte_pp",y) = ;
 
 * lifetime of the technologies
-OperationalLife(r,"refineries") = 50;
-OperationalLife(r,"oil_power_plant") = 30;
-OperationalLife(r,"light_bulbs") = 2;
+OperationalLife(r,"coal_pp",y) = ;
+OperationalLife(r,"coal_usc_pp",y) = ;
+OperationalLife(r,"ccgt_pp",y) = ;
+OperationalLife(r,"refineries",y) = ;
+OperationalLife(r,"oil_pp",y) = ;
+OperationalLife(r,"geothermal_pp",y) = ;
+OperationalLife(r,"hydro_roff_pp",y) = ;
+OperationalLife(r,"hydro_dam_pp",y) = ;
+OperationalLife(r,"psh_pp",y) = ;
+OperationalLife(r,"bio_pp",y) = ;
+OperationalLife(r,"wte_pp",y) = ;
 
 * availability factor of the technologies, i.e. max percentage of time they can actually operate over a year
-AvailabilityFactor(r,"refineries",y) = 0.9;
-AvailabilityFactor(r,"oil_power_plant",y) = 0.8;
-AvailabilityFactor(r,"light_bulbs",y) = 1;
+AvailabilityFactor(r,"coal_pp",y) = ;
+AvailabilityFactor(r,"coal_usc_pp",y) = ;
+AvailabilityFactor(r,"ccgt_pp",y) = ;
+AvailabilityFactor(r,"refineries",y) = ;
+AvailabilityFactor(r,"oil_pp",y) = ;
+AvailabilityFactor(r,"geothermal_pp",y) = ;
+AvailabilityFactor(r,"hydro_roff_pp",y) = ;
+AvailabilityFactor(r,"hydro_dam_pp",y) = ;
+AvailabilityFactor(r,"psh_pp",y) = ;
+AvailabilityFactor(r,"bio_pp",y) = ;
+AvailabilityFactor(r,"wte_pp",y) = ;
 
 * you also have the parameter CapacityFactor, that depends on the timeslice. 
 * This can be used to mimick the supply curve of renewables. We'll see how in another exercise
@@ -160,21 +201,51 @@ ReserveMarginTagTechnology(r,"oil_power_plant",y) = 1;
 * to attribute emission to a fuel, it is convenient to create a fictional technology for each primary fuel (and assign an emission coefficient to them)
 * LET'S DO IT: mind that thanks to $onrecursive we can redefine static sets
 
-set TECHNOLOGY /"oil_market"/;
+set TECHNOLOGY /"oil_market","coal_market","gas_market","waste_market","biomass_market","rain"/;
 
 * this technologies produces crude oil for no inputs and with 100% efficiency
-OutputActivityRatio(r,"oil_market","crude_oil",m,y) = 1;
+OutputActivityRatio(r,"oil_market","oil_crude",m,y) = 1;
+OutputActivityRatio(r,"coal_market","coal",m,y) = 1;
+OutputActivityRatio(r,"gas_market","gas",m,y) = 1;
+OutputActivityRatio(r,"waste_market","waste",m,y) = 1;
+OutputActivityRatio(r,"biomass_market","biomass",m,y) = 1;
+OutputActivityRatio(r,"rain","rainfall",m,y) = 1;
 
 * there are no fixed costs but a variable cost that identifies the price of the crude oil
-VariableCost(r,"oil_market",m,y) = 50;
+VariableCost(r,"oil_market",m,y) = ;
+VariableCost(r,"coal_market",m,y) = ;
+VariableCost(r,"gas_market",m,y) = ;
+VariableCost(r,"waste_market",m,y) = ;
+VariableCost(r,"biomass_market",m,y) = ;
+VariableCost(r,"rain",m,y) = ;
 
 * operational life is virtually infinite (more than the time horizon of the model)
 OperationalLife(r,"oil_market") = 1000;
+OperationalLife(r,"coal_market") = 1000;
+OperationalLife(r,"gas_market") = 1000;
+OperationalLife(r,"waste_market") = 1000;
+OperationalLife(r,"biomass_market") = 1000;
+OperationalLife(r,"rain") = 1000;
 
 AvailabilityFactor(r,"oil_market",y) = 1;
+AvailabilityFactor(r,"coal_market",y) = 1;
+AvailabilityFactor(r,"gas_market",y) = 1;
+AvailabilityFactor(r,"waste_market",y) = 1;
+AvailabilityFactor(r,"biomass_market",y) = 1;
+AvailabilityFactor(r,"rain",y) = 1;
 
 * infinite initial capacity
 ResidualCapacity(r,"oil_market",y) = 99999;
+ResidualCapacity(r,"coal_market",y) = 99999;
+ResidualCapacity(r,"gas_market",y) = 99999;
+ResidualCapacity(r,"waste_market",y) = 99999;
+ResidualCapacity(r,"biomass_market",y) = 99999;
+ResidualCapacity(r,"rain",y) = 99999;
 
 * and, because fictional technology and fuel map 1 to 1, the emission equal the stechiometric emissions of crude oil
-EmissionActivityRatio(r,"oil_market","CO2",m,y) = 0.075;
+EmissionActivityRatio(r,"oil_market","CO2",m,y) = ;
+EmissionActivityRatio(r,"coal_market","CO2",m,y) = ;
+EmissionActivityRatio(r,"gas_market","CO2",m,y) = ;
+EmissionActivityRatio(r,"waste_market","CO2",m,y) = ;
+EmissionActivityRatio(r,"biomass_market","CO2",m,y) = ;
+EmissionActivityRatio(r,"rain","CO2",m,y) = 0;
