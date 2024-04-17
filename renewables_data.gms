@@ -24,14 +24,14 @@ set FUEL /
         HDR 'Hydro'
         GTH 'Geothermal'/;
 
-set renewable_tech(TECHNOLOGY) /SPV,WPP,BPP,HPP,GPP/; 
-set renewable_fuel(FUEL) /SOL,WND,BIO,HDR,GTH/; 
+set renewable_tech(TECHNOLOGY) /SPV,WPP,BPP,HPP,GPP/; ???
+set renewable_fuel(FUEL) /SOL,WND,BIO,HDR,GTH/; ???
 
-set power_plants(TECHNOLOGY) / SPV, WPP,BPP,HPP,GPP/;
+set power_plants(TECHNOLOGY) / SPV, WPP,BPP,HPP,GPP/; ???
 set fuel_production_fict(TECHNOLOGY) /SUN, WIN,BIW,HYD,GEO/;????
 set secondary_production(TECHNOLOGY) /SUN, WIN,BIW,HYD,GEO/;????
 
-set primary_fuel(FUEL) / SOL, WND, BIO, HDR, GTH /;
+set primary_fuel(FUEL) / SOL, WND, BIO, HDR, GTH /;???
 
 # Characterize SOLAR technology
 OperationalLife(r,'SPV') = 15;
