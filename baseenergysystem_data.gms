@@ -31,16 +31,16 @@ renewable_tech(t) = no;
 
 *Define the fuels of the model. We have three: crude oil (primary energy), gasoline (secondary) and electricity (secondary)
 *but note that final demand is also defined as a fuel! So it's actually four...
-set     FUEL    / "crude_oil", "gasoline", "electricity", "lighting" /;
+set     FUEL    / "coal_market","gas_market","oil_market","waste_market","rainfall","biomass" /;
 
 ** NOTE THAT ALL TYPE OF FUELS (i.e. ENERGY FLOWS) ARE DEFINED AS FUELS
 * we can conceptualize divide them as primary, secondary, and final demand. 
 * primary fuels are input to the system, but not outputs (i.e. they are not produced by any technology)
-set primary_fuel(FUEL) / "crude_oil" /;
+set primary_fuel(FUEL) / "coal_market","gas_market","oil_market","waste_market","rainfall","biomass" /;
 * secondary fuels are both input and output of the system
-set secondary_carrier(FUEL) / "gasoline", "electricity" /;
+set secondary_carrier(FUEL) / "water", "electricity" /;
 * final demand is only output of the system
-set final_demand(FUEL) / "lighting" /;
+set final_demand(FUEL) / "fd_electricity","fd_water" /;
 
 renewable_fuel(f) = no;
 ** what I just described is a modelling convention. Osemosys is flexible enough to allow more complex interactions. 
