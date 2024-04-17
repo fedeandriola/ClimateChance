@@ -20,12 +20,12 @@ set     EMISSION / "CO2" /;
 * LET's NOW START WITH OUR SUPER SIMPLE ENERGY SISTEM
 
 *Define the technologies of the model. We have three: refineries, oil power plant, and our final appliance (say light bulbs)
-set     TECHNOLOGY   / "refineries", "oil_power_plant", "light_bulbs" /;
+set     TECHNOLOGY   / "coal_pp","coal_usc_pp","ccgt_pp","refineries_pp","oil_pp","geothermal_pp","hydro_roff_pp","hydro_dam_pp","psh_pp","bio_pp","wte_pp" /;
 
 * let's also classify them in different categories (might become useful for reporting)
-set power_plants(TECHNOLOGY) / "oil_power_plant" /;
-set fuel_transformation(TECHNOLOGY) / "refineries" /;
-set appliances(TECHNOLOGY) /"light_bulbs" /;
+set power_plants(TECHNOLOGY) / "coal_pp","coal_usc_pp","ccgt_pp","oil_pp","geothermal_pp","hydro_roff_pp","hydro_dam_pp","psh_pp","bio_pp","wte_pp" /;
+set fuel_transformation(TECHNOLOGY) / "refineries_pp" /;
+set appliances(TECHNOLOGY) /"appliances","water_use" /;
 
 renewable_tech(t) = no;
 
