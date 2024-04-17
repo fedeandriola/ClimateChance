@@ -1,4 +1,5 @@
 *** WE NEED TO POPULATE FIRST THE STRUCTURE OF THE MODEL
+CIAO BABE
 *Define the time horizon 
 set     YEAR    / 2020*2050 /;
 * mode of operations are a characteristic of technologies, useful for certain type of technologies that can be used in two different ways 
