@@ -46,7 +46,7 @@ InputActivityRatio(r,'SPV','SOL',m,y) = 1; #IEA convention
 OutputActivityRatio(r,'SPV','ELC',m,y) = 1; 
 OutputActivityRatio(r,'SUN','SOL',m,y) = 1; 
 
-CapitalCost(r,'SPV',y) = 1000;
+CapitalCost(r,'SPV',y) = 900;
 CapitalCost(r,'SUN',y) = 0; #the sun is free
 VarCost(r,'SPV',m,y) = 1e-5;
 FixedCost(r,'SPV',y) = 25;
@@ -66,7 +66,7 @@ InputActivityRatio(r,'WPP','WND',m,y) = 1; #IEA convention
 OutputActivityRatio(r,'WPP','ELC',m,y) = 1; 
 OutputActivityRatio(r,'WIN','WND',m,y) = 1; 
 
-CapitalCost(r,'WPP',y) = 1200;
+CapitalCost(r,'WPP',y) = 1350;
 CapitalCost(r,'WIN',y) = 0; #the wind is free
 VarCost(r,'WPP',m,y) = 1e-5;
 FixedCost(r,'WPP',y) = 38;

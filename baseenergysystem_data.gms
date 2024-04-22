@@ -121,58 +121,58 @@ AccumulatedAnnualDemand(r,"appliances",y) = ;
 
 * now, let's define the technologies: each is characterized by costs (capital, fixed and variable), capacity and availability factors
 *** costs (per year)
-*overnight costs of construction
-CapitalCost(r,"coal_pp",y) = ;
-CapitalCost(r,"coal_usc_pp",y) = ;
-CapitalCost(r,"ccgt_pp",y) = ;
+*overnight costs of construction [M€/GW]=[€/kW]
+CapitalCost(r,"coal_pp",y) = 1800;
+CapitalCost(r,"coal_usc_pp",y) = 2000;
+CapitalCost(r,"ccgt_pp",y) = 900;
 CapitalCost(r,"refineries",y) = ;
-CapitalCost(r,"oil_pp",y) = ;
-CapitalCost(r,"geothermal_pp",y) = ;
-CapitalCost(r,"hydro_roff_pp",y) = ;
-CapitalCost(r,"hydro_dam_pp",y) = ;
-CapitalCost(r,"psh_pp",y) = ;
-CapitalCost(r,"bio_pp",y) = ;
-CapitalCost(r,"wte_pp",y) = ;
+CapitalCost(r,"oil_pp",y) = 1800;
+CapitalCost(r,"geothermal_pp",y) = 3500;
+CapitalCost(r,"hydro_roff_pp",y) = 2300;
+CapitalCost(r,"hydro_dam_pp",y) = 1900;
+CapitalCost(r,"psh_pp",y) = 1900;
+CapitalCost(r,"bio_pp",y) = 3000;
+CapitalCost(r,"wte_pp",y) = 3500;
 
 ** yearly fixed cost (regardless of activity)
-FixedCost(r,"coal_pp",y) = ;
-FixedCost(r,"coal_usc_pp",y) = ;
-FixedCost(r,"ccgt_pp",y) = ;
+FixedCost(r,"coal_pp",y) = 32;
+FixedCost(r,"coal_usc_pp",y) = 35;
+FixedCost(r,"ccgt_pp",y) = 10.5;
 FixedCost(r,"refineries",y) = ;
-FixedCost(r,"oil_pp",y) = ;
-FixedCost(r,"geothermal_pp",y) = ;
-FixedCost(r,"hydro_roff_pp",y) = ;
-FixedCost(r,"hydro_dam_pp",y) = ;
-FixedCost(r,"psh_pp",y) = ;
-FixedCost(r,"bio_pp",y) = ;
-FixedCost(r,"wte_pp",y) = ;
+FixedCost(r,"oil_pp",y) = 32;
+FixedCost(r,"geothermal_pp",y) = 170;
+FixedCost(r,"hydro_roff_pp",y) = 100;
+FixedCost(r,"hydro_dam_pp",y) = 55;
+FixedCost(r,"psh_pp",y) = 48;
+FixedCost(r,"bio_pp",y) = 70;
+FixedCost(r,"wte_pp",y) = 677,5;
 
 
 ** Var cost (per unit of activity)
-VarCost(r,"coal_pp",y) = ;
-VarCost(r,"coal_usc_pp",y) = ;
-VarCost(r,"ccgt_pp",y) = ;
+VarCost(r,"coal_pp",y) = 0.0479;
+VarCost(r,"coal_usc_pp",y) = 0.047;
+VarCost(r,"ccgt_pp",y) = 0.05511;
 VarCost(r,"refineries",y) = ;
-VarCost(r,"oil_pp",y) = ;
-VarCost(r,"geothermal_pp",y) = ;
-VarCost(r,"hydro_roff_pp",y) = ;
-VarCost(r,"hydro_dam_pp",y) = ;
-VarCost(r,"psh_pp",y) = ;
-VarCost(r,"bio_pp",y) = ;
-VarCost(r,"wte_pp",y) = ;
+VarCost(r,"oil_pp",y) = 0.0515;
+VarCost(r,"geothermal_pp",y) = 0;
+VarCost(r,"hydro_roff_pp",y) = 0;
+VarCost(r,"hydro_dam_pp",y) = 0;
+VarCost(r,"psh_pp",y) = 0;
+VarCost(r,"bio_pp",y) = 0.448;
+VarCost(r,"wte_pp",y) = 0.033;
 
 * lifetime of the technologies
-OperationalLife(r,"coal_pp",y) = ;
-OperationalLife(r,"coal_usc_pp",y) = ;
-OperationalLife(r,"ccgt_pp",y) = ;
+OperationalLife(r,"coal_pp",y) = 35;
+OperationalLife(r,"coal_usc_pp",y) = 35;
+OperationalLife(r,"ccgt_pp",y) = 20;
 OperationalLife(r,"refineries",y) = ;
-OperationalLife(r,"oil_pp",y) = ;
-OperationalLife(r,"geothermal_pp",y) = ;
-OperationalLife(r,"hydro_roff_pp",y) = ;
-OperationalLife(r,"hydro_dam_pp",y) = ;
-OperationalLife(r,"psh_pp",y) = ;
-OperationalLife(r,"bio_pp",y) = ;
-OperationalLife(r,"wte_pp",y) = ;
+OperationalLife(r,"oil_pp",y) = 35;
+OperationalLife(r,"geothermal_pp",y) = 50;
+OperationalLife(r,"hydro_roff_pp",y) = 30;
+OperationalLife(r,"hydro_dam_pp",y) = 80;
+OperationalLife(r,"psh_pp",y) = 50;
+OperationalLife(r,"bio_pp",y) = 20;
+OperationalLife(r,"wte_pp",y) = 20;
 
 * availability factor of the technologies, i.e. max percentage of time they can actually operate over a year
 AvailabilityFactor(r,"coal_pp",y) = ;
@@ -211,12 +211,12 @@ OutputActivityRatio(r,"biomass_market","biomass",m,y) = 1;
 OutputActivityRatio(r,"rain","rainfall",m,y) = 1;
 
 * there are no fixed costs but a variable cost that identifies the price of the crude oil
-VarCost(r,"oil_market",m,y) = ;
-VareCost(r,"coal_market",m,y) = ;
-VarCost(r,"gas_market",m,y) = ;
-VarCost(r,"waste_market",m,y) = ;
-varCost(r,"biomass_market",m,y) = ;
-varCost(r,"rain",m,y) = ;
+VarCost(r,"oil_market",m,y) = 0;
+VareCost(r,"coal_market",m,y) = 0;
+VarCost(r,"gas_market",m,y) = 0;
+VarCost(r,"waste_market",m,y) = 0;
+varCost(r,"biomass_market",m,y) = 0;
+varCost(r,"rain",m,y) = 0;
 
 * operational life is virtually infinite (more than the time horizon of the model)
 OperationalLife(r,"oil_market") = 1000;
