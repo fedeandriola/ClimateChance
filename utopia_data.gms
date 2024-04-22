@@ -24,6 +24,12 @@
 
 set     YEAR    / 2020*2100 /;
 set     TECHNOLOGY      /
+        coal_market 'coal market'
+        oil_market 'oil market'
+        gas_market 'gas market'
+        waste_market 'waste'
+        biomass_market 'biomass'
+        rain 'rainfall'
         coal_pp'coal'
         coal_usc_pp 'coal usc'
         ccgt_pp 'combined cycle gas turbine'
@@ -35,6 +41,7 @@ set     TECHNOLOGY      /
         psh_pp 'pumped hydro and storage'
         bio_pp 'bio energy'
         wte_pp 'waste to energy'
+        river 'river'
 /;
 
 set     TIMESLICE       /
@@ -47,11 +54,12 @@ set     TIMESLICE       /
 /;
 
 set     FUEL    /
-        coal'Coal Market'
-        gas'Gas Market'
-        oil_crude 'Oil Market'
-        waste 'Waste Source'
-        biomass'Biomass Source'
+        coal'Coal'
+        gas'Gas'
+        oil_crude 'Oil Crude'
+        waste 'Waste'
+        rainfall 'water from rainfall'
+        biomass'Biomass'
         electricity 'electricity'
         water 'water'
         oil_ref 'oil refined'
@@ -63,7 +71,7 @@ set     REGION  / ITALY /;
 set     SEASON / 1, 2, 3 /;
 set     DAYTYPE / 1 /;
 set     DAILYTIMEBRACKET / 1, 2 /;
-set     STORAGE / DAM /;
+set     STORAGE / water_reserve /; #water reserves considerate come storage da capire
 
 # characterize technologies 
 set power_plants(TECHNOLOGY) / coal_pp, coal_usc_pp, ccgt_pp, oil_pp,geothermal_pp,hydro_roff_pp,hydro_dam_pp,psh_pp,bio_pp,wte_pp /;
