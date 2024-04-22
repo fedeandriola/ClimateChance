@@ -148,18 +148,18 @@ FixedCost(r,"bio_pp",y) = ;
 FixedCost(r,"wte_pp",y) = ;
 
 
-** variable cost (per unit of activity)
-VariableCost(r,"coal_pp",y) = ;
-VariableCost(r,"coal_usc_pp",y) = ;
-VariableCost(r,"ccgt_pp",y) = ;
-VariableCost(r,"refineries",y) = ;
-VariableCost(r,"oil_pp",y) = ;
-VariableCost(r,"geothermal_pp",y) = ;
-VariableCost(r,"hydro_roff_pp",y) = ;
-VariableCost(r,"hydro_dam_pp",y) = ;
-VariableCost(r,"psh_pp",y) = ;
-VariableCost(r,"bio_pp",y) = ;
-VariableCost(r,"wte_pp",y) = ;
+** Var cost (per unit of activity)
+VarCost(r,"coal_pp",y) = ;
+VarCost(r,"coal_usc_pp",y) = ;
+VarCost(r,"ccgt_pp",y) = ;
+VarCost(r,"refineries",y) = ;
+VarCost(r,"oil_pp",y) = ;
+VarCost(r,"geothermal_pp",y) = ;
+VarCost(r,"hydro_roff_pp",y) = ;
+VarCost(r,"hydro_dam_pp",y) = ;
+VarCost(r,"psh_pp",y) = ;
+VarCost(r,"bio_pp",y) = ;
+VarCost(r,"wte_pp",y) = ;
 
 * lifetime of the technologies
 OperationalLife(r,"coal_pp",y) = ;
@@ -211,12 +211,12 @@ OutputActivityRatio(r,"biomass_market","biomass",m,y) = 1;
 OutputActivityRatio(r,"rain","rainfall",m,y) = 1;
 
 * there are no fixed costs but a variable cost that identifies the price of the crude oil
-VariableCost(r,"oil_market",m,y) = ;
-VariableCost(r,"coal_market",m,y) = ;
-VariableCost(r,"gas_market",m,y) = ;
-VariableCost(r,"waste_market",m,y) = ;
-VariableCost(r,"biomass_market",m,y) = ;
-VariableCost(r,"rain",m,y) = ;
+VarCost(r,"oil_market",m,y) = ;
+VareCost(r,"coal_market",m,y) = ;
+VarCost(r,"gas_market",m,y) = ;
+VarCost(r,"waste_market",m,y) = ;
+varCost(r,"biomass_market",m,y) = ;
+varCost(r,"rain",m,y) = ;
 
 * operational life is virtually infinite (more than the time horizon of the model)
 OperationalLife(r,"oil_market") = 1000;

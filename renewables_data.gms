@@ -48,7 +48,7 @@ OutputActivityRatio(r,'SUN','SOL',m,y) = 1;
 
 CapitalCost(r,'SPV',y) = 1000;
 CapitalCost(r,'SUN',y) = 0; #the sun is free
-VariableCost(r,'SPV',m,y) = 1e-5;
+VarCost(r,'SPV',m,y) = 1e-5;
 FixedCost(r,'SPV',y) = 25;
 
 
@@ -68,7 +68,7 @@ OutputActivityRatio(r,'WIN','WND',m,y) = 1;
 
 CapitalCost(r,'WPP',y) = 1200;
 CapitalCost(r,'WIN',y) = 0; #the wind is free
-VariableCost(r,'WPP',m,y) = 1e-5;
+VarCost(r,'WPP',m,y) = 1e-5;
 FixedCost(r,'WPP',y) = 38;
 
 
