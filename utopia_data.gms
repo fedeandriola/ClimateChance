@@ -80,8 +80,8 @@ set fuel_transformation(TECHNOLOGY) / refineries_pp /;
 set appliances(TECHNOLOGY) /electricity /;
 #set unmet_demand(TECHNOLOGY) / /;
 #set transport(TECHNOLOGY) / TXD, TXE, TXG /;
-set primary_imports(TECHNOLOGY) / IMPHCO1, IMPOIL1, IMPURN1 /;
-set secondary_imports(TECHNOLOGY) / IMPDSL1, IMPGSL1 /;
+#set primary_imports(TECHNOLOGY) / IMPHCO1, IMPOIL1, IMPURN1 /;
+#set secondary_imports(TECHNOLOGY) / IMPDSL1, IMPGSL1 /;
 
 set renewable_tech(TECHNOLOGY) /HYDRO/; 
 set renewable_fuel(FUEL) /water,biomass,waste/; 
