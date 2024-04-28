@@ -22,26 +22,26 @@
 * Sets       
 *------------------------------------------------------------------------
 
-set     YEAR    / 1990*2010 /;
+set     YEAR    / 2020*2100 /;
 set     TECHNOLOGY      /
-        COAL 'Coal power plants'
-        NUCLEAR 'Nuclear power plants'
-        HYDRO 'Hydroelectric power plants'
-        STOR_HYDRO 'Pumped storage'
-        DIESEL_GEN 'Diesel power plants'
-        IMPDSL1 'Diesel imports'
-        IMPGSL1 'Gasoline imports'
-        IMPHCO1 'Coal imports'
-        IMPOIL1 'Crude oil imports'
-        IMPURN1 'Uranium imports'
-        RHE 'Residential heaters - electric'
-        RHO 'Residential heaters - oil'
-        RL1 'Residential light bulbs'
-        SRE 'Crude oil refinery'
-        TXD 'Personal vehicles - diesel'
-        TXE 'Personal vehicles - electric'
-        TXG 'Personal vehicles - gasoline'
-        RIV 'River'
+        coal_market 'coal market'
+        oil_market 'oil market'
+        gas_market 'gas market'
+        waste_market 'waste'
+        biomass_market 'biomass'
+        rain 'rainfall'
+        coal_pp'coal'
+        coal_usc_pp 'coal usc'
+        ccgt_pp 'combined cycle gas turbine'
+        refineries_pp 'refineries'
+        oil_pp 'oil power plant'
+        geothermal_pp 'geothermal'
+        hydro_roff_pp 'hydro run of river'
+        hydro_dam_pp 'hydro dam'
+        psh_pp 'pumped hydro and storage'
+        bio_pp 'bio energy'
+        wte_pp 'waste to energy'
+        river 'river'
 /;
 
 set     TIMESLICE       /
@@ -54,38 +54,37 @@ set     TIMESLICE       /
 /;
 
 set     FUEL    /
-        DSL 'Diesel'
-        ELC 'Electricity'
-        GSL 'Gasoline'
-        HCO 'Coal'
-        HYD 'Hydro'
-        OIL 'Crude oil'
-        URN 'Uranium'
-        RH 'Demand for residential heating'
-        RL 'Demand for residential lighting'
-        TX 'Demand for personal transport'
+        coal'Coal'
+        gas'Gas'
+        oil_crude 'Oil Crude'
+        waste 'Waste'
+        rainfall 'water from rainfall'
+        biomass'Biomass'
+        electricity 'electricity'
+        water 'water'
+        oil_ref 'oil refined'
 /;
 
-set     EMISSION        / CO2, NOX /;
-set     MODE_OF_OPERATION       / 1, 2 /;
-set     REGION  / UTOPIA /;
+set     EMISSION        / CO2 /;
+#set     MODE_OF_OPERATION       / 1, 2 /;
+set     REGION  / ITALY /;
 set     SEASON / 1, 2, 3 /;
 set     DAYTYPE / 1 /;
 set     DAILYTIMEBRACKET / 1, 2 /;
-set     STORAGE / DAM /;
+set     STORAGE / water_reserve /; #water reserves considerate come storage da capire
 
 # characterize technologies 
-set power_plants(TECHNOLOGY) / COAL, NUCLEAR, HYDRO, DIESEL_GEN /;
+set power_plants(TECHNOLOGY) / coal_pp, coal_usc_pp, ccgt_pp, oil_pp,geothermal_pp,hydro_roff_pp,hydro_dam_pp,psh_pp,bio_pp,wte_pp /;
 set storage_plants(TECHNOLOGY) / STOR_HYDRO /;
-set fuel_transformation(TECHNOLOGY) / SRE /;
-set appliances(TECHNOLOGY) / RHE, RHO, RL1, TXD, TXE, TXG /;
-set unmet_demand(TECHNOLOGY) / /;
-set transport(TECHNOLOGY) / TXD, TXE, TXG /;
-set primary_imports(TECHNOLOGY) / IMPHCO1, IMPOIL1, IMPURN1 /;
-set secondary_imports(TECHNOLOGY) / IMPDSL1, IMPGSL1 /;
+set fuel_transformation(TECHNOLOGY) / refineries_pp /;
+set appliances(TECHNOLOGY) /electricity /;
+#set unmet_demand(TECHNOLOGY) / /;
+#set transport(TECHNOLOGY) / TXD, TXE, TXG /;
+#set primary_imports(TECHNOLOGY) / IMPHCO1, IMPOIL1, IMPURN1 /;
+#set secondary_imports(TECHNOLOGY) / IMPDSL1, IMPGSL1 /;
 
 set renewable_tech(TECHNOLOGY) /HYDRO/; 
-set renewable_fuel(FUEL) /HYD/; 
+set renewable_fuel(FUEL) /water,biomass,waste/; 
 
 set fuel_production(TECHNOLOGY);
 set fuel_production_fict(TECHNOLOGY) /RIV/;
@@ -104,12 +103,12 @@ set final_demand(FUEL) / RH, RL, TX /;
 
 
 parameter YearSplit(l,y) /
-  ID.(1990*2010)  .3333
-  IN.(1990*2010)  .1667
-  SD.(1990*2010)  .1667
-  SN.(1990*2010)  .0833
-  WD.(1990*2010)  .1667
-  WN.(1990*2010)  .0833
+  ID.(2020*2100)  .3333
+  IN.(2020*2100)  .1667
+  SD.(2020*2100)  .1667
+  SN.(2020*2100)  .0833
+  WD.(2020*2100)  .1667
+  WN.(2020*2100)  .0833
 /;
 
 DiscountRate(r) = 0.05;
@@ -385,40 +384,40 @@ parameter ResidualCapacity(r,t,y) /
 $if set no_initial_capacity ResidualCapacity(r,t,y) = 0;
 
 parameter InputActivityRatio(r,t,f,m,y) /
-  UTOPIA.COAL.HCO.1.(1990*2010)  3.125
-  UTOPIA.NUCLEAR.URN.1.(1990*2010)  3.5
-  UTOPIA.HYDRO.HYD.1.(1990*2010)  3.125
-  UTOPIA.STOR_HYDRO.ELC.2.(1990*2010)  1.3889
-  UTOPIA.DIESEL_GEN.DSL.1.(1990*2010)  3.4
-  UTOPIA.RHE.ELC.1.(1990*2010)  1
-  UTOPIA.RHO.DSL.1.(1990*2010)  1.428571
-  UTOPIA.RL1.ELC.1.(1990*2010)  1
-  UTOPIA.SRE.OIL.1.(1990*2010)  1
-  UTOPIA.TXD.DSL.1.(1990*2010)  1
-  UTOPIA.TXE.ELC.1.(1990*2010)  1
-  UTOPIA.TXG.GSL.1.(1990*2010)  1
+  UTOPIA.COAL.HCO.1.(2020*2100)  3.125
+  UTOPIA.NUCLEAR.URN.1.(2020*2100)  3.5
+  UTOPIA.HYDRO.HYD.1.(2020*2100)  3.125
+  UTOPIA.STOR_HYDRO.ELC.2.(2020*2100)  1.3889
+  UTOPIA.DIESEL_GEN.DSL.1.(2020*2100)  3.4
+  UTOPIA.RHE.ELC.1.(2020*2100)  1
+  UTOPIA.RHO.DSL.1.(2020*2100)  1.428571
+  UTOPIA.RL1.ELC.1.(2020*2100)  1
+  UTOPIA.SRE.OIL.1.(2020*2100)  1
+  UTOPIA.TXD.DSL.1.(2020*2100)  1
+  UTOPIA.TXE.ELC.1.(2020*2100)  1
+  UTOPIA.TXG.GSL.1.(2020*2100)  1
 /;
 
 parameter OutputActivityRatio(r,t,f,m,y) /
-  UTOPIA.COAL.ELC.1.(1990*2010)  1
-  UTOPIA.NUCLEAR.ELC.1.(1990*2010)  1
-  UTOPIA.HYDRO.ELC.1.(1990*2010)  1
-  UTOPIA.STOR_HYDRO.ELC.1.(1990*2010)  1
-  UTOPIA.DIESEL_GEN.ELC.1.(1990*2010)  1
-  UTOPIA.IMPDSL1.DSL.1.(1990*2010)  1
-  UTOPIA.IMPGSL1.GSL.1.(1990*2010)  1
-  UTOPIA.IMPHCO1.HCO.1.(1990*2010)  1
-  UTOPIA.IMPOIL1.OIL.1.(1990*2010)  1
-  UTOPIA.IMPURN1.URN.1.(1990*2010)  1
-  UTOPIA.RHE.RH.1.(1990*2010)  1
-  UTOPIA.RHO.RH.1.(1990*2010)  1
-  UTOPIA.RIV.HYD.1.(1990*2010)  1
-  UTOPIA.RL1.RL.1.(1990*2010)  1
-  UTOPIA.SRE.DSL.1.(1990*2010)  .7
-  UTOPIA.SRE.GSL.1.(1990*2010)  .3
-  UTOPIA.TXD.TX.1.(1990*2010)  1
-  UTOPIA.TXE.TX.1.(1990*2010)  1
-  UTOPIA.TXG.TX.1.(1990*2010)  1
+  UTOPIA.COAL.ELC.1.(2020*2100)  1
+  UTOPIA.NUCLEAR.ELC.1.(2020*2100)  1
+  UTOPIA.HYDRO.ELC.1.(2020*2100)  1
+  UTOPIA.STOR_HYDRO.ELC.1.(2020*2100)  1
+  UTOPIA.DIESEL_GEN.ELC.1.(2020*2100)  1
+  UTOPIA.IMPDSL1.DSL.1.(2020*2100)  1
+  UTOPIA.IMPGSL1.GSL.1.(2020*2100)  1
+  UTOPIA.IMPHCO1.HCO.1.(2020*2100)  1
+  UTOPIA.IMPOIL1.OIL.1.(2020*2100)  1
+  UTOPIA.IMPURN1.URN.1.(2020*2100)  1
+  UTOPIA.RHE.RH.1.(2020*2100)  1
+  UTOPIA.RHO.RH.1.(2020*2100)  1
+  UTOPIA.RIV.HYD.1.(2020*2100)  1
+  UTOPIA.RL1.RL.1.(2020*2100)  1
+  UTOPIA.SRE.DSL.1.(2020*2100)  .7
+  UTOPIA.SRE.GSL.1.(2020*2100)  .3
+  UTOPIA.TXD.TX.1.(2020*2100)  1
+  UTOPIA.TXE.TX.1.(2020*2100)  1
+  UTOPIA.TXG.TX.1.(2020*2100)  1
 /;
 
 # By default, assume for imported secondary fuels the same efficiency of the internal refineries
@@ -710,19 +709,19 @@ TotalTechnologyModelPeriodActivityLowerLimit(r,t) = 0;
 *-----------------------------------------------------------------------
 
 parameter ReserveMarginTagTechnology(r,t,y) /
-  UTOPIA.COAL.(1990*2010)  1
-  UTOPIA.NUCLEAR.(1990*2010)  1
-  UTOPIA.HYDRO.(1990*2010)  1
-  UTOPIA.STOR_HYDRO.(1990*2010)  1
-  UTOPIA.DIESEL_GEN.(1990*2010)  1
+  UTOPIA.COAL.(2020*2100)  1
+  UTOPIA.NUCLEAR.(2020*2100)  1
+  UTOPIA.HYDRO.(2020*2100)  1
+  UTOPIA.STOR_HYDRO.(2020*2100)  1
+  UTOPIA.DIESEL_GEN.(2020*2100)  1
 /;
 
 parameter ReserveMarginTagFuel(r,f,y) /
-  UTOPIA.ELC.(1990*2010)  1
+  UTOPIA.ELC.(2020*2100)  1
 /;
 
 parameter ReserveMargin(r,y) /
-  UTOPIA.(1990*2010)  1.18
+  UTOPIA.(2020*2100)  1.18
 /;
 
 
@@ -742,12 +741,12 @@ REMinProductionTarget(r,y) = 0;
 *------------------------------------------------------------------------
 
 parameter EmissionActivityRatio(r,t,e,m,y) /
-  UTOPIA.IMPDSL1.CO2.1.(1990*2010)  .075
-  UTOPIA.IMPGSL1.CO2.1.(1990*2010)  .075
-  UTOPIA.IMPHCO1.CO2.1.(1990*2010)  .089
-  UTOPIA.IMPOIL1.CO2.1.(1990*2010)  .075
-  UTOPIA.TXD.NOX.1.(1990*2010)  1
-  UTOPIA.TXG.NOX.1.(1990*2010)  1
+  UTOPIA.IMPDSL1.CO2.1.(2020*2100)  .075
+  UTOPIA.IMPGSL1.CO2.1.(2020*2100)  .075
+  UTOPIA.IMPHCO1.CO2.1.(2020*2100)  .089
+  UTOPIA.IMPOIL1.CO2.1.(2020*2100)  .075
+  UTOPIA.TXD.NOX.1.(2020*2100)  1
+  UTOPIA.TXG.NOX.1.(2020*2100)  1
 /;
 
 EmissionsPenalty(r,e,y) = 0;
