@@ -66,7 +66,7 @@ set     FUEL    /
 /;
 
 set     EMISSION        / CO2 /;
-#set     MODE_OF_OPERATION       / 1, 2 /;
+set     MODE_OF_OPERATION       / 1, 2 /;
 set     REGION  / ITALY /;
 set     SEASON / 1, 2, 3 /;
 set     DAYTYPE / 1 /;
@@ -103,12 +103,15 @@ set final_demand(FUEL) / RH, RL, TX /;
 
 
 parameter YearSplit(l,y) /
-  ID.(2020*2100)  .3333
+  ID.(2020*2100)  .3333   
   IN.(2020*2100)  .1667
+*6mesi
   SD.(2020*2100)  .1667
   SN.(2020*2100)  .0833
+*3mesi
   WD.(2020*2100)  .1667
   WN.(2020*2100)  .0833
+*3mesi
 /;
 
 DiscountRate(r) = 0.05;
