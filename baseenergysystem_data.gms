@@ -12,7 +12,7 @@ set     SEASON / 1 /;
 set     DAYTYPE / 1 /;
 * collector set for possible permulations of season and daytype
 set     TIMESLICE / "ALLYEAR" /;
-* this set is needed for characterizing storage technologies
+* this set is needed for characterizing storage technologies   
 set     DAILYTIMEBRACKET / 1 /;
 * what type of emissions exists (we can then associate them to fuels)
 set     EMISSION / "CO2" /;
@@ -149,17 +149,17 @@ FixedCost(r,"wte_pp",y) = 677,5;
 
 
 ** Var cost (per unit of activity)
-VarCost(r,"coal_pp",y) = 0.0479;
-VarCost(r,"coal_usc_pp",y) = 0.047;
-VarCost(r,"ccgt_pp",y) = 0.05511;
-VarCost(r,"refineries",y) = ;
-VarCost(r,"oil_pp",y) = 0.0515;
-VarCost(r,"geothermal_pp",y) = 0;
-VarCost(r,"hydro_roff_pp",y) = 0;
-VarCost(r,"hydro_dam_pp",y) = 0;
-VarCost(r,"psh_pp",y) = 0;
-VarCost(r,"bio_pp",y) = 0.448;
-VarCost(r,"wte_pp",y) = 0.033;
+VariableCost(r,"coal_pp",y) = 0.0479;
+VariableCost(r,"coal_usc_pp",y) = 0.047;
+VariableCost(r,"ccgt_pp",y) = 0.05511;
+VariableCost(r,"refineries",y) = ;
+VariableCost(r,"oil_pp",y) = 0.0515;
+VariableCost(r,"geothermal_pp",y) = 0;
+VariableCost(r,"hydro_roff_pp",y) = 0;
+VariableCost(r,"hydro_dam_pp",y) = 0;
+VariableCost(r,"psh_pp",y) = 0;
+VariableCost(r,"bio_pp",y) = 0.448;
+VariableCost(r,"wte_pp",y) = 0.033;
 
 * lifetime of the technologies
 OperationalLife(r,"coal_pp",y) = 35;
