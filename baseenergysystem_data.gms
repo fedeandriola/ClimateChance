@@ -211,12 +211,12 @@ OutputActivityRatio(r,"biomass_market","biomass",m,y) = 1;
 OutputActivityRatio(r,"rain","rainfall",m,y) = 1;
 
 * there are no fixed costs but a variable cost that identifies the price of the crude oil
-VarCost(r,"oil_market",m,y) = 0;
-VareCost(r,"coal_market",m,y) = 0;
-VarCost(r,"gas_market",m,y) = 0;
-VarCost(r,"waste_market",m,y) = 0;
-varCost(r,"biomass_market",m,y) = 0;
-varCost(r,"rain",m,y) = 0;
+VariableCost(r,"oil_market",m,y) = 0;
+VariableCost(r,"coal_market",m,y) = 0;
+VariableCost(r,"gas_market",m,y) = 0;
+VariableCost(r,"waste_market",m,y) = 0;
+VariableCost(r,"biomass_market",m,y) = 0;
+VariableCost(r,"rain",m,y) = 0;
 
 * operational life is virtually infinite (more than the time horizon of the model)
 OperationalLife(r,"oil_market") = 1000;
