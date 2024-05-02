@@ -6,7 +6,7 @@ B 2846 Range Statistics    SOLVE osemosys Using MIP From line 2333
 B 2857 Model Statistics    SOLVE osemosys Using MIP From line 2333
 B 2870 Solution Report     SOLVE osemosys Using MIP From line 2333
 F 2888 Objective
-F 2890 EQ_SpecifiedDemand1
+F 2890 EQ_mand1
 F 3147 CAa1_TotalNewCapacity
 F 3614 CAa2_TotalAnnualCapacity
 F 4081 CAa3_TotalActivityOfEachTechnology

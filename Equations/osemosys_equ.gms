@@ -36,11 +36,11 @@ Objective..
 
 * The equation below is used to generate the term RateOfDemand, from the
 * user-provided data for SpecifiedAnnualDemand and
-* SpecifiedDemandProfile. The RateOfDemand is defined for each combination
+* mandProfile. The RateOfDemand is defined for each combination
 * of commodity, TimeSlice and Year.
-equation EQ_SpecifiedDemand1(REGION,TIMESLICE,FUEL,YEAR);
-EQ_SpecifiedDemand1(r,l,f,y)$(SpecifiedAnnualDemand(r,f,y) gt 0)..
-    SpecifiedAnnualDemand(r,f,y)*SpecifiedDemandProfile(r,f,l,y) / YearSplit(l,y) =e= RateOfDemand(r,l,f,y);
+equation EQ_mand1(REGION,TIMESLICE,FUEL,YEAR);
+EQ_mand1(r,l,f,y)$(SpecifiedAnnualDemand(r,f,y) gt 0)..
+    SpecifiedAnnualDemand(r,f,y)*mandProfile(r,f,l,y) / YearSplit(l,y) =e= RateOfDemand(r,l,f,y);
 
 
 *------------------------------------------------------------------------	

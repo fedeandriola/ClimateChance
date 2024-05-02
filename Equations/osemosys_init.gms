@@ -7,7 +7,7 @@ DepreciationMethod(r) = 1;
 
 *** parameters on demand 
 SpecifiedAnnualDemand(r,f,y) = 0;
-SpecifiedDemandProfile(r,f,l,y) = 1/card(l);
+mandProfile(r,f,l,y) = 1/card(l);
 AccumulatedAnnualDemand(r,f,y) = 0;
 
 *** parameter on technology characteristics

@@ -25,23 +25,25 @@
 set     YEAR    / 2020*2100 /;
 set     TECHNOLOGY      /
         coal_market 'coal market'
-        oil_market 'oil market'
         gas_market 'gas market'
         waste_market 'waste'
         biomass_market 'biomass'
-        rain 'rainfall'
+        oil_market 'oil market'
+        rainfall 'rainfall'
+        oil_refinery 'refineries'
         coal_pp'coal'
         coal_usc_pp 'coal usc'
         ccgt_pp 'combined cycle gas turbine'
-        refineries_pp 'refineries'
+        wte_pp 'waste to energy'
+        bio_pp 'bio energy'
         oil_pp 'oil power plant'
-        geothermal_pp 'geothermal'
+#        geothermal_pp 'geothermal'
+#        wind 'wind'
+#        pv 'pv'
         hydro_roff_pp 'hydro run of river'
         hydro_dam_pp 'hydro dam'
-        psh_pp 'pumped hydro and storage'
-        bio_pp 'bio energy'
-        wte_pp 'waste to energy'
-        river 'river'
+#        psh_pp 'pumped hydro and storage'
+        electricity_demand 'electricity demand'
 /;
 
 set     TIMESLICE       /
@@ -56,44 +58,45 @@ set     TIMESLICE       /
 set     FUEL    /
         coal'Coal'
         gas'Gas'
-        oil_crude 'Oil Crude'
         waste 'Waste'
-        rainfall 'water from rainfall'
         biomass'Biomass'
-        electricity 'electricity'
-        water 'water'
+        oil_crude 'Oil Crude'
         oil_ref 'oil refined'
+        water 'water from rainfall'
+        electricity 'electricity'
+        
+        
 /;
 
-set     EMISSION        / CO2 /;
+set     EMISSION        / co2 /;
 set     MODE_OF_OPERATION       / 1, 2 /;
 set     REGION  / ITALY /;
 set     SEASON / 1, 2, 3 /;
 set     DAYTYPE / 1 /;
 set     DAILYTIMEBRACKET / 1, 2 /;
-set     STORAGE / water_reserve /; #water reserves considerate come storage da capire
+set     STORAGE / dam /; 
 
 # characterize technologies 
-set power_plants(TECHNOLOGY) / coal_pp, coal_usc_pp, ccgt_pp, oil_pp,geothermal_pp,hydro_roff_pp,hydro_dam_pp,psh_pp,bio_pp,wte_pp /;
-set storage_plants(TECHNOLOGY) / STOR_HYDRO /;
-set fuel_transformation(TECHNOLOGY) / refineries_pp /;
-set appliances(TECHNOLOGY) /electricity /;
+set power_plants(TECHNOLOGY) / coal_pp, coal_usc_pp, ccgt_pp, wte_pp, bio_pp, oil_pp, hydro_ror/;
+set storage_plants(TECHNOLOGY) / hydro_dam /;
+set fuel_transformation(TECHNOLOGY) / oil_refinery /;
+set appliances(TECHNOLOGY) /electricity_demand /;
 #set unmet_demand(TECHNOLOGY) / /;
 #set transport(TECHNOLOGY) / TXD, TXE, TXG /;
-#set primary_imports(TECHNOLOGY) / IMPHCO1, IMPOIL1, IMPURN1 /;
+set primary_sources(TECHNOLOGY) / coal_market, gas_market, waste_market, biomass_market, oil_market, rainfall /;
 #set secondary_imports(TECHNOLOGY) / IMPDSL1, IMPGSL1 /;
 
-set renewable_tech(TECHNOLOGY) /HYDRO/; 
-set renewable_fuel(FUEL) /water,biomass,waste/; 
+set renewable_tech(TECHNOLOGY) / hydro_ror/; 
+set renewable_fuel(FUEL) /water/; 
 
-set fuel_production(TECHNOLOGY);
-set fuel_production_fict(TECHNOLOGY) /RIV/;
-set secondary_production(TECHNOLOGY) /COAL, NUCLEAR, HYDRO, STOR_HYDRO, DIESEL_GEN, SRE/;
+#set fuel_production(TECHNOLOGY);
+#set fuel_production_fict(TECHNOLOGY) /RIV/;
+#set secondary_production(TECHNOLOGY) /COAL, NUCLEAR, HYDRO, STOR_HYDRO, DIESEL_GEN, SRE/;
 
 #Characterize fuels 
-set primary_fuel(FUEL) / HCO, OIL, URN, HYD /;
-set secondary_carrier(FUEL) / DSL, GSL, ELC /;
-set final_demand(FUEL) / RH, RL, TX /;
+set primary_fuel(FUEL) / coal, gas, waste, biomass, oil_crude /;
+set secondary_carrier(FUEL) / oil_ref /;
+set final_demand(FUEL) / electricity/;
 
 *$include "Model/osemosys_init.gms"
 
@@ -102,10 +105,16 @@ set final_demand(FUEL) / RH, RL, TX /;
 *------------------------------------------------------------------------
 
 
-parameter YearSplit(l,y) /
-  ID.(2020*2100)  .3333   
-  IN.(2020*2100)  .1667
-*6mesi
+parameter YearSplit(l,y) / #quattro stagioni
+  FD.(2020*2100)  .1667
+  FN.(2020*2100)  .0833
+*3mesi
+  SPD.(2020*2100)  .1667
+  SPN.(2020*2100)  .0833
+*3mesi
+#  ID.(2020*2100)  .3333   
+#  IN.(2020*2100)  .1667
+#*6mesi
   SD.(2020*2100)  .1667
   SN.(2020*2100)  .0833
 *3mesi
@@ -116,36 +125,42 @@ parameter YearSplit(l,y) /
 
 DiscountRate(r) = 0.05;
 
-DaySplit(y,lh) = 12/(24*365);
+DaySplit(y,lh) = 12/(24*365); #ma la notte non la stiamo considerando da otto ore?
 
-parameter Conversionls(l,ls) /
-ID.2 1
-IN.2 1
+
+parameter Conversionls(l,ls) / #ogni periodo corrisponde a una stagione e le stiamo ordinando in winter, spring, summer, fall
+SPD.2 1
+SPN.2 1
+FD.4 1
+FN.4 1
 SD.3 1
 SN.3 1
 WD.1 1
 WN.1 1
 /;
 
-parameter Conversionld(l,ld) /
-ID.1 1
-IN.1 1
+parameter Conversionld(l,ld) / #ogni giorno (per stagione) corrisponde al daytype (per ogni stagione)
+SPD.1 1
+SPN.1 1
+FD.1 1
+FN.1 1
 SD.1 1
 SN.1 1
 WD.1 1
-WN.1 1
-/;
+WN.1 1;
 
-parameter Conversionlh(l,lh) /
-ID.1 1
-IN.2 1
-SD.1 1 
+parameter Conversionlh(l,lh) / #prima giorno e poi notte in ogni giornata
+SPD.1 1
+SPN.2 1
+FD.1 1
+FN.2 1
+SD.1 1
 SN.2 1
 WD.1 1
 WN.2 1
 /;
 
-DaysInDayType(y,ls,ld) = 7;
+DaysInDayType(y,ls,ld) = 7; #sette giorni in una settimana
 
 TradeRoute(r,rr,f,y) = 0;
 
@@ -156,7 +171,7 @@ DepreciationMethod(r) = 1;
 * Parameters - Demands       
 *------------------------------------------------------------------------
 
-parameter SpecifiedAnnualDemand(r,f,y) /
+parameter SpecifiedAnnualDemand(r,f,y) / #domanda elettrica per ogni anno
   UTOPIA.RH.1990  25.2
   UTOPIA.RH.1991  26.46
   UTOPIA.RH.1992  27.72
@@ -201,7 +216,7 @@ parameter SpecifiedAnnualDemand(r,f,y) /
   UTOPIA.RL.2010  12.6
 /;
 
-parameter SpecifiedDemandProfile(r,f,l,y) /
+parameter SpecifiedDemandProfile(r,f,l,y) / #distribuzione della domanda per ogni timeslice
   UTOPIA.RH.ID.(1990*2010)  .12
   UTOPIA.RH.IN.(1990*2010)  .06
   UTOPIA.RH.SD.(1990*2010)  0
@@ -216,7 +231,7 @@ parameter SpecifiedDemandProfile(r,f,l,y) /
   UTOPIA.RL.WN.(1990*2010)  .1
 /;
 
-parameter AccumulatedAnnualDemand(r,f,y) /
+parameter AccumulatedAnnualDemand(r,f,y) /  #se definiamo specified annual demand non va definita
   UTOPIA.TX.1990  5.2
   UTOPIA.TX.1991  5.46
   UTOPIA.TX.1992  5.72
