@@ -220,19 +220,19 @@ parameter SpecifiedAnnualDemand(r,f,y) / #domanda elettrica per ogni anno
   UTOPIA.RL.2010  12.6
 /;
 
+
+ UTOPIA.electricity.(2020*2050) 315.40*(1+0.01*(y-2020)) #domanda variabile dal 2020 al 2050 che aumenta dell' 1% all' anno [TWh]
+ UTOPIA.electricity.(2050*2100)  404.9
+
 parameter SpecifiedDemandProfile(r,f,l,y) / #distribuzione della domanda per ogni timeslice
-  UTOPIA.RH.ID.(1990*2010)  .12
-  UTOPIA.RH.IN.(1990*2010)  .06
-  UTOPIA.RH.SD.(1990*2010)  0
-  UTOPIA.RH.SN.(1990*2010)  0
-  UTOPIA.RH.WD.(1990*2010)  .5467
-  UTOPIA.RH.WN.(1990*2010)  .2733
-  UTOPIA.RL.ID.(1990*2010)  .15
-  UTOPIA.RL.IN.(1990*2010)  .05
-  UTOPIA.RL.SD.(1990*2010)  .15
-  UTOPIA.RL.SN.(1990*2010)  .05
-  UTOPIA.RL.WD.(1990*2010)  .5
-  UTOPIA.RL.WN.(1990*2010)  .1
+  UTOPIA.electricity.WD.(2020*2100)  .14
+  UTOPIA.electricity.WN.(2020*2100)  .08
+  UTOPIA.electricity.SPD.(2020*2100)  .19
+  UTOPIA.electricity.SPN.(2020*2100)  .07
+  UTOPIA.electricity.SD.(2020*2100)  .17
+  UTOPIA.electricity.SN.(2020*2100)  .09
+  UTOPIA.electricity.FD.(2020*2100)  .16
+  UTOPIA.electricity.FN.(2020*2100)  .07
 /;
 
 parameter AccumulatedAnnualDemand(r,f,y) /  #se definiamo specified annual demand non va definita
