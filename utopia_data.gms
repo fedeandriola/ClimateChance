@@ -37,10 +37,10 @@ set     TECHNOLOGY      /
         wte_pp 'waste to energy'
         bio_pp 'bio energy'
         oil_pp 'oil power plant'
-#        geothermal_pp 'geothermal'
-#        wind 'wind'
-#        pv 'pv'
-        hydro_roff_pp 'hydro run of river'
+        geothermal_pp 'geothermal'
+        wind 'wind'
+        pv 'pv'
+        hydro_ror_pp 'hydro run of river'
         hydro_dam_pp 'hydro dam'
 #        psh_pp 'pumped hydro and storage'
         electricity_demand 'electricity demand'
@@ -86,7 +86,7 @@ set appliances(TECHNOLOGY) /electricity_demand /;
 set primary_sources(TECHNOLOGY) / coal_market, gas_market, waste_market, biomass_market, oil_market, rainfall /;
 #set secondary_imports(TECHNOLOGY) / IMPDSL1, IMPGSL1 /;
 
-set renewable_tech(TECHNOLOGY) / hydro_ror/; 
+set renewable_tech(TECHNOLOGY) / geothermal_pp, wind, pv, hydro_ror/; 
 set renewable_fuel(FUEL) /water/; 
 
 #set fuel_production(TECHNOLOGY);
