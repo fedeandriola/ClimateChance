@@ -29,7 +29,7 @@ set     TECHNOLOGY      /
        # waste_market 'waste'   avendo aggregato le biomaase mi sembra ridondante 
         biomass_market 'biomass'
         oil_market 'oil market'
-        rainfall 'rainfall'  
+        rainfall 'rainfall'
         oil_refinery 'refineries' # perchè abbiamo tenuto le oil refineries? abbiamo il prezzo del petrolio, ci servono davvero?
         coal_pp'coal'
         #coal_usc_pp 'coal usc' aggregato in coal PP
