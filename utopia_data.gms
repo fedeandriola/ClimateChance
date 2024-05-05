@@ -26,29 +26,32 @@ set     YEAR    / 2020*2100 /;
 set     TECHNOLOGY      /
         coal_market 'coal market'
         gas_market 'gas market'
-        waste_market 'waste'
+       # waste_market 'waste'   avendo aggregato le biomaase mi sembra ridondante 
         biomass_market 'biomass'
         oil_market 'oil market'
-        rainfall 'rainfall'
-        oil_refinery 'refineries'
+        rainfall 'rainfall'  
+        oil_refinery 'refineries' # perchè abbiamo tenuto le oil refineries? abbiamo il prezzo del petrolio, ci servono davvero?
         coal_pp'coal'
-        coal_usc_pp 'coal usc'
+        #coal_usc_pp 'coal usc' aggregato in coal PP
         ccgt_pp 'combined cycle gas turbine'
-        wte_pp 'waste to energy'
+       # wte_pp 'waste to energy'
         bio_pp 'bio energy'
-        oil_pp 'oil power plant'
+        oil_pp 'oil power plant' #considerati qui dentro anche gli altri conmbustibili simili
         geothermal_pp 'geothermal'
         wind 'wind'
-        pv 'pv'
+        pv 'solar panels'
         hydro_ror_pp 'hydro run of river'
         hydro_dam_pp 'hydro dam'
+        hydro_pump  'pumped hydro'
 #        psh_pp 'pumped hydro and storage'
         electricity_demand 'electricity demand'
 /;
 
 set     TIMESLICE       /
-        ID 'Intermediate - day'
-        IN 'Intermediate - night'
+        FD 'Fall - day'
+        FN 'Fall - night'
+        SPD 'Spring - dat '
+        SPN 'Spring - night'
         SD 'Summer - day'
         SN 'Summer - night'
         WD 'Winter - day'
@@ -71,12 +74,13 @@ set     FUEL    /
 set     EMISSION        / co2 /;
 set     MODE_OF_OPERATION       / 1, 2 /;
 set     REGION  / ITALY /;
-set     SEASON / 1, 2, 3 /;
+set     SEASON / 1, 2, 3, 4 /;
 set     DAYTYPE / 1 /;
 set     DAILYTIMEBRACKET / 1, 2 /;
 set     STORAGE / dam /; 
 
 # characterize technologies 
+set markets(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market /;
 set power_plants(TECHNOLOGY) / coal_pp, coal_usc_pp, ccgt_pp, wte_pp, bio_pp, oil_pp, hydro_ror/;
 set storage_plants(TECHNOLOGY) / hydro_dam /;
 set fuel_transformation(TECHNOLOGY) / oil_refinery /;
