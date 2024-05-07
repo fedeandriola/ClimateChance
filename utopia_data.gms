@@ -179,8 +179,9 @@ DepreciationMethod(r) = 1;
 
 parameter SpecifiedAnnualDemand(r,f,y) #/ #domanda elettrica per ogni anno
 
-  SpecifiedAnnualDemand("utopia","electricity","2020") = 315.40;
-  loop(y, SpecifiedAnnualDemand("utopia","electricity",y)=SpecifiedAnnualDemand("utopia","electricity","2020")*(1+.01*(y.val-2020)) ;);
+  SpecifiedAnnualDemand("utopia","electricity","2020") = 1135.44;
+  loop(y.val<=2050, SpecifiedAnnualDemand("utopia","electricity",y)=SpecifiedAnnualDemand("utopia","electricity","2020")*(1+.01*(y.val-2020)) ;);
+  loop(y.val>=2050, SpecifiedAnnualDemand("utopia","electricity",y)=1457.74 ;);
 
   display SpecifiedAnnualDemand;
 
@@ -385,8 +386,8 @@ parameter OutputActivityRatio(r,t,f,m,y) /
 
 
 # By default, assume for imported secondary fuels the same efficiency of the internal refineries
-InputActivityRatio(r,'IMPDSL1','OIL',m,y)$(not OutputActivityRatio(r,'SRE','DSL',m,y) eq 0) = 1/OutputActivityRatio(r,'SRE','DSL',m,y); 
-InputActivityRatio(r,'IMPGSL1','OIL',m,y)$(not OutputActivityRatio(r,'SRE','GSL',m,y) eq 0) = 1/OutputActivityRatio(r,'SRE','GSL',m,y); 
+* InputActivityRatio(r,'IMPDSL1','OIL',m,y)$(not OutputActivityRatio(r,'SRE','DSL',m,y) eq 0) = 1/OutputActivityRatio(r,'SRE','DSL',m,y); 
+* InputActivityRatio(r,'IMPGSL1','OIL',m,y)$(not OutputActivityRatio(r,'SRE','GSL',m,y) eq 0) = 1/OutputActivityRatio(r,'SRE','GSL',m,y); 
 
 *------------------------------------------------------------------------	
 * Parameters - Technology costs       
