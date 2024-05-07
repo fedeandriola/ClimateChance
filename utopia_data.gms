@@ -177,7 +177,7 @@ DepreciationMethod(r) = 1;
 * Parameters - Demands       
 *------------------------------------------------------------------------
 
-parameter SpecifiedAnnualDemand(r,f,y) #/ #domanda elettrica per ogni anno
+parameter SpecifiedAnnualDemand(r,f,y) #/ #domanda elettrica per ogni anno [PJ]
 
   SpecifiedAnnualDemand("utopia","electricity","2020") = 1135.44;
   loop(y.val<=2050, SpecifiedAnnualDemand("utopia","electricity",y)=SpecifiedAnnualDemand("utopia","electricity","2020")*(1+.01*(y.val-2020)) ;);
@@ -337,16 +337,16 @@ parameter OperationalLife(r,t) /
 /;
 OperationalLife(r,t)$(OperationalLife(r,t) = 0) = 1;
 
-* parameter ResidualCapacity(r,t,y)  #/ #qua va scritta una funzione
+parameter ResidualCapacity(r,t,y)  #/ #qua va scritta una funzione
 *     ResidualCapacity("utopia","coal_pp","2020") = 5.658;
 *     ResidualCapacity("utopia","coal_pp","2021") = 5.658;
 *     ResidualCapacity("utopia","coal_pp","2022") = 5.658;
     loop(y$(y.val < 2022), ResidualCapacity("utopia","coal_pp",y)=5.658;);
-    loop(y$(2022 <= y.val and y.val <= 2060), ResidualCapacity("utopia","coal_pp",y)=ResidualCapacity("utopia","coal_pp",y-1)*(1+.12) ;);
+    loop(y$(2022 <= y.val and y.val <= 2060), ResidualCapacity("utopia","coal_pp",y)=ResidualCapacity("utopia","coal_pp",y-1)*(1-.12) ;);
     loop(y$(y.val > 2060), ResidualCapacity("utopia","coal_pp",y)=0;); #chiedere se la funzione ha senso
 
 
-    display SpecifiedAnnualDemand;
+    display ResidualCapacity;
 
 
 $if set no_initial_capacity ResidualCapacity(r,t,y) = 0; #sono sbagliati perchè queste sono le efficienze, a noi serve l'inverso :)
@@ -396,65 +396,24 @@ parameter OutputActivityRatio(r,t,f,m,y) /
 * Parameters - Technology costs       
 *------------------------------------------------------------------------
 
-parameter CapitalCost /
-  UTOPIA.COAL.1990  1400
-  UTOPIA.COAL.1991  1390
-  UTOPIA.COAL.1992  1380
-  UTOPIA.COAL.1993  1370
-  UTOPIA.COAL.1994  1360
-  UTOPIA.COAL.1995  1350
-  UTOPIA.COAL.1996  1340
-  UTOPIA.COAL.1997  1330
-  UTOPIA.COAL.1998  1320
-  UTOPIA.COAL.1999  1310
-  UTOPIA.COAL.2000  1300
-  UTOPIA.COAL.2001  1290
-  UTOPIA.COAL.2002  1280
-  UTOPIA.COAL.2003  1270
-  UTOPIA.COAL.2004  1260
-  UTOPIA.COAL.2005  1250
-  UTOPIA.COAL.2006  1240
-  UTOPIA.COAL.2007  1230
-  UTOPIA.COAL.2008  1220
-  UTOPIA.COAL.2009  1210
-  UTOPIA.COAL.2010  1200
-  UTOPIA.NUCLEAR.(1990*2010)  5000
-  UTOPIA.HYDRO.(1990*2010)  3000
-  UTOPIA.STOR_HYDRO.(1990*2010)  900
-  UTOPIA.DIESEL_GEN.(1990*2010)  1000
-  UTOPIA.IMPDSL1.(1990*2010)  0
-  UTOPIA.IMPGSL1.(1990*2010)  0
-  UTOPIA.IMPHCO1.(1990*2010)  0
-  UTOPIA.IMPOIL1.(1990*2010)  0
-  UTOPIA.IMPURN1.(1990*2010)  0
-  UTOPIA.RHE.(1990*2010)  90
-  UTOPIA.RHO.(1990*2010)  100
-  UTOPIA.RIV.(1990*2010)  0
-  UTOPIA.RL1.(1990*2010)  0
-  UTOPIA.SRE.(1990*2010)  100
-  UTOPIA.TXD.(1990*2010)  1044
-  UTOPIA.TXE.1990  2000
-  UTOPIA.TXE.1991  1975
-  UTOPIA.TXE.1992  1950
-  UTOPIA.TXE.1993  1925
-  UTOPIA.TXE.1994  1900
-  UTOPIA.TXE.1995  1875
-  UTOPIA.TXE.1996  1850
-  UTOPIA.TXE.1997  1825
-  UTOPIA.TXE.1998  1800
-  UTOPIA.TXE.1999  1775
-  UTOPIA.TXE.2000  1750
-  UTOPIA.TXE.2001  1725
-  UTOPIA.TXE.2002  1700
-  UTOPIA.TXE.2003  1675
-  UTOPIA.TXE.2004  1650
-  UTOPIA.TXE.2005  1625
-  UTOPIA.TXE.2006  1600
-  UTOPIA.TXE.2007  1575
-  UTOPIA.TXE.2008  1550
-  UTOPIA.TXE.2009  1525
-  UTOPIA.TXE.2010  1500
-  UTOPIA.TXG.(1990*2010)  1044
+parameter CapitalCost / #[M€/GW]
+  UTOPIA.coal_market.(2020*2100) 0
+  UTOPIA.gas_market.(2020*2100) 0
+  UTOPIA.oil_market.(2020*2100) 0
+  UTOPIA.biomass_market.(2020*2100) 0
+  UTOPIA.rainfall.(2020*2100) 0
+  UTOPIA.refineries.(2020*2100) 0 #it is not binding, so it can install as much as it wants
+  UTOPIA.coal_pp.(2020*2100) 2000
+  UTOPIA.ccgt_pp.(2020*2100) 900
+  UTOPIA.oil_pp.(2020*2100) 1800
+  UTOPIA.geothermal_pp.(2020*2100) 3500
+  UTOPIA.wind_pp.(2020*2100) 1350
+  UTOPIA.pv.(2020*2100) 1200
+  UTOPIA.bio_pp.(2020*2100) 3500
+  UTOPIA.hydro_ror_pp.(2020*2100) 2300
+  UTOPIA.hydro_dam_pp.(2020*2100) 1900
+  UTOPIA.hydro_psh_pp.(2020*2100) 1900 
+
 /;
 
 parameter VariableCost(r,t,m,y) /
