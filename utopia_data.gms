@@ -271,9 +271,6 @@ parameter SpecifiedAnnualDemand(r,f,y) #/ #domanda elettrica per ogni anno
 * /;
 
 
-* UTOPIA.electricity.(2020*2050) 315.40*(1+0.01*(y.val-2020)) #domanda variabile dal 2020 al 2050 che aumenta dell' 1% all' anno [TWh]
-* UTOPIA.electricity.(2050*2100)  404.9
-
 parameter SpecifiedDemandProfile(r,f,l,y) / #distribuzione della domanda per ogni timeslice
   UTOPIA.electricity.WD.(2020*2100)  .14
   UTOPIA.electricity.WN.(2020*2100)  .08
@@ -340,35 +337,41 @@ parameter OperationalLife(r,t) /
 /;
 OperationalLife(r,t)$(OperationalLife(r,t) = 0) = 1;
 
-parameter ResidualCapacity(r,t,y)  #/ #qua va scritta una funzione
-    ResidualCapacity("utopia","coal_pp","2020") = 5.658;
-    ResidualCapacity("utopia","coal_pp","2021") = 5.658;
-    ResidualCapacity("utopia","coal_pp","2022") = 5.658;
-    loop(y$(2022 <= y.val and y.val <= 2060), ResidualCapacity("utopia","coal_pp",y)=ResidualCapacity("utopia","coal_pp",y-1)/((1+.12)) ;);
+* parameter ResidualCapacity(r,t,y)  #/ #qua va scritta una funzione
+*     ResidualCapacity("utopia","coal_pp","2020") = 5.658;
+*     ResidualCapacity("utopia","coal_pp","2021") = 5.658;
+*     ResidualCapacity("utopia","coal_pp","2022") = 5.658;
+    loop(y$(y.val < 2022), ResidualCapacity("utopia","coal_pp",y)=5.658;);
+    loop(y$(2022 <= y.val and y.val <= 2060), ResidualCapacity("utopia","coal_pp",y)=ResidualCapacity("utopia","coal_pp",y-1)*(1+.12) ;);
     loop(y$(y.val > 2060), ResidualCapacity("utopia","coal_pp",y)=0;); #chiedere se la funzione ha senso
 
 
     display SpecifiedAnnualDemand;
 
 
-$if set no_initial_capacity ResidualCapacity(r,t,y) = 0;
+$if set no_initial_capacity ResidualCapacity(r,t,y) = 0; #sono sbagliati perchè queste sono le efficienze, a noi serve l'inverso :)
 
 parameter InputActivityRatio(r,t,f,m,y) / #da completare
-  UTOPIA.refineries.oil_crude.1.(2020*2100) #da trovare
-  UTOPIA.coal_pp.coal.1.(2020*2100) 0.38
-  UTOPIA.ccgt_pp.gas.1.(2020*2100) 0.56
-  UTOPIA.oil_pp.oil_ref.1.(2020*2100) 0.35
-  UTOPIA.geothermal_pp.geo_heat.1.(2020*2100) 1
+  UTOPIA.refineries.oil_crude.1.(2020*2100) 1.02 #da trovare
+  UTOPIA.coal_pp.coal.1.(2020*2100) 2.63
+  UTOPIA.ccgt_pp.gas.1.(2020*2100) 1.78
+  UTOPIA.oil_pp.oil_ref.1.(2020*2100) 2.86
+  UTOPIA.geothermal_pp.geo_heat.1.(2020*2100) 1 #IEA assumption for renewables
   UTOPIA.wind_pp.wind.1.(2020*2100) 1
   UTOPIA.pv.sun.1.(2020*2100) 1
-  UTOPIA.bio_pp.biomass.1.(2020*2100) 0.31
+  UTOPIA.bio_pp.biomass.1.(2020*2100) 3.23
   UTOPIA.hydro_ror_pp.water.1.(2020*2100) 1
   UTOPIA.hydro_dam_pp.water.1.(2020*2100) 1
-  UTOPIA.hydro_psh_pp.water.1.(2020*2100) 0.87 #turbine mode
-  UTOPIA.hydro_psh_pp.electricity.2.(2020*2100) 0.87 #pumping mode
+  UTOPIA.hydro_psh_pp.water.1.(2020*2100) 1.15 #turbine mode
+  UTOPIA.hydro_psh_pp.electricity.2.(2020*2100) 1.15 #pumping mode
   /;
 
 parameter OutputActivityRatio(r,t,f,m,y) /
+  UTOPIA.coal_market.coal.1.(2020*2100) 1
+  UTOPIA.gas_market.gas.1.(2020*2100) 1
+  UTOPIA.oil_market.oil_crude.1.(2020*2100) 1
+  UTOPIA.biomass_market.biomass.1.(2020*2100) 1
+  UTOPIA.rainfall.water.1.(2020*2100) 1
   UTOPIA.refineries.oil_ref.1.(2020*2100) 1 
   UTOPIA.coal_pp.electricity.1.(2020*2100) 1
   UTOPIA.ccgt_pp.electricity.1.(2020*2100) 1
@@ -465,7 +468,7 @@ parameter VariableCost(r,t,m,y) /
   UTOPIA.IMPURN1.1.(1990*2010)  2
   UTOPIA.SRE.1.(1990*2010)  10
 /;
-VariableCost(r,t,m,y)$(VariableCost(r,t,m,y) = 0) = 1e-5;
+ VariableCost(r,t,m,y)$(VariableCost(r,t,m,y) = 0) = 1e-5;
 
 parameter FixedCost /
   UTOPIA.COAL.(1990*2010)  40
