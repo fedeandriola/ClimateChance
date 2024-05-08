@@ -396,7 +396,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
 * Parameters - Technology costs       
 *------------------------------------------------------------------------
 
-parameter CapitalCost / #[M€/GW]
+parameter CapitalCost / #[M€/GW]aa
   UTOPIA.coal_market.(2020*2100) 0
   UTOPIA.gas_market.(2020*2100) 0
   UTOPIA.oil_market.(2020*2100) 0
