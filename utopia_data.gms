@@ -499,7 +499,7 @@ TotalAnnualMaxCapacity(r,t,y)$(TotalAnnualMaxCapacity(r,t,y) = 0) = 99999;
 parameter TotalAnnualMinCapacity(r,t,y) /
 /;
 
-TotalAnnualMaxCapacityInvestment(r,t,y) = 99999;
+TotalAnnualMaxCapacityInvestment(r,t,y) = 99999999;
 
 TotalAnnualMinCapacityInvestment(r,t,y) = 0;
 
