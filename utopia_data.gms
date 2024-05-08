@@ -31,7 +31,7 @@ set     TECHNOLOGY      /
         oil_market 'oil market'
         rainfall 'rainfall'
         oil_refinery 'refineries' # perchè abbiamo tenuto le oil refineries? abbiamo il prezzo del petrolio, ci servono davvero?
-        coal_pp'coal'
+        coal_pp 'coal'
         #coal_usc_pp 'coal usc' aggregato in coal PP
         ccgt_pp 'combined cycle gas turbine'
        # wte_pp 'waste to energy'
@@ -58,10 +58,10 @@ set     TIMESLICE       /
 /;
 
 set     FUEL    /
-        coal'Coal'
-        gas'Gas'
+        coal 'Coal'
+        gas 'Gas'
         waste 'Waste'
-        biomass'Biomass'
+        biomass 'Biomass'
         oil_crude 'Oil Crude'
         oil_ref 'oil refined'
         water 'water from rainfall'
@@ -75,7 +75,7 @@ set     FUEL    /
 
 set     EMISSION        / co2 /;
 set     MODE_OF_OPERATION       / 1, 2 /;
-set     REGION  / ITALY /;
+set     REGION  / UTOPIA /;
 set     SEASON / 1, 2, 3, 4 /;
 set     DAYTYPE / 1 /;
 set     DAILYTIMEBRACKET / 1, 2 /;
@@ -83,13 +83,13 @@ set     STORAGE / dam /;
 
 # characterize technologies 
 set markets(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market /;
-set power_plants(TECHNOLOGY) / coal_pp, ccgt_pp, bio_pp, oil_pp, geothermal_pp, wind, pv, hydro_ror_pp, hydro_dam_pp, phs_pp/;
+set power_plants(TECHNOLOGY) / coal_pp, ccgt_pp, bio_pp, oil_pp, geothermal_pp, wind_pp, pv, hydro_ror_pp, hydro_dam_pp, psh_pp /;
 set storage_plants(TECHNOLOGY) / hydro_dam_pp /;
 set fuel_transformation(TECHNOLOGY) / oil_refinery /;
 set appliances(TECHNOLOGY) /electricity_demand /;
 #set unmet_demand(TECHNOLOGY) / /;
 #set transport(TECHNOLOGY) / TXD, TXE, TXG /;
-set primary_sources(TECHNOLOGY) / coal_market, gas_market, waste_market, biomass_market, oil_market, rainfall /;
+set primary_sources(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, rainfall /;
 #set secondary_imports(TECHNOLOGY) / IMPDSL1, IMPGSL1 /;
 
 set renewable_tech(TECHNOLOGY) / geothermal_pp, wind_pp, pv, hydro_ror_pp/; 
@@ -153,7 +153,8 @@ FN.1 1
 SD.1 1
 SN.1 1
 WD.1 1
-WN.1 1;
+WN.1 1
+/;
 
 parameter Conversionlh(l,lh) / #prima giorno e poi notte in ogni giornata
 SPD.1 1
@@ -177,11 +178,11 @@ DepreciationMethod(r) = 1;
 * Parameters - Demands       
 *------------------------------------------------------------------------
 
-parameter SpecifiedAnnualDemand(r,f,y) #/ #domanda elettrica per ogni anno [PJ]
+parameter SpecifiedAnnualDemand(r,f,y); 
 
-  SpecifiedAnnualDemand("utopia","electricity","2020") = 1135.44;
-  loop(y.val<=2050, SpecifiedAnnualDemand("utopia","electricity",y)=SpecifiedAnnualDemand("utopia","electricity","2020")*(1+.01*(y.val-2020)) ;);
-  loop(y.val>=2050, SpecifiedAnnualDemand("utopia","electricity",y)=1457.74 ;);
+  SpecifiedAnnualDemand(r,"electricity","2020") = 1135.44;
+  loop(y $(y.val <= 2050), SpecifiedAnnualDemand(r,"electricity",y)=SpecifiedAnnualDemand(r,"electricity","2020")*(1+.01*(y.val-2020)) ;);
+  loop(y $(y.val > 2050), SpecifiedAnnualDemand(r,"electricity",y)=1457.74 ;);
 
   display SpecifiedAnnualDemand;
 
@@ -271,7 +272,7 @@ parameter SpecifiedAnnualDemand(r,f,y) #/ #domanda elettrica per ogni anno [PJ]
 * /;
 
 
-parameter SpecifiedDemandProfile(r,f,l,y) / #distribuzione della domanda per ogni timeslice
+parameter SpecifiedDemandProfile(r,f,l,y) / 
   UTOPIA.electricity.WD.(2020*2100)  .14
   UTOPIA.electricity.WN.(2020*2100)  .08
   UTOPIA.electricity.SPD.(2020*2100)  .19
@@ -303,50 +304,50 @@ CapacityFactor(r,'oil_pp',l,y) = 0.85;
 CapacityFactor(r,'geothermal_pp',l,y) = 0.84; 
 CapacityFactor(r,'bio_pp',l,y) = 0.68;
 
-CapacityFactor(r,'wind_pp',WD,y) = 0.3;
-CapacityFactor(r,'wind_pp',WN,y) =0.4;
-CapacityFactor(r,'wind_pp',SPD,y) =0.2;
-CapacityFactor(r,'wind_pp',SPN,y) =0.3;
-CapacityFactor(r,'wind_pp',SD,y) =0.1;
-CapacityFactor(r,'wind_pp',SN,y) =0.15;
-CapacityFactor(r,'wind_pp',FD,y) =0.2;
-CapacityFactor(r,'wind_pp',FN,y) =0.3;
+CapacityFactor(r,'wind_pp','WD',y) = 0.3;
+CapacityFactor(r,'wind_pp','WN',y) =0.4;
+CapacityFactor(r,'wind_pp','SPD',y) =0.2;
+CapacityFactor(r,'wind_pp','SPN',y) =0.3;
+CapacityFactor(r,'wind_pp','SD',y) =0.1;
+CapacityFactor(r,'wind_pp','SN',y) =0.15;
+CapacityFactor(r,'wind_pp','FD',y) =0.2;
+CapacityFactor(r,'wind_pp','FN',y) =0.3;
 
-CapacityFactor(r,'pv',WD,y) = 0.1;
-CapacityFactor(r,'pv',WN,y) =0;
-CapacityFactor(r,'pv',SPD,y) =0.4;
-CapacityFactor(r,'pv',SPN,y) =0;
-CapacityFactor(r,'pv',SD,y) =0.8;
-CapacityFactor(r,'pv',SN,y) =0;
-CapacityFactor(r,'pv',FD,y) =0.4;
-CapacityFactor(r,'pv',FN,y) =0;
+CapacityFactor(r,'pv','WD',y) = 0.1;
+CapacityFactor(r,'pv','WN',y) =0;
+CapacityFactor(r,'pv','SPD',y) =0.4;
+CapacityFactor(r,'pv','SPN',y) =0;
+CapacityFactor(r,'pv','SD',y) =0.8;
+CapacityFactor(r,'pv','SN',y) =0;
+CapacityFactor(r,'pv','FD',y) =0.4;
+CapacityFactor(r,'pv','FN',y) =0;
 
-loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',WD,y) = (0,0004*(y.val-2006)+0,2411));
-loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',WN,y) = (0,0004*(y.val-2006)+0,2411));
-loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',SPD,y) = (-0,0006*(y.val-2006)+0,3739));
-loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',SPN,y) = (-0,0006*(y.val-2006)+0,3739));
-loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',SD,y) = (-0,000005*(y.val-2006)+0,2012));
-loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',SN,y) = (-0,000005*(y.val-2006)+0,2012));
-loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',FD,y) = (0,0009*(y.val-2006)+0,3411));
-loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',FN,y) = (0,0009*(y.val-2006)+0,3411));
+loop(y,CapacityFactor(r,'hydro_dam_pp','WD',y) = (0.0004*(y.val-2006)+0.2411));
+loop(y,CapacityFactor(r,'hydro_dam_pp','WN',y) = (0.0004*(y.val-2006)+0.2411));
+loop(y,CapacityFactor(r,'hydro_dam_pp','SPD',y) = (-0.0006*(y.val-2006)+0.3739));
+loop(y,CapacityFactor(r,'hydro_dam_pp','SPN',y) = (-0.0006*(y.val-2006)+0.3739));
+loop(y,CapacityFactor(r,'hydro_dam_pp','SD',y) = (-0.000005*(y.val-2006)+0.2012));
+loop(y,CapacityFactor(r,'hydro_dam_pp','SN',y) = (-0.000005*(y.val-2006)+0.2012));
+loop(y,CapacityFactor(r,'hydro_dam_pp','FD',y) = (0.0009*(y.val-2006)+0.3411));
+loop(y,CapacityFactor(r,'hydro_dam_pp','FN',y) = (0.0009*(y.val-2006)+0.3411));
 
-loop(y.val<=2100,CapacityFactor(r,'psh_pp',WD,y) = (0,0004*(y.val-2006)+0,2411));
-loop(y.val<=2100,CapacityFactor(r,'psh_pp',WN,y) = (0,0004*(y.val-2006)+0,2411));
-loop(y.val<=2100,CapacityFactor(r,'psh_pp',SPD,y) = (-0,0006*(y.val-2006)+0,3739));
-loop(y.val<=2100,CapacityFactor(r,'psh_pp',SPN,y) = (-0,0006*(y.val-2006)+0,3739));
-loop(y.val<=2100,CapacityFactor(r,'psh_pp',SD,y) = (-0,000005*(y.val-2006)+0,2012));
-loop(y.val<=2100,CapacityFactor(r,'psh_pp',SN,y) = (-0,000005*(y.val-2006)+0,2012));
-loop(y.val<=2100,CapacityFactor(r,'psh_pp',FD,y) = (0,0009*(y.val-2006)+0,3411));
-loop(y.val<=2100,CapacityFactor(r,'psh_pp',FN,y) = (0,0009*(y.val-2006)+0,3411));
+loop(y,CapacityFactor(r,'psh_pp','WD',y) = (0.0004*(y.val-2006)+0.2411));
+loop(y,CapacityFactor(r,'psh_pp','WN',y) = (0.0004*(y.val-2006)+0.2411));
+loop(y,CapacityFactor(r,'psh_pp','SPD',y) = (-0.0006*(y.val-2006)+0.3739));
+loop(y,CapacityFactor(r,'psh_pp','SPN',y) = (-0.0006*(y.val-2006)+0.3739));
+loop(y,CapacityFactor(r,'psh_pp','SD',y) = (-0.000005*(y.val-2006)+0.2012));
+loop(y,CapacityFactor(r,'psh_pp','SN',y) = (-0.000005*(y.val-2006)+0.2012));
+loop(y,CapacityFactor(r,'psh_pp','FD',y) = (0.0009*(y.val-2006)+0.3411));
+loop(y,CapacityFactor(r,'psh_pp','FN',y) = (0.0009*(y.val-2006)+0.3411));
 
-loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',WD,y) = (0,0006*(y.val-2006)+0,4251));
-loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',WN,y) = (0,0006*(y.val-2006)+0,4251));
-loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',SPD,y) = (-0,0007*(y.val-2006)+0,7069));
-loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',SPN,y) = (-0,0007*(y.val-2006)+0,7069));
-loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',SD,y) = (-0,0006*(y.val-2006)+0,423));
-loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',SN,y) = (-0,0006*(y.val-2006)+0,423));
-loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',FD,y) = (0,0011*(y.val-2006)+0,5324));
-loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',FN,y) = (0,0011*(y.val-2006)+0,5324));
+loop(y,CapacityFactor(r,'hydro_ror_pp','WD',y) = (0.0006*(y.val-2006)+0.4251));
+loop(y,CapacityFactor(r,'hydro_ror_pp','WN',y) = (0.0006*(y.val-2006)+0.4251));
+loop(y,CapacityFactor(r,'hydro_ror_pp','SPD',y) = (-0.0007*(y.val-2006)+0.7069));
+loop(y,CapacityFactor(r,'hydro_ror_pp','SPN',y) = (-0.0007*(y.val-2006)+0.7069));
+loop(y,CapacityFactor(r,'hydro_ror_pp','SD',y) = (-0.0006*(y.val-2006)+0.423));
+loop(y,CapacityFactor(r,'hydro_ror_pp','SN',y) = (-0.0006*(y.val-2006)+0.423));
+loop(y,CapacityFactor(r,'hydro_ror_pp','FD',y) = (0.0011*(y.val-2006)+0.5324));
+loop(y,CapacityFactor(r,'hydro_ror_pp','FN',y) = (0.0011*(y.val-2006)+0.5324));
 
 CapacityFactor(r,t,l,y)$(CapacityFactor(r,t,l,y) = 0) = 1; 
 
@@ -363,6 +364,7 @@ parameter OperationalLife(r,t) /
   UTOPIA.hydro_dam_pp 80
   UTOPIA.hydro_ror_pp 30
 /;
+
 OperationalLife(r,t)$(OperationalLife(r,t) = 0) = 1;
 
 parameter ResidualCapacity(r,t,y) 
@@ -374,7 +376,7 @@ parameter ResidualCapacity(r,t,y)
     ResidualCapacity("utopia","hydro_dam_pp",y)=10.502;
     ResidualCapacity("utopia","hydro_ror_pp",y)=6.661;
     ResidualCapacity("utopia","psh_pp",y)=7.741;
-    ResidualCapacity("utopia","geothermal",y)=0.817;
+    ResidualCapacity("utopia","geothermal_pp",y)=0.817;
     ResidualCapacity("utopia","bio_pp",y)=7.233;
     ResidualCapacity("utopia","oil_pp",y)=3.809;
     );
@@ -387,7 +389,7 @@ parameter ResidualCapacity(r,t,y)
 $if set no_initial_capacity ResidualCapacity(r,t,y) = 0; #sono sbagliati perchè queste sono le efficienze, a noi serve l'inverso :)
 
 parameter InputActivityRatio(r,t,f,m,y) / #da completare
-  UTOPIA.refineries.oil_crude.1.(2020*2100) 1.02 #da trovare
+  UTOPIA.oil_refinery.oil_crude.1.(2020*2100) 1.02 #da trovare
   UTOPIA.coal_pp.coal.1.(2020*2100) 2.63
   UTOPIA.ccgt_pp.gas.1.(2020*2100) 1.78
   UTOPIA.oil_pp.oil_ref.1.(2020*2100) 2.86
@@ -407,7 +409,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   UTOPIA.oil_market.oil_crude.1.(2020*2100) 1
   UTOPIA.biomass_market.biomass.1.(2020*2100) 1
   UTOPIA.rainfall.water.1.(2020*2100) 1
-  UTOPIA.refineries.oil_ref.1.(2020*2100) 1 
+  UTOPIA.oil_refinery.oil_ref.1.(2020*2100) 1 
   UTOPIA.coal_pp.electricity.1.(2020*2100) 1
   UTOPIA.ccgt_pp.electricity.1.(2020*2100) 1
   UTOPIA.oil_pp.electricity.1.(2020*2100) 1
@@ -437,7 +439,7 @@ parameter CapitalCost / #[M€/GW]aa
   UTOPIA.oil_market.(2020*2100) 0
   UTOPIA.biomass_market.(2020*2100) 0
   UTOPIA.rainfall.(2020*2100) 0
-  UTOPIA.refineries.(2020*2100) 0 #it is not binding, so it can install as much as it wants
+  UTOPIA.oil_refinery.(2020*2100) 0 #it is not binding, so it can install as much as it wants
   UTOPIA.coal_pp.(2020*2100) 2000
   UTOPIA.ccgt_pp.(2020*2100) 900
   UTOPIA.oil_pp.(2020*2100) 1800
@@ -450,9 +452,8 @@ parameter CapitalCost / #[M€/GW]aa
   UTOPIA.psh_pp.(2020*2100) 1900 
 
 /;
-
-parameter VariableCost(r,t,m,y) / #[M€/PJ/a]
-  
+*[M€/PJ/a]
+parameter VariableCost(r,t,m,y) / 
   UTOPIA.coal_pp.1.(2020*2100) 13.3 #max tra normali e USC
   UTOPIA.ccgt_pp.1.(2020*2100) 15.31
   UTOPIA.oil_pp.1.(2020*2100) 14.33
@@ -464,11 +465,12 @@ parameter VariableCost(r,t,m,y) / #[M€/PJ/a]
   UTOPIA.hydro_dam_pp.1.(2020*2100) 0
   UTOPIA.psh_pp.1.(2020*2100) 0
   UTOPIA.psh_pp.2.(2020*2100) 0
-  /;
+/;
 
  VariableCost(r,t,m,y)$(VariableCost(r,t,m,y) = 0) = 1e-5;
 
-parameter FixedCost / #[M€/GW/a]
+*[M€/GW/a]
+parameter FixedCost / 
   
   UTOPIA.coal_pp.(2020*2100) 35 #max tra normali e USC
   UTOPIA.ccgt_pp.(2020*2100) 10.5
@@ -481,7 +483,7 @@ parameter FixedCost / #[M€/GW/a]
   UTOPIA.hydro_dam_pp.(2020*2100) 55
   UTOPIA.psh_pp.(2020*2100) 48
   
-  /;
+/;
 *------------------------------------------------------------------------	
 * Parameters - Storage       
 *------------------------------------------------------------------------
@@ -516,7 +518,7 @@ ResidualStorageCapacity(r,s,y) = 999;
 * Parameters - Capacity and investment constraints       
 *------------------------------------------------------------------------
 
-CapacityOfOneTechnologyUnit(r,t,y) = ;
+CapacityOfOneTechnologyUnit(r,t,y) = 0;
 
 parameter TotalAnnualMaxCapacity(r,t,y) /
   UTOPIA.hydro_dam_pp.(2020*2100) 12.5 #assuming 85% of the potential already exploited
