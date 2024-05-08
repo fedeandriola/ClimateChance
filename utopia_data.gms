@@ -380,8 +380,8 @@ parameter InputActivityRatio(r,t,f,m,y) / #da completare
   UTOPIA.bio_pp.biomass.1.(2020*2100) 3.23
   UTOPIA.hydro_ror_pp.water.1.(2020*2100) 1
   UTOPIA.hydro_dam_pp.water.1.(2020*2100) 1
-  UTOPIA.hydro_psh_pp.water.1.(2020*2100) 1.15 #turbine mode
-  UTOPIA.hydro_psh_pp.electricity.2.(2020*2100) 1.15 #pumping mode
+  UTOPIA.psh_pp.water.1.(2020*2100) 1.15 #turbine mode
+  UTOPIA.psh_pp.electricity.2.(2020*2100) 1.15 #pumping mode
   /;
 
 parameter OutputActivityRatio(r,t,f,m,y) /
@@ -400,8 +400,8 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   UTOPIA.bio_pp.electricity.1.(2020*2100) 1
   UTOPIA.hydro_ror_pp.electricity.1.(2020*2100) 1
   UTOPIA.hydro_dam_pp.electricity.1.(2020*2100) 1
-  UTOPIA.hydro_psh_pp.electricity.1.(2020*2100) 1 #turbine mode
-  UTOPIA.hydro_psh_pp.water.2.(2020*2100) 1 #pumping mode
+  UTOPIA.psh_pp.electricity.1.(2020*2100) 1 #turbine mode
+  UTOPIA.psh_pp.water.2.(2020*2100) 1 #pumping mode
 /;
 
 
@@ -430,7 +430,7 @@ parameter CapitalCost / #[M€/GW]aa
   UTOPIA.bio_pp.(2020*2100) 3500
   UTOPIA.hydro_ror_pp.(2020*2100) 2300
   UTOPIA.hydro_dam_pp.(2020*2100) 1900
-  UTOPIA.hydro_psh_pp.(2020*2100) 1900 
+  UTOPIA.psh_pp.(2020*2100) 1900 
 
 /;
 
@@ -467,12 +467,12 @@ parameter FixedCost /
 
 parameter TechnologyToStorage(r,m,t,s) /
   UTOPIA.1.rainfall.dam 1
-  UTOPIA.2.hydro_psh_pp.dam 1
+  UTOPIA.2.psh_pp.dam 1
 /;
 
 parameter TechnologyFromStorage(r,m,t,s) /
   UTOPIA.1.hydro_dam_pp.dam  1
-  UTOPIA.1.hydro_psh_pp.dam  1
+  UTOPIA.1.psh_pp.dam  1
 /;
 
 StorageLevelStart(r,s) = 999;
@@ -499,7 +499,7 @@ CapacityOfOneTechnologyUnit(r,t,y) = ;
 
 parameter TotalAnnualMaxCapacity(r,t,y) /
   UTOPIA.hydro_dam_pp.(2020*2100) 12.5 #assuming 85% of the potential already exploited
-  UTOPIA.hydro_psh_pp.(2020*2100) 9.11 #assuming 85% of the potential already exploited
+  UTOPIA.psh_pp.(2020*2100) 9.11 #assuming 85% of the potential already exploited
   UTOPIA.hydro_ror_pp.(2020*2100) 9 #assuming 75% of the potential already exploited
 /;
 TotalAnnualMaxCapacity(r,t,y)$(TotalAnnualMaxCapacity(r,t,y) = 0) = 99999;
@@ -531,19 +531,12 @@ TotalTechnologyModelPeriodActivityLowerLimit(r,t) = 0;
 *-----------------------------------------------------------------------
 
 parameter ReserveMarginTagTechnology(r,t,y) /
-  UTOPIA.COAL.(2020*2100)  1
-  UTOPIA.NUCLEAR.(2020*2100)  1
-  UTOPIA.HYDRO.(2020*2100)  1
-  UTOPIA.STOR_HYDRO.(2020*2100)  1
-  UTOPIA.DIESEL_GEN.(2020*2100)  1
 /;
 
 parameter ReserveMarginTagFuel(r,f,y) /
-  UTOPIA.ELC.(2020*2100)  1
 /;
 
 parameter ReserveMargin(r,y) /
-  UTOPIA.(2020*2100)  1.18
 /;
 
 
