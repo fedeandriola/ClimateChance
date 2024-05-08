@@ -293,6 +293,8 @@ CapacityToActivityUnit(r,t)$power_plants(t) = 31.536; #PJ/GW/y
 
 CapacityToActivityUnit(r,t)$(CapacityToActivityUnit(r,t) = 0) = 1;
 
+* -((0,016875 *(y.val -2020))*0,75* 0,003)) riduzione percentuale di impianti termici al variare della temperatura dei fiumi
+
 CapacityFactor(r,'coal_pp',l,y) = 0.8;
 CapacityFactor(r,'ccgt_pp',l,y) = 
 CapacityFactor(r,'oil_pp',l,y) = 
@@ -316,6 +318,16 @@ CapacityFactor(r,'pv',SD,y) =
 CapacityFactor(r,'pv',SN,y) =
 CapacityFactor(r,'pv',FD,y) =
 CapacityFactor(r,'pv',FN,y) =
+
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',WD,y) = (0,0003*(y.val-2006)+0,193));
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',WN,y) = (0,0003*(y.val-2006)+0,193));
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',SPD,y) = (-0,0004*(y.val-2006)+0,3088));
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',SPN,y) = (-0,0004*(y.val-2006)+0,3088));
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',SD,y) = (-0,0001*(y.val-2006)+0,1746));
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',SN,y) = (-0,0001*(y.val-2006)+0,1746));
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',FD,y) = (0,0006*(y.val-2006)+0,2595));
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',FN,y) = (0,0006*(y.val-2006)+0,2595));
+
 
 #mancano quelli dell' hydro, da dare in funzione dei dati 
 #ma questi dobbiamo darli noi? non sceglie il modello come dispacciare le tecnologie? O rappresentano dei valori massimi?
