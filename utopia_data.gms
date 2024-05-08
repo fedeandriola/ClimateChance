@@ -30,7 +30,7 @@ set     TECHNOLOGY      /
         biomass_market 'biomass'
         oil_market 'oil market'
         rainfall 'rainfall'
-        oil_refinery 'refineries' # perchè abbiamo tenuto le oil refineries? abbiamo il prezzo del petrolio, ci servono davvero?
+        oil_refinery 'refineries' 
         coal_pp'coal'
         #coal_usc_pp 'coal usc' aggregato in coal PP
         ccgt_pp 'combined cycle gas turbine'
@@ -450,30 +450,38 @@ parameter CapitalCost / #[M€/GW]aa
 
 /;
 
-parameter VariableCost(r,t,m,y) /
-  UTOPIA.COAL.1.(1990*2010)  .3
-  UTOPIA.NUCLEAR.1.(1990*2010)  1.5
-  UTOPIA.DIESEL_GEN.1.(1990*2010)  .4
-  UTOPIA.IMPDSL1.1.(1990*2010)  10
-  UTOPIA.IMPGSL1.1.(1990*2010)  15
-  UTOPIA.IMPHCO1.1.(1990*2010)  2
-  UTOPIA.IMPOIL1.1.(1990*2010)  8
-  UTOPIA.IMPURN1.1.(1990*2010)  2
-  UTOPIA.SRE.1.(1990*2010)  10
-/;
+
+parameter VariableCost(r,t,m,y) / #[M€/PJ/a]
+  
+  UTOPIA.coal_pp.1.(2020*2100) 13.3 #max tra normali e USC
+  UTOPIA.ccgt_pp.1.(2020*2100) 15.31
+  UTOPIA.oil_pp.1.(2020*2100) 14.33
+  UTOPIA.geothermal_pp.1.(2020*2100) 5.22
+  UTOPIA.wind_pp.1.(2020*2100) 0
+  UTOPIA.pv.1.(2020*2100) 0
+  UTOPIA.bio_pp.1.(2020*2100) 124.6 # usato bioenergy considerando che il WTE è poco
+  UTOPIA.hydro_ror_pp.1.(2020*2100) 0 
+  UTOPIA.hydro_dam_pp.1.(2020*2100) 0
+  UTOPIA.hydro_psh_pp.1.(2020*2100) 0
+  UTOPIA.hydro_psh_pp.2.(2020*2100) 0
+  /;
+
  VariableCost(r,t,m,y)$(VariableCost(r,t,m,y) = 0) = 1e-5;
 
-parameter FixedCost /
-  UTOPIA.COAL.(1990*2010)  40
-  UTOPIA.NUCLEAR.(1990*2010)  500
-  UTOPIA.HYDRO.(1990*2010)  75
-  UTOPIA.STOR_HYDRO.(1990*2010)  30
-  UTOPIA.DIESEL_GEN.(1990*2010)  30
-  UTOPIA.RHO.(1990*2010)  1
-  UTOPIA.RL1.(1990*2010)  9.46
-  UTOPIA.TXD.(1990*2010)  52
-  UTOPIA.TXE.(1990*2010)  100
-  UTOPIA.TXG.(1990*2010)  48
+parameter FixedCost / #[M€/GW/a]
+  
+  UTOPIA.coal_pp.(2020*2100) 35 #max tra normali e USC
+  UTOPIA.ccgt_pp.(2020*2100) 10.5
+  UTOPIA.oil_pp.(2020*2100) 32
+  UTOPIA.geothermal_pp.(2020*2100) 170
+  UTOPIA.wind_pp.(2020*2100) 38
+  UTOPIA.pv.(2020*2100) 23 #media tra rooftop e US
+  UTOPIA.bio_pp.(2020*2100) 70 # usato bioenergy
+  UTOPIA.hydro_ror_pp.(2020*2100) 100
+  UTOPIA.hydro_dam_pp.(2020*2100) 55
+  UTOPIA.hydro_psh_pp.(2020*2100) 48
+  
+
 /;
 
 
