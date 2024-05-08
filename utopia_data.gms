@@ -365,15 +365,22 @@ parameter OperationalLife(r,t) /
 /;
 OperationalLife(r,t)$(OperationalLife(r,t) = 0) = 1;
 
-parameter ResidualCapacity(r,t,y)  #/ #qua va scritta una funzione
-*     ResidualCapacity("utopia","coal_pp","2020") = 5.658;
-*     ResidualCapacity("utopia","coal_pp","2021") = 5.658;
-*     ResidualCapacity("utopia","coal_pp","2022") = 5.658;
-    loop(y$(y.val < 2022), ResidualCapacity("utopia","coal_pp",y)=5.658;);
-    loop(y$(2022 <= y.val and y.val <= 2060), ResidualCapacity("utopia","coal_pp",y)=ResidualCapacity("utopia","coal_pp",y-1)*(1-.12) ;);
-    loop(y$(y.val > 2060), ResidualCapacity("utopia","coal_pp",y)=0;); #chiedere se la funzione ha senso
-
-
+parameter ResidualCapacity(r,t,y) 
+    loop(y$(y.val < 2022), 
+    ResidualCapacity("utopia","coal_pp",y)=5.658;
+    ResidualCapacity("utopia","ccgt_pp",y)=43.991;
+    ResidualCapacity("utopia","wind_pp",y)=11.9;
+    ResidualCapacity("utopia","pv",y)=25.064;
+    ResidualCapacity("utopia","hydro_dam_pp",y)=10.502;
+    ResidualCapacity("utopia","hydro_ror_pp",y)=6.661;
+    ResidualCapacity("utopia","psh_pp",y)=7.741;
+    ResidualCapacity("utopia","geothermal",y)=0.817;
+    ResidualCapacity("utopia","bio_pp",y)=7.233;
+    ResidualCapacity("utopia","oil_pp",y)=3.809;
+    );
+    loop(y$(2022 <= y.val and y.val <= 2060), ResidualCapacity("utopia",t,y)=ResidualCapacity("utopia",t,y-1)*(1-.12) ;);
+    loop(y$(y.val > 2060), ResidualCapacity("utopia",t,y)=0;); #chiedere se la funzione ha senso
+    
     display ResidualCapacity;
 
 
