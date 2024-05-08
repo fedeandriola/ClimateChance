@@ -293,6 +293,8 @@ CapacityToActivityUnit(r,t)$power_plants(t) = 31.536; #PJ/GW/y
 
 CapacityToActivityUnit(r,t)$(CapacityToActivityUnit(r,t) = 0) = 1;
 
+* -((0,016875 *(y.val -2020))*0,75* 0,003)) riduzione percentuale di impianti termici al variare della temperatura dei fiumi
+* -((0,036875 *(y.val -2020))*0,75* 0,003))
 CapacityFactor(r,'coal_pp',l,y) = 0.8;
 CapacityFactor(r,'ccgt_pp',l,y) = 
 CapacityFactor(r,'oil_pp',l,y) = 
@@ -317,8 +319,23 @@ CapacityFactor(r,'pv',SN,y) =
 CapacityFactor(r,'pv',FD,y) =
 CapacityFactor(r,'pv',FN,y) =
 
-#mancano quelli dell' hydro, da dare in funzione dei dati 
-#ma questi dobbiamo darli noi? non sceglie il modello come dispacciare le tecnologie? O rappresentano dei valori massimi?
+loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',WD,y) = (0,0004*(y.val-2006)+0,2411));
+loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',WN,y) = (0,0004*(y.val-2006)+0,2411));
+loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',SPD,y) = (-0,0006*(y.val-2006)+0,3739));
+loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',SPN,y) = (-0,0006*(y.val-2006)+0,3739));
+loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',SD,y) = (-0,000005*(y.val-2006)+0,2012));
+loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',SN,y) = (-0,000005*(y.val-2006)+0,2012));
+loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',FD,y) = (0,0009*(y.val-2006)+0,3411));
+loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',FN,y) = (0,0009*(y.val-2006)+0,3411));
+
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',WD,y) = (0,0006*(y.val-2006)+0,4251));
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',WN,y) = (0,0006*(y.val-2006)+0,4251));
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',SPD,y) = (-0,0007*(y.val-2006)+0,7069));
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',SPN,y) = (-0,0007*(y.val-2006)+0,7069));
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',SD,y) = (-0,0006*(y.val-2006)+0,423));
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',SN,y) = (-0,0006*(y.val-2006)+0,423));
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',FD,y) = (0,0011*(y.val-2006)+0,5324));
+loop(y.val<=2100,CapacityFactor(r,'hydro_ror_pp',FN,y) = (0,0011*(y.val-2006)+0,5324));
 
 CapacityFactor(r,t,l,y)$(CapacityFactor(r,t,l,y) = 0) = 1; 
 
@@ -416,27 +433,16 @@ parameter CapitalCost / #[M€/GW]aa
 
 /;
 
-parameter VariableCost(r,t,m,y) / #[M€/PJ/a]
-  #UTOPIA.COAL.1.(1990*2010)  .3
-  #UTOPIA.NUCLEAR.1.(1990*2010)  1.5
-  #UTOPIA.DIESEL_GEN.1.(1990*2010)  .4
-  #UTOPIA.IMPDSL1.1.(1990*2010)  10
-  #UTOPIA.IMPGSL1.1.(1990*2010)  15
-  #UTOPIA.IMPHCO1.1.(1990*2010)  2
-  #UTOPIA.IMPOIL1.1.(1990*2010)  8
-  #UTOPIA.IMPURN1.1.(1990*2010)  2
-  #UTOPIA.SRE.1.(1990*2010)  10
-  UTOPIA.coal_pp.1.(2020*2060) 6.67 #media tra normali e USC
-  UTOPIA.ccgt_pp.1.(2020*2060) .88
-  UTOPIA.oil_pp.1.(2020*2060) 6.39
-  UTOPIA.geothermal_pp.1.(2020*2060) 5.22
-  UTOPIA.wind_pp.1.(2020*2060) 0
-  UTOPIA.pv.1.(2020*2060) 0
-  UTOPIA.bio_pp.1.(2020*2060) 5.6
-  UTOPIA.hydro_ror_pp.1.(2020*2060) 0 
-  UTOPIA.hydro_dam_pp.1.(2020*2060) 0
-  UTOPIA.hydro_psh_pp.1.(2020*2060) 0
-  UTOPIA.hydro_psh_pp.2.(2020*2060) 0
+parameter VariableCost(r,t,m,y) /
+  UTOPIA.COAL.1.(1990*2010)  .3
+  UTOPIA.NUCLEAR.1.(1990*2010)  1.5
+  UTOPIA.DIESEL_GEN.1.(1990*2010)  .4
+  UTOPIA.IMPDSL1.1.(1990*2010)  10
+  UTOPIA.IMPGSL1.1.(1990*2010)  15
+  UTOPIA.IMPHCO1.1.(1990*2010)  2
+  UTOPIA.IMPOIL1.1.(1990*2010)  8
+  UTOPIA.IMPURN1.1.(1990*2010)  2
+  UTOPIA.SRE.1.(1990*2010)  10
 /;
  VariableCost(r,t,m,y)$(VariableCost(r,t,m,y) = 0) = 1e-5;
 
