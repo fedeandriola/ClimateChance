@@ -30,7 +30,7 @@ set     TECHNOLOGY      /
         biomass_market 'biomass'
         oil_market 'oil market'
         rainfall 'rainfall'
-        oil_refinery 'refineries' 
+        oil_refinery 'refineries' # perchè abbiamo tenuto le oil refineries? abbiamo il prezzo del petrolio, ci servono davvero?
         coal_pp'coal'
         #coal_usc_pp 'coal usc' aggregato in coal PP
         ccgt_pp 'combined cycle gas turbine'
@@ -293,8 +293,9 @@ CapacityToActivityUnit(r,t)$power_plants(t) = 31.536; #PJ/GW/y
 
 CapacityToActivityUnit(r,t)$(CapacityToActivityUnit(r,t) = 0) = 1;
 
-* -((0,016875 *(y.val -2020))*0,75* 0,003)) riduzione percentuale di impianti termici al variare della temperatura dei fiumi
-* -((0,036875 *(y.val -2020))*0,75* 0,003))
+* RSP 4.5        -((0,016875 *(y.val -2020))*0,75* 0,003)) riduzione percentuale di impianti termici al variare della temperatura dei fiumi
+* RSP 8.5        -((0,036875 *(y.val -2020))*0,75* 0,003)) riduzione percentuale di impianti termici al variare della temperatura dei fiumi
+* DA AGGIUNGERE AI CAPACITY FACTOR FOSSILI
 
 CapacityFactor(r,'coal_pp',l,y) = 0.85;
 CapacityFactor(r,'ccgt_pp',l,y) = 0.85;
@@ -302,23 +303,23 @@ CapacityFactor(r,'oil_pp',l,y) = 0.85;
 CapacityFactor(r,'geothermal_pp',l,y) = 0.84; 
 CapacityFactor(r,'bio_pp',l,y) = 0.68;
 
-CapacityFactor(r,'wind_pp',WD,y) = 0.39;
-CapacityFactor(r,'wind_pp',WN,y) =0.39;
-CapacityFactor(r,'wind_pp',SPD,y) =0.39;
-CapacityFactor(r,'wind_pp',SPN,y) =0.39;
-CapacityFactor(r,'wind_pp',SD,y) =0.39;
-CapacityFactor(r,'wind_pp',SN,y) =0.39;
-CapacityFactor(r,'wind_pp',FD,y) =0.39;
-CapacityFactor(r,'wind_pp',FN,y) =0.39;
+CapacityFactor(r,'wind_pp',WD,y) = 0.3;
+CapacityFactor(r,'wind_pp',WN,y) =0.4;
+CapacityFactor(r,'wind_pp',SPD,y) =0.2;
+CapacityFactor(r,'wind_pp',SPN,y) =0.3;
+CapacityFactor(r,'wind_pp',SD,y) =0.1;
+CapacityFactor(r,'wind_pp',SN,y) =0.15;
+CapacityFactor(r,'wind_pp',FD,y) =0.2;
+CapacityFactor(r,'wind_pp',FN,y) =0.3;
 
-CapacityFactor(r,'pv',WD,y) = 0.32;
-CapacityFactor(r,'pv',WN,y) =0.32;
-CapacityFactor(r,'pv',SPD,y) =0.32;
-CapacityFactor(r,'pv',SPN,y) =0.32;
-CapacityFactor(r,'pv',SD,y) =0.32;
-CapacityFactor(r,'pv',SN,y) =0.32;
-CapacityFactor(r,'pv',FD,y) =0.32;
-CapacityFactor(r,'pv',FN,y) =0.32;
+CapacityFactor(r,'pv',WD,y) = 0.1;
+CapacityFactor(r,'pv',WN,y) =0;
+CapacityFactor(r,'pv',SPD,y) =0.4;
+CapacityFactor(r,'pv',SPN,y) =0;
+CapacityFactor(r,'pv',SD,y) =0.8;
+CapacityFactor(r,'pv',SN,y) =0;
+CapacityFactor(r,'pv',FD,y) =0.4;
+CapacityFactor(r,'pv',FN,y) =0;
 
 loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',WD,y) = (0,0004*(y.val-2006)+0,2411));
 loop(y.val<=2100,CapacityFactor(r,'hydro_dam_pp',WN,y) = (0,0004*(y.val-2006)+0,2411));
@@ -364,26 +365,19 @@ parameter OperationalLife(r,t) /
 /;
 OperationalLife(r,t)$(OperationalLife(r,t) = 0) = 1;
 
-parameter ResidualCapacity(r,t,y) 
-    loop(y$(y.val < 2022), 
-    ResidualCapacity("utopia","coal_pp",y)=5.658;
-    ResidualCapacity("utopia","ccgt_pp",y)=43.991;
-    ResidualCapacity("utopia","wind_pp",y)=11.9;
-    ResidualCapacity("utopia","pv",y)=25.064;
-    ResidualCapacity("utopia","hydro_dam_pp",y)=10.502;
-    ResidualCapacity("utopia","hydro_ror_pp",y)=6.661;
-    ResidualCapacity("utopia","psh_pp",y)=7.741;
-    ResidualCapacity("utopia","geothermal",y)=0.817;
-    ResidualCapacity("utopia","bio_pp",y)=7.233;
-    ResidualCapacity("utopia","oil_pp",y)=3.809;
-    );
-    loop(y$(2022 <= y.val and y.val <= 2060), ResidualCapacity("utopia",t,y)=ResidualCapacity("utopia",t,y-1)*(1-.12) ;);
-    loop(y$(y.val > 2060), ResidualCapacity("utopia",t,y)=0;); #chiedere se la funzione ha senso
-    
+parameter ResidualCapacity(r,t,y)  #/ #qua va scritta una funzione
+*     ResidualCapacity("utopia","coal_pp","2020") = 5.658;
+*     ResidualCapacity("utopia","coal_pp","2021") = 5.658;
+*     ResidualCapacity("utopia","coal_pp","2022") = 5.658;
+    loop(y$(y.val < 2022), ResidualCapacity("utopia","coal_pp",y)=5.658;);
+    loop(y$(2022 <= y.val and y.val <= 2060), ResidualCapacity("utopia","coal_pp",y)=ResidualCapacity("utopia","coal_pp",y-1)*(1-.12) ;);
+    loop(y$(y.val > 2060), ResidualCapacity("utopia","coal_pp",y)=0;); #chiedere se la funzione ha senso
+
+
     display ResidualCapacity;
 
 
-$if set no_initial_capacity ResidualCapacity(r,t,y) = 0; 
+$if set no_initial_capacity ResidualCapacity(r,t,y) = 0; #sono sbagliati perchè queste sono le efficienze, a noi serve l'inverso :)
 
 parameter InputActivityRatio(r,t,f,m,y) / #da completare
   UTOPIA.refineries.oil_crude.1.(2020*2100) 1.02 #da trovare
@@ -450,38 +444,30 @@ parameter CapitalCost / #[M€/GW]aa
 
 /;
 
-
-parameter VariableCost(r,t,m,y) / #[M€/PJ/a]
-  
-  UTOPIA.coal_pp.1.(2020*2100) 13.3 #max tra normali e USC
-  UTOPIA.ccgt_pp.1.(2020*2100) 15.31
-  UTOPIA.oil_pp.1.(2020*2100) 14.33
-  UTOPIA.geothermal_pp.1.(2020*2100) 5.22
-  UTOPIA.wind_pp.1.(2020*2100) 0
-  UTOPIA.pv.1.(2020*2100) 0
-  UTOPIA.bio_pp.1.(2020*2100) 124.6 # usato bioenergy considerando che il WTE è poco
-  UTOPIA.hydro_ror_pp.1.(2020*2100) 0 
-  UTOPIA.hydro_dam_pp.1.(2020*2100) 0
-  UTOPIA.hydro_psh_pp.1.(2020*2100) 0
-  UTOPIA.hydro_psh_pp.2.(2020*2100) 0
-  /;
-
+parameter VariableCost(r,t,m,y) /
+  UTOPIA.COAL.1.(1990*2010)  .3
+  UTOPIA.NUCLEAR.1.(1990*2010)  1.5
+  UTOPIA.DIESEL_GEN.1.(1990*2010)  .4
+  UTOPIA.IMPDSL1.1.(1990*2010)  10
+  UTOPIA.IMPGSL1.1.(1990*2010)  15
+  UTOPIA.IMPHCO1.1.(1990*2010)  2
+  UTOPIA.IMPOIL1.1.(1990*2010)  8
+  UTOPIA.IMPURN1.1.(1990*2010)  2
+  UTOPIA.SRE.1.(1990*2010)  10
+/;
  VariableCost(r,t,m,y)$(VariableCost(r,t,m,y) = 0) = 1e-5;
 
-parameter FixedCost / #[M€/GW/a]
-  
-  UTOPIA.coal_pp.(2020*2100) 35 #max tra normali e USC
-  UTOPIA.ccgt_pp.(2020*2100) 10.5
-  UTOPIA.oil_pp.(2020*2100) 32
-  UTOPIA.geothermal_pp.(2020*2100) 170
-  UTOPIA.wind_pp.(2020*2100) 38
-  UTOPIA.pv.(2020*2100) 23 #media tra rooftop e US
-  UTOPIA.bio_pp.(2020*2100) 70 # usato bioenergy
-  UTOPIA.hydro_ror_pp.(2020*2100) 100
-  UTOPIA.hydro_dam_pp.(2020*2100) 55
-  UTOPIA.hydro_psh_pp.(2020*2100) 48
-  
-
+parameter FixedCost /
+  UTOPIA.COAL.(1990*2010)  40
+  UTOPIA.NUCLEAR.(1990*2010)  500
+  UTOPIA.HYDRO.(1990*2010)  75
+  UTOPIA.STOR_HYDRO.(1990*2010)  30
+  UTOPIA.DIESEL_GEN.(1990*2010)  30
+  UTOPIA.RHO.(1990*2010)  1
+  UTOPIA.RL1.(1990*2010)  9.46
+  UTOPIA.TXD.(1990*2010)  52
+  UTOPIA.TXE.(1990*2010)  100
+  UTOPIA.TXG.(1990*2010)  48
 /;
 
 
@@ -578,14 +564,13 @@ REMinProductionTarget(r,y) = 0;
 *------------------------------------------------------------------------	
 * Parameters - Emissions       
 *------------------------------------------------------------------------
-
+*MtonCO2/TJ
 parameter EmissionActivityRatio(r,t,e,m,y) /
-  UTOPIA.IMPDSL1.CO2.1.(2020*2100)  .075
-  UTOPIA.IMPGSL1.CO2.1.(2020*2100)  .075
-  UTOPIA.IMPHCO1.CO2.1.(2020*2100)  .089
-  UTOPIA.IMPOIL1.CO2.1.(2020*2100)  .075
-  UTOPIA.TXD.NOX.1.(2020*2100)  1
-  UTOPIA.TXG.NOX.1.(2020*2100)  1
+  UTOPIA.coal_pp.CO2.1.(2020*2100)  0.258929
+  UTOPIA.ccgt_pp.CO2.1.(2020*2100)  0.109524
+  UTOPIA.bio_pp.CO2.1.(2020*2100)  0.039583
+  UTOPIA.oil_pp.CO2.1.(2020*2100)  0.163393
+  
 /;
 
 EmissionsPenalty(r,e,y) = 0;
