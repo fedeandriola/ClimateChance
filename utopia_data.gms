@@ -29,6 +29,8 @@ set     TECHNOLOGY      /
 *       waste_market 'waste'   avendo aggregato le biomaase mi sembra ridondante 
         biomass_market 'biomass'
         oil_market 'oil market'
+        sun_market 'sun market'
+        wind_market 'wind market'
         rainfall 'rainfall'
         oil_refinery 'refineries' # perchè abbiamo tenuto le oil refineries? abbiamo il prezzo del petrolio, ci servono davvero?
         coal_pp 'coal'
@@ -82,14 +84,14 @@ set     DAILYTIMEBRACKET / 1, 2 /;
 set     STORAGE / dam /; 
 
 # characterize technologies 
-set markets(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market /;
+set markets(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, sun_market, wind_market /;
 set power_plants(TECHNOLOGY) / coal_pp, ccgt_pp, bio_pp, oil_pp, geothermal_pp, wind_pp, pv, hydro_ror_pp, hydro_dam_pp, psh_pp /;
 set storage_plants(TECHNOLOGY) / hydro_dam_pp /;
 set fuel_transformation(TECHNOLOGY) / oil_refinery /;
 set appliances(TECHNOLOGY) /electricity_demand /;
 #set unmet_demand(TECHNOLOGY) / /;
 #set transport(TECHNOLOGY) / TXD, TXE, TXG /;
-set primary_sources(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, rainfall /;
+set primary_sources(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, rainfall, sun_market, wind_market /;
 #set secondary_imports(TECHNOLOGY) / IMPDSL1, IMPGSL1 /;
 
 set renewable_tech(TECHNOLOGY) / geothermal_pp, wind_pp, pv, hydro_ror_pp/; 
@@ -164,7 +166,7 @@ FN.2 1
 SD.1 1
 SN.2 1
 WD.1 1
-WN.2 1
+WN.2 1 
 /;
 
 DaysInDayType(y,ls,ld) = 7; #sette giorni in una settimana
@@ -417,6 +419,8 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   UTOPIA.oil_market.oil_crude.1.(2020*2100) 1
   UTOPIA.biomass_market.biomass.1.(2020*2100) 1
   UTOPIA.rainfall.water.1.(2020*2100) 1
+  UTOPIA.sun_market.sun.1.(2020*2100) 1
+  UTOPIA.wind_market.wind.1.(2020*2100) 1
   UTOPIA.oil_refinery.oil_ref.1.(2020*2100) 1 
   UTOPIA.coal_pp.electricity.1.(2020*2100) 1
   UTOPIA.ccgt_pp.electricity.1.(2020*2100) 1
@@ -448,6 +452,8 @@ parameter CapitalCost /
   UTOPIA.oil_market.(2020*2100) 0
   UTOPIA.biomass_market.(2020*2100) 0
   UTOPIA.rainfall.(2020*2100) 0
+  UTOPIA.sun_market.(2020*2100) 0
+  UTOPIA.wind_market.(2020*2100) 0
   UTOPIA.oil_refinery.(2020*2100) 0 
   UTOPIA.coal_pp.(2020*2100) 2000
   UTOPIA.ccgt_pp.(2020*2100) 900
