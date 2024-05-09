@@ -21,20 +21,20 @@
 *------------------------------------------------------------------------	
 * Sets       
 *------------------------------------------------------------------------
-
+$eolcom #
 set     YEAR    / 2020*2100 /;
 set     TECHNOLOGY      /
         coal_market 'coal market'
         gas_market 'gas market'
-       # waste_market 'waste'   avendo aggregato le biomaase mi sembra ridondante 
+*       waste_market 'waste'   avendo aggregato le biomaase mi sembra ridondante 
         biomass_market 'biomass'
         oil_market 'oil market'
         rainfall 'rainfall'
         oil_refinery 'refineries' # perchè abbiamo tenuto le oil refineries? abbiamo il prezzo del petrolio, ci servono davvero?
         coal_pp 'coal'
-        #coal_usc_pp 'coal usc' aggregato in coal PP
+*       coal_usc_pp 'coal usc' aggregato in coal PP
         ccgt_pp 'combined cycle gas turbine'
-       # wte_pp 'waste to energy'
+*       wte_pp 'waste to energy'
         bio_pp 'bio energy'
         oil_pp 'oil power plant' #considerati qui dentro anche gli altri conmbustibili simili
         geothermal_pp 'geothermal'
