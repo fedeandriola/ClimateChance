@@ -576,6 +576,12 @@ parameter TotalAnnualMinCapacity(r,t,y) /
 TotalAnnualMaxCapacityInvestment(r,t,y) = 99999999;
 
 TotalAnnualMinCapacityInvestment(r,t,y) = 0;
+#da verificare i parametri
+parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
+  UTOPIA.pv.(2010*2100) 10
+  UTOPIA.wind_pp.(2010*2100) 10
+
+/;
 
 
 *------------------------------------------------------------------------	
