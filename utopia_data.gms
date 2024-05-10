@@ -563,6 +563,15 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
   UTOPIA.hydro_dam_pp.(2020*2100) 12.5 
   UTOPIA.psh_pp.(2020*2100) 9.11 
   UTOPIA.hydro_ror_pp.(2020*2100) 9 
+
+  UTOPIA.coal_pp.(2020*2100) 1e+3
+  UTOPIA.ccgt_pp.(2020*2100) 10.5
+  UTOPIA.oil_pp.(2020*2100) 1e+3
+  UTOPIA.geothermal_pp.(2020*2100) 0.8
+  UTOPIA.wind_pp.(2020*2100) 1e+3
+  UTOPIA.pv.(2020*2100) (((1e+3)+0.8)/2)
+  UTOPIA.bio_pp.(2020*2100) 1e+3
+*questi valori sono statiu presi da OSeMOSYS progetto vecchio
 /;
 *UTOPIA.hydro_dam_pp.(2020*2100) 12.5 #assuming 85% of the potential already exploited
 *UTOPIA.psh_pp.(2020*2100) 9.11 #assuming 85% of the potential already exploited
@@ -578,8 +587,15 @@ TotalAnnualMaxCapacityInvestment(r,t,y) = 99999999;
 TotalAnnualMinCapacityInvestment(r,t,y) = 0;
 #da verificare i parametri
 parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
-  UTOPIA.pv.(2010*2100) 10
-  UTOPIA.wind_pp.(2010*2100) 10
+
+  UTOPIA.coal_pp.(2020*2100) 1e-5
+  UTOPIA.ccgt_pp.(2020*2100) 1e-5
+  UTOPIA.oil_pp.(2020*2100) 1e-5
+  UTOPIA.geothermal_pp.(2020*2100) 0.2
+  UTOPIA.wind_pp.(2020*2100) 0
+  UTOPIA.pv.(2020*2100) 10
+  UTOPIA.bio_pp.(2020*2100) 1e+3
+*questi valori sono statiu presi da OSeMOSYS progetto vecchio
 
 /;
 
