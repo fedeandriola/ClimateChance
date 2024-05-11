@@ -89,7 +89,7 @@ set     STORAGE / dam /;
 
 # characterize technologies 
 set markets(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, sun_market, wind_market, uranium_market /;
-set power_plants(TECHNOLOGY) / coal_pp, ccgt_pp, bio_pp, oil_pp, geothermal_pp, windON_pp, pv, hydro_ror_pp, hydro_dam_pp, psh_pp; nuclear_pp/;
+set power_plants(TECHNOLOGY) / coal_pp, ccgt_pp, bio_pp, oil_pp, geothermal_pp, windON_pp, pv, hydro_ror_pp, hydro_dam_pp, psh_pp, nuclear_pp/;
 set storage_plants(TECHNOLOGY) / hydro_dam_pp /;
 set fuel_transformation(TECHNOLOGY) / oil_refinery /;
 set appliances(TECHNOLOGY) /electricity_demand /;
@@ -523,8 +523,8 @@ parameter VariableCost(r,t,m,y) /
   UTOPIA.hydro_ror_pp.1.(2020*2060) 0 
   UTOPIA.hydro_dam_pp.1.(2020*2060) 0
   UTOPIA.psh_pp.1.(2020*2060) 0
-  UTOPIA.nuclear_pp.(2020*2060) 0
   UTOPIA.psh_pp.2.(2020*2060) 0
+  UTOPIA.nuclear_pp.(2020*2060) 0
 /;
 *UTOPIA.coal_pp.1.(2020*2060) 13.3 #max tra normali e USC
 *UTOPIA.bio_pp.1.(2020*2060) 124.6 # usato bioenergy considerando che il WTE è poco
@@ -544,8 +544,8 @@ parameter FixedCost /
   UTOPIA.bio_pp.(2020*2060) 70 
   UTOPIA.hydro_ror_pp.(2020*2060) 100
   UTOPIA.hydro_dam_pp.(2020*2060) 55
-  UTOPIA.nuclear_pp.(2020*2060) 0.11
   UTOPIA.psh_pp.(2020*2060) 48
+  UTOPIA.nuclear_pp.(2020*2060) 0.11
   
 /;
 *UTOPIA.coal_pp.(2020*2060) 35 #max tra normali e USC
