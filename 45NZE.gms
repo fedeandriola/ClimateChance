@@ -323,14 +323,14 @@ CapacityFactor(r,'windON_pp','SN',y) =0.15;
 CapacityFactor(r,'windON_pp','FD',y) =0.2;
 CapacityFactor(r,'windON_pp','FN',y) =0.3;
 
-CapacityFactor(r,'windOFF_pp','WD',y) = 0.3;
-CapacityFactor(r,'windOFF_pp','WN',y) =0.4;
-CapacityFactor(r,'windOFF_pp','SPD',y) =0.2;
-CapacityFactor(r,'windOFF_pp','SPN',y) =0.3;
-CapacityFactor(r,'windOFF_pp','SD',y) =0.1;
-CapacityFactor(r,'windOFF_pp','SN',y) =0.15;
-CapacityFactor(r,'windOFF_pp','FD',y) =0.2;
-CapacityFactor(r,'windOFF_pp','FN',y) =0.3;
+CapacityFactor(r,'windOFF_pp','WD',y) = 0.4;
+CapacityFactor(r,'windOFF_pp','WN',y) =0.5;
+CapacityFactor(r,'windOFF_pp','SPD',y) =0.3;
+CapacityFactor(r,'windOFF_pp','SPN',y) =0.4;
+CapacityFactor(r,'windOFF_pp','SD',y) =0.2;
+CapacityFactor(r,'windOFF_pp','SN',y) =0.25;
+CapacityFactor(r,'windOFF_pp','FD',y) =0.3;
+CapacityFactor(r,'windOFF_pp','FN',y) =0.4;
 
 CapacityFactor(r,'pv','WD',y) = 0.1;
 CapacityFactor(r,'pv','WN',y) =0;
@@ -518,6 +518,7 @@ parameter VariableCost(r,t,m,y) /
   UTOPIA.oil_pp.1.(2020*2060) 14.33
   UTOPIA.geothermal_pp.1.(2020*2060) 5.22
   UTOPIA.windON_pp.1.(2020*2060) 0
+  UTOPIA.windOFF_pp.1.(2020*2060) 0
   UTOPIA.pv.1.(2020*2060) 0
   UTOPIA.bio_pp.1.(2020*2060) 124.6 
   UTOPIA.hydro_ror_pp.1.(2020*2060) 0 
@@ -623,6 +624,7 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
   UTOPIA.oil_pp.(2020*2060) 1e-5
   UTOPIA.geothermal_pp.(2020*2060) 0.2
   UTOPIA.windON_pp.(2020*2060) 0
+  UTOPIA.windOFF_pp.(2020*2060) 0
   UTOPIA.pv.(2020*2060) 10
   UTOPIA.bio_pp.(2020*2060) 1e+3
 *questi valori sono statiu presi da OSeMOSYS progetto vecchio
