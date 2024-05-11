@@ -81,7 +81,9 @@ set     REGION  / UTOPIA /;
 set     SEASON / 1, 2, 3, 4 /;
 set     DAYTYPE / 1 /;
 set     DAILYTIMEBRACKET / 1, 2 /;
-set     STORAGE / dam /; 
+set     STORAGE / dam 
+                  batteries
+  /; 
 
 # characterize technologies 
 set markets(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, sun_market, wind_market /;
@@ -530,11 +532,13 @@ parameter FixedCost /
 parameter TechnologyToStorage(r,m,t,s) /
   UTOPIA.1.rainfall.dam 1
   UTOPIA.2.psh_pp.dam 1
+  UTOPIA.1.pv.batteries 1
 /;
 
 parameter TechnologyFromStorage(r,m,t,s) /
   UTOPIA.1.hydro_dam_pp.dam  1
   UTOPIA.1.psh_pp.dam  1
+  UTOPIA.1.electricity_demand.batteries 1
 /;
 
 StorageLevelStart(r,s) = 999;
