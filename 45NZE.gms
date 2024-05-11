@@ -89,7 +89,7 @@ set     STORAGE / dam /;
 
 # characterize technologies 
 set markets(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, sun_market, wind_market, uranium_market /;
-set power_plants(TECHNOLOGY) / coal_pp, ccgt_pp, bio_pp, oil_pp, geothermal_pp, windON_pp, pv, hydro_ror_pp, hydro_dam_pp, psh_pp, nuclear_pp/;
+set power_plants(TECHNOLOGY) / coal_pp, ccgt_pp, bio_pp, oil_pp, geothermal_pp, windON_pp, pv, hydro_ror_pp, hydro_dam_pp, psh_pp; nuclear_pp/;
 set storage_plants(TECHNOLOGY) / hydro_dam_pp /;
 set fuel_transformation(TECHNOLOGY) / oil_refinery /;
 set appliances(TECHNOLOGY) /electricity_demand /;
@@ -323,14 +323,14 @@ CapacityFactor(r,'windON_pp','SN',y) =0.15;
 CapacityFactor(r,'windON_pp','FD',y) =0.2;
 CapacityFactor(r,'windON_pp','FN',y) =0.3;
 
-CapacityFactor(r,'windOFF_pp','WD',y) = 0.4;
-CapacityFactor(r,'windOFF_pp','WN',y) =0.5;
-CapacityFactor(r,'windOFF_pp','SPD',y) =0.3;
-CapacityFactor(r,'windOFF_pp','SPN',y) =0.4;
-CapacityFactor(r,'windOFF_pp','SD',y) =0.2;
-CapacityFactor(r,'windOFF_pp','SN',y) =0.25;
-CapacityFactor(r,'windOFF_pp','FD',y) =0.3;
-CapacityFactor(r,'windOFF_pp','FN',y) =0.4;
+CapacityFactor(r,'windOFF_pp','WD',y) = 0.3;
+CapacityFactor(r,'windOFF_pp','WN',y) =0.4;
+CapacityFactor(r,'windOFF_pp','SPD',y) =0.2;
+CapacityFactor(r,'windOFF_pp','SPN',y) =0.3;
+CapacityFactor(r,'windOFF_pp','SD',y) =0.1;
+CapacityFactor(r,'windOFF_pp','SN',y) =0.15;
+CapacityFactor(r,'windOFF_pp','FD',y) =0.2;
+CapacityFactor(r,'windOFF_pp','FN',y) =0.3;
 
 CapacityFactor(r,'pv','WD',y) = 0.1;
 CapacityFactor(r,'pv','WN',y) =0;
