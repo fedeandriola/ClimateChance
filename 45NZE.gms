@@ -89,7 +89,7 @@ set     STORAGE / dam /;
 
 # characterize technologies 
 set markets(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, sun_market, wind_market, uranium_market /;
-set power_plants(TECHNOLOGY) / coal_pp, ccgt_pp, bio_pp, oil_pp, geothermal_pp, windON_pp, pv, hydro_ror_pp, hydro_dam_pp, psh_pp, nuclear_pp/;
+set power_plants(TECHNOLOGY) / coal_pp, ccgt_pp, bio_pp, oil_pp, geothermal_pp, windON_pp,windOFF_pp, pv, hydro_ror_pp, hydro_dam_pp, psh_pp, nuclear_pp/;
 set storage_plants(TECHNOLOGY) / hydro_dam_pp /;
 set fuel_transformation(TECHNOLOGY) / oil_refinery /;
 set appliances(TECHNOLOGY) /electricity_demand /;
