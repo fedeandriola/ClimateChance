@@ -533,6 +533,8 @@ parameter TechnologyToStorage(r,m,t,s) /
   UTOPIA.1.rainfall.dam 1
   UTOPIA.2.psh_pp.dam 1
   UTOPIA.1.pv.batteries 1
+  UTOPIA.1.wind_pp.batteries 1
+  UTOPIA.1.hydro_ror_pp.batteries 1
 /;
 
 parameter TechnologyFromStorage(r,m,t,s) /
@@ -541,20 +543,27 @@ parameter TechnologyFromStorage(r,m,t,s) /
   UTOPIA.1.electricity_demand.batteries 1
 /;
 
-StorageLevelStart(r,s) = 999;
+StorageLevelStart(r,'dam') = 999;
+StorageLevelStart(r,'batteries') = 1 ;
 
 StorageMaxChargeRate(r,s) = 99;
 
-StorageMaxDischargeRate(r,s) = 99;
+StorageMaxDischargeRate(r,'dam') = 99;
+StorageMaxDischargeRate(r,'batteries') = 20;
 
 MinStorageCharge(r,s,y) = 0;
 
-OperationalLifeStorage(r,s) = 99;
+OperationalLifeStorage(r,'dam') = 99;
+OperationalLifeStorage(r,'batteries') = 14;
 
-CapitalCostStorage(r,s,y) = 0;
+CapitalCostStorage(r,'dam',y) = 0;
+CapitalCostStorage(r, 'batteries',y)= 150;
 
-ResidualStorageCapacity(r,s,y) = 999;
+CapitalCostStorage(r,'dam',y) = 0;
+CapitalCostStorage(r, 'batteries',y)= 150;
 
+ResidualStorageCapacity(r,'dam',y) = 999;
+ResidualStorageCapacity(r,'batteries',y) = 0 ;
 
 
 *------------------------------------------------------------------------	
