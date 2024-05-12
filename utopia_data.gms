@@ -424,7 +424,8 @@ parameter InputActivityRatio(r,t,f,m,y) /
   UTOPIA.hydro_ror_pp.water.1.(2020*2060) 1
   UTOPIA.hydro_dam_pp.water.1.(2020*2060) 1
   UTOPIA.psh_pp.water.1.(2020*2060) 1.15 
-  UTOPIA.psh_pp.electricity.2.(2020*2060) 1.15 
+  UTOPIA.psh_pp.electricity.2.(2020*2060) 1.15
+  UTOPIA.electricity_demand.electricity.1(2020*2060) 1 
   /;
 *UTOPIA.oil_refinery.oil_crude.1.(2020*2060) 1.02 #da trovare
 *UTOPIA.geothermal_pp.geo_heat.1.(2020*2060) 1 #IEA assumption for renewables
