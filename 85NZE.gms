@@ -492,7 +492,7 @@ parameter CapitalCost /
   UTOPIA.rainfall.(2020*2060) 0
   UTOPIA.sun_market.(2020*2060) 0
   UTOPIA.wind_market.(2020*2060) 0
-  UTOPIA.uranium_market (2020*2060) 0
+  UTOPIA.uranium_market.(2020*2060) 0
   UTOPIA.oil_refinery.(2020*2060) 0 
   UTOPIA.coal_pp.(2020*2060) 2000
   UTOPIA.ccgt_pp.(2020*2060) 900
@@ -524,7 +524,7 @@ parameter VariableCost(r,t,m,y) /
   UTOPIA.hydro_dam_pp.1.(2020*2060) 0
   UTOPIA.psh_pp.1.(2020*2060) 0
   UTOPIA.psh_pp.2.(2020*2060) 0
-  UTOPIA.nuclear_pp.(2020*2060) 0
+  UTOPIA.nuclear_pp.1.(2020*2060) 0
 /;
 *UTOPIA.coal_pp.1.(2020*2060) 13.3 #max tra normali e USC
 *UTOPIA.bio_pp.1.(2020*2060) 124.6 # usato bioenergy considerando che il WTE è poco
@@ -593,11 +593,11 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
   UTOPIA.hydro_ror_pp.(2020*2060) 9 
 
   UTOPIA.coal_pp.(2020*2060) 1e+3
-  UTOPIA.ccgt_pp.(2020*2060) 10.5
+  UTOPIA.ccgt_pp.(2020*2060) 1e+3
   UTOPIA.oil_pp.(2020*2060) 1e+3
   UTOPIA.geothermal_pp.(2020*2060) 0.8
   UTOPIA.windON_pp.(2020*2060) 1e+3
-  UTOPIA.pv.(2020*2060) (((1e+3)+0.8)/2)
+  UTOPIA.pv.(2020*2060) 1e+3
   UTOPIA.bio_pp.(2020*2060) 1e+3
 *questi valori sono statiu presi da OSeMOSYS progetto vecchio
 /;
@@ -617,13 +617,13 @@ TotalAnnualMinCapacityInvestment(r,t,y) = 0;
 parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
 
   UTOPIA.coal_pp.(2020*2060) 1e-5
-  UTOPIA.ccgt_pp.(2020*2060) 1e-5
+  UTOPIA.ccgt_pp.(2020*2060) 10
   UTOPIA.oil_pp.(2020*2060) 1e-5
   UTOPIA.geothermal_pp.(2020*2060) 0.2
-  UTOPIA.windON_pp.(2020*2060) 0
-  UTOPIA.windOFF_pp.(2020*2060) 0
+  UTOPIA.windON_pp.(2020*2060) 10
+  UTOPIA.windOFF_pp.(2020*2060) 10
   UTOPIA.pv.(2020*2060) 10
-  UTOPIA.bio_pp.(2020*2060) 1e+3
+  UTOPIA.bio_pp.(2020*2060) 15
 *questi valori sono statiu presi da OSeMOSYS progetto vecchio
 
 /;
