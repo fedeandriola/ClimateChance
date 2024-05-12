@@ -489,7 +489,7 @@ parameter CapitalCost /
 /;
 *UTOPIA.oil_refinery.(2020*2060) 0 #it is not binding, so it can install as much as it wants
 
-*[M€/PJ/a]
+*[M€/PJ]
 parameter VariableCost(r,t,m,y) / 
   UTOPIA.coal_pp.1.(2020*2060) 13.3 
   UTOPIA.ccgt_pp.1.(2020*2060) 15.31
