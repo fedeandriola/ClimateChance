@@ -595,7 +595,7 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
   UTOPIA.coal_pp.(2020*2060) 1e+3
   UTOPIA.ccgt_pp.(2020*2060) 1e+3
   UTOPIA.oil_pp.(2020*2060) 1e+3
-  UTOPIA.geothermal_pp.(2020*2060) 0.8
+  UTOPIA.geothermal_pp.(2020*2060) 0.817
   UTOPIA.windON_pp.(2020*2060) 1e+3
   UTOPIA.pv.(2020*2060) 1e+3
   UTOPIA.bio_pp.(2020*2060) 1e+3
