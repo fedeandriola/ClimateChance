@@ -18,7 +18,7 @@
 *#****************************************
 
 
-*------------------------------------------------------------------------	
+*------------------------------------------------------------------------   
 * Sets       
 *------------------------------------------------------------------------
 
@@ -41,7 +41,7 @@ set     TECHNOLOGY      /
         oil_pp 'oil power plant' #considerati qui dentro anche gli altri conmbustibili simili
         geothermal_pp 'geothermal'
         wind_pp 'wind'
-        pv 'solar panels'
+        pv_pp 'solar panels'
         hydro_ror_pp 'hydro run of river'
         hydro_dam_pp 'hydro dam'
         psh_pp 'pumped hydro and storage'
@@ -87,7 +87,7 @@ set     STORAGE / dam
 
 # characterize technologies 
 set markets(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, sun_market, wind_market /;
-set power_plants(TECHNOLOGY) / coal_pp, ccgt_pp, bio_pp, oil_pp, geothermal_pp, wind_pp, pv, hydro_ror_pp, hydro_dam_pp, psh_pp /;
+set power_plants(TECHNOLOGY) / coal_pp, ccgt_pp, bio_pp, oil_pp, geothermal_pp, wind_pp, pv_pp, hydro_ror_pp, hydro_dam_pp, psh_pp /;
 set storage_plants(TECHNOLOGY) / hydro_dam_pp /;
 set fuel_transformation(TECHNOLOGY) / oil_refinery /;
 set appliances(TECHNOLOGY) /electricity_demand /;
@@ -96,7 +96,7 @@ set appliances(TECHNOLOGY) /electricity_demand /;
 set primary_sources(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, rainfall, sun_market, wind_market /;
 #set secondary_imports(TECHNOLOGY) / IMPDSL1, IMPGSL1 /;
 
-set renewable_tech(TECHNOLOGY) / geothermal_pp, wind_pp, pv, hydro_ror_pp/; 
+set renewable_tech(TECHNOLOGY) / geothermal_pp, wind_pp, pv_pp, hydro_ror_pp/; 
 set renewable_fuel(FUEL) /water, sun, wind, geo_heat/; 
 
 #set fuel_production(TECHNOLOGY);
@@ -110,7 +110,7 @@ set final_demand(FUEL) / electricity/;
 
 *$include "Model/osemosys_init.gms"
 
-*------------------------------------------------------------------------	
+*------------------------------------------------------------------------   
 * Parameters - Global
 *------------------------------------------------------------------------
 
@@ -178,7 +178,7 @@ TradeRoute(r,rr,f,y) = 0;
 DepreciationMethod(r) = 1;
 
 
-*------------------------------------------------------------------------	
+*------------------------------------------------------------------------   
 * Parameters - Demands       
 *------------------------------------------------------------------------
 
@@ -190,87 +190,87 @@ parameter SpecifiedAnnualDemand(r,f,y);
 
   display SpecifiedAnnualDemand;
 
-*   UTOPIA.electricity.2020	1135.44
-*   UTOPIA.electricity.2021	1146.18
-*   UTOPIA.electricity.2022	1156.92
-*   UTOPIA.electricity.2023	1167.66
-*   UTOPIA.electricity.2024	1178.4
-*   UTOPIA.electricity.2025	1189.14
-*   UTOPIA.electricity.2026	1199.88
-*   UTOPIA.electricity.2027	1210.62
-*   UTOPIA.electricity.2028	1221.36
-*   UTOPIA.electricity.2029	1232.1
-*   UTOPIA.electricity.2030	1242.84
-*   UTOPIA.electricity.2031	1253.58
-*   UTOPIA.electricity.2032	1264.32
-*   UTOPIA.electricity.2033	1275.06
-*   UTOPIA.electricity.2034	1285.8
-*   UTOPIA.electricity.2035	1296.54
-*   UTOPIA.electricity.2036	1307.28
-*   UTOPIA.electricity.2037	1318.02
-*   UTOPIA.electricity.2038	1328.76
-*   UTOPIA.electricity.2039	1339.5
-*   UTOPIA.electricity.2040	1350.24
-*   UTOPIA.electricity.2041	1360.98
-*   UTOPIA.electricity.2042	1371.72
-*   UTOPIA.electricity.2043	1382.46
-*   UTOPIA.electricity.2044	1393.2
-*   UTOPIA.electricity.2045	1403.94
-*   UTOPIA.electricity.2046	1414.68
-*   UTOPIA.electricity.2047	1425.42
-*   UTOPIA.electricity.2048	1436.16
-*   UTOPIA.electricity.2049	1446.9
-*   UTOPIA.electricity.2050	1457.64
-*   UTOPIA.electricity.2051	1457.64
-*   UTOPIA.electricity.2052	1457.64
-*   UTOPIA.electricity.2053	1457.64
-*   UTOPIA.electricity.2054	1457.64
-*   UTOPIA.electricity.2055	1457.64
-*   UTOPIA.electricity.2056	1457.64
-*   UTOPIA.electricity.2057	1457.64
-*   UTOPIA.electricity.2058	1457.64
-*   UTOPIA.electricity.2059	1457.64
-*   UTOPIA.electricity.2060	1457.64
-*   UTOPIA.electricity.2061	1457.64
-*   UTOPIA.electricity.2062	1457.64
-*   UTOPIA.electricity.2063	1457.64
-*   UTOPIA.electricity.2064	1457.64
-*   UTOPIA.electricity.2065	1457.64
-*   UTOPIA.electricity.2066	1457.64
-*   UTOPIA.electricity.2067	1457.64
-*   UTOPIA.electricity.2068	1457.64
-*   UTOPIA.electricity.2069	1457.64
-*   UTOPIA.electricity.2070	1457.64
-*   UTOPIA.electricity.2071	1457.64
-*   UTOPIA.electricity.2072	1457.64
-*   UTOPIA.electricity.2073	1457.64
-*   UTOPIA.electricity.2074	1457.64
-*   UTOPIA.electricity.2075	1457.64
-*   UTOPIA.electricity.2076	1457.64
-*   UTOPIA.electricity.2077	1457.64
-*   UTOPIA.electricity.2078	1457.64
-*   UTOPIA.electricity.2079	1457.64
-*   UTOPIA.electricity.2080	1457.64
-*   UTOPIA.electricity.2081	1457.64
-*   UTOPIA.electricity.2082	1457.64
-*   UTOPIA.electricity.2083	1457.64
-*   UTOPIA.electricity.2084	1457.64
-*   UTOPIA.electricity.2085	1457.64
-*   UTOPIA.electricity.2086	1457.64
-*   UTOPIA.electricity.2087	1457.64
-*   UTOPIA.electricity.2088	1457.64
-*   UTOPIA.electricity.2089	1457.64
-*   UTOPIA.electricity.2090	1457.64
-*   UTOPIA.electricity.2091	1457.64
-*   UTOPIA.electricity.2092	1457.64
-*   UTOPIA.electricity.2093	1457.64
-*   UTOPIA.electricity.2094	1457.64
-*   UTOPIA.electricity.2095	1457.64
-*   UTOPIA.electricity.2096	1457.64
-*   UTOPIA.electricity.2097	1457.64
-*   UTOPIA.electricity.2098	1457.64
-*   UTOPIA.electricity.2099	1457.64
-*   UTOPIA.electricity.2060	1457.64
+*   UTOPIA.electricity.2020 1135.44
+*   UTOPIA.electricity.2021 1146.18
+*   UTOPIA.electricity.2022 1156.92
+*   UTOPIA.electricity.2023 1167.66
+*   UTOPIA.electricity.2024 1178.4
+*   UTOPIA.electricity.2025 1189.14
+*   UTOPIA.electricity.2026 1199.88
+*   UTOPIA.electricity.2027 1210.62
+*   UTOPIA.electricity.2028 1221.36
+*   UTOPIA.electricity.2029 1232.1
+*   UTOPIA.electricity.2030 1242.84
+*   UTOPIA.electricity.2031 1253.58
+*   UTOPIA.electricity.2032 1264.32
+*   UTOPIA.electricity.2033 1275.06
+*   UTOPIA.electricity.2034 1285.8
+*   UTOPIA.electricity.2035 1296.54
+*   UTOPIA.electricity.2036 1307.28
+*   UTOPIA.electricity.2037 1318.02
+*   UTOPIA.electricity.2038 1328.76
+*   UTOPIA.electricity.2039 1339.5
+*   UTOPIA.electricity.2040 1350.24
+*   UTOPIA.electricity.2041 1360.98
+*   UTOPIA.electricity.2042 1371.72
+*   UTOPIA.electricity.2043 1382.46
+*   UTOPIA.electricity.2044 1393.2
+*   UTOPIA.electricity.2045 1403.94
+*   UTOPIA.electricity.2046 1414.68
+*   UTOPIA.electricity.2047 1425.42
+*   UTOPIA.electricity.2048 1436.16
+*   UTOPIA.electricity.2049 1446.9
+*   UTOPIA.electricity.2050 1457.64
+*   UTOPIA.electricity.2051 1457.64
+*   UTOPIA.electricity.2052 1457.64
+*   UTOPIA.electricity.2053 1457.64
+*   UTOPIA.electricity.2054 1457.64
+*   UTOPIA.electricity.2055 1457.64
+*   UTOPIA.electricity.2056 1457.64
+*   UTOPIA.electricity.2057 1457.64
+*   UTOPIA.electricity.2058 1457.64
+*   UTOPIA.electricity.2059 1457.64
+*   UTOPIA.electricity.2060 1457.64
+*   UTOPIA.electricity.2061 1457.64
+*   UTOPIA.electricity.2062 1457.64
+*   UTOPIA.electricity.2063 1457.64
+*   UTOPIA.electricity.2064 1457.64
+*   UTOPIA.electricity.2065 1457.64
+*   UTOPIA.electricity.2066 1457.64
+*   UTOPIA.electricity.2067 1457.64
+*   UTOPIA.electricity.2068 1457.64
+*   UTOPIA.electricity.2069 1457.64
+*   UTOPIA.electricity.2070 1457.64
+*   UTOPIA.electricity.2071 1457.64
+*   UTOPIA.electricity.2072 1457.64
+*   UTOPIA.electricity.2073 1457.64
+*   UTOPIA.electricity.2074 1457.64
+*   UTOPIA.electricity.2075 1457.64
+*   UTOPIA.electricity.2076 1457.64
+*   UTOPIA.electricity.2077 1457.64
+*   UTOPIA.electricity.2078 1457.64
+*   UTOPIA.electricity.2079 1457.64
+*   UTOPIA.electricity.2080 1457.64
+*   UTOPIA.electricity.2081 1457.64
+*   UTOPIA.electricity.2082 1457.64
+*   UTOPIA.electricity.2083 1457.64
+*   UTOPIA.electricity.2084 1457.64
+*   UTOPIA.electricity.2085 1457.64
+*   UTOPIA.electricity.2086 1457.64
+*   UTOPIA.electricity.2087 1457.64
+*   UTOPIA.electricity.2088 1457.64
+*   UTOPIA.electricity.2089 1457.64
+*   UTOPIA.electricity.2090 1457.64
+*   UTOPIA.electricity.2091 1457.64
+*   UTOPIA.electricity.2092 1457.64
+*   UTOPIA.electricity.2093 1457.64
+*   UTOPIA.electricity.2094 1457.64
+*   UTOPIA.electricity.2095 1457.64
+*   UTOPIA.electricity.2096 1457.64
+*   UTOPIA.electricity.2097 1457.64
+*   UTOPIA.electricity.2098 1457.64
+*   UTOPIA.electricity.2099 1457.64
+*   UTOPIA.electricity.2060 1457.64
 
 
 * /;
@@ -293,7 +293,7 @@ parameter SpecifiedDemandProfile(r,f,l,y) /
 parameter AccumulatedAnnualDemand(r,f,y) /  
  /;
 
-*------------------------------------------------------------------------	
+*------------------------------------------------------------------------   
 * Parameters - Performance       
 *------------------------------------------------------------------------
 
@@ -307,6 +307,7 @@ CapacityToActivityUnit(r,t)$(CapacityToActivityUnit(r,t) = 0) = 1;
 
 CapacityFactor(r,'coal_pp',l,y) = 0.85;
 CapacityFactor(r,'ccgt_pp',l,y) = 0.85;
+*capacity factor corretti fino a qui;
 CapacityFactor(r,'oil_pp',l,y) = 0.85;
 CapacityFactor(r,'geothermal_pp',l,y) = 0.84; 
 CapacityFactor(r,'bio_pp',l,y) = 0.68;
@@ -320,14 +321,14 @@ CapacityFactor(r,'wind_pp','SN',y) =0.15;
 CapacityFactor(r,'wind_pp','FD',y) =0.2;
 CapacityFactor(r,'wind_pp','FN',y) =0.3;
 
-CapacityFactor(r,'pv','WD',y) = 0.1;
-CapacityFactor(r,'pv','WN',y) =0.00001;
-CapacityFactor(r,'pv','SPD',y) =0.25;
-CapacityFactor(r,'pv','SPN',y) =0.0001;
-CapacityFactor(r,'pv','SD',y) =0.33;
-CapacityFactor(r,'pv','SN',y) =0.000001;
-CapacityFactor(r,'pv','FD',y) =0.4;
-CapacityFactor(r,'pv','FN',y) =0.00001;
+CapacityFactor(r,'pv_pp','WD',y) = 0.1;
+CapacityFactor(r,'pv_pp','WN',y) =0.0000001;
+CapacityFactor(r,'pv_pp','SPD',y) =0.25;
+CapacityFactor(r,'pv_pp','SPN',y) =0.000001;
+CapacityFactor(r,'pv_pp','SD',y) =0.33;
+CapacityFactor(r,'pv_pp','SN',y) =0.0000001;
+CapacityFactor(r,'pv_pp','FD',y) =0.4;
+CapacityFactor(r,'pv_pp','FN',y) =0.0000001;
 
 loop(y,CapacityFactor(r,'hydro_dam_pp','WD',y) = (0.0004*(y.val-2006)+0.2411));
 loop(y,CapacityFactor(r,'hydro_dam_pp','WN',y) = (0.0004*(y.val-2006)+0.2411));
@@ -366,7 +367,7 @@ parameter OperationalLife(r,t) /
   UTOPIA.oil_pp 35
   UTOPIA.geothermal_pp 50
   UTOPIA.wind_pp 20
-  UTOPIA.pv 20
+  UTOPIA.pv_pp 20
   UTOPIA.bio_pp 20
   UTOPIA.hydro_dam_pp 80
   UTOPIA.hydro_ror_pp 30
@@ -379,7 +380,7 @@ parameter ResidualCapacity(r,t,y)
     ResidualCapacity("utopia","coal_pp",y)=5.658;
     ResidualCapacity("utopia","ccgt_pp",y)=43.991;
     ResidualCapacity("utopia","wind_pp",y)=11.9;
-    ResidualCapacity("utopia","pv",y)=25.064;
+    ResidualCapacity("utopia","pv_pp",y)=25.064;
     ResidualCapacity("utopia","hydro_dam_pp",y)=10.502;
     ResidualCapacity("utopia","hydro_ror_pp",y)=6.661;
     ResidualCapacity("utopia","psh_pp",y)=7.741;
@@ -393,8 +394,8 @@ parameter ResidualCapacity(r,t,y)
     loop(y$(y.val > 2035), ResidualCapacity("utopia","ccgt_pp",y)=ResidualCapacity("utopia","ccgt_pp",y-1)*(1-.20););
     loop(y$(2022 <= y.val and y.val <= 2035), ResidualCapacity("utopia","wind_pp",y)=ResidualCapacity("utopia","wind_pp",y-1)*(1-.01) ;);
     loop(y$(y.val > 2035), ResidualCapacity("utopia","wind_pp",y)=ResidualCapacity("utopia","wind_pp",y-1)*(1-.15););
-    loop(y$(2022 <= y.val and y.val <= 2030), ResidualCapacity("utopia","pv",y)=ResidualCapacity("utopia","pv",y-1)*(1-.01) ;);
-    loop(y$(y.val > 2030), ResidualCapacity("utopia","pv",y)=ResidualCapacity("utopia","pv",y-1)*(1-.15););
+    loop(y$(2022 <= y.val and y.val <= 2030), ResidualCapacity("utopia","pv_pp",y)=ResidualCapacity("utopia","pv_pp",y-1)*(1-.01) ;);
+    loop(y$(y.val > 2030), ResidualCapacity("utopia","pv_pp",y)=ResidualCapacity("utopia","pv_pp",y-1)*(1-.15););
     loop(y$(2022 <= y.val and y.val <= 2055), ResidualCapacity("utopia","hydro_dam_pp",y)=ResidualCapacity("utopia","hydro_dam_pp",y-1)*(1-.01) ;);
     loop(y$(y.val > 2055), ResidualCapacity("utopia","hydro_dam_pp",y)=ResidualCapacity("utopia","hydro_dam_pp",y-1)*(1-.15););
     loop(y$(2022 <= y.val and y.val <= 2040), ResidualCapacity("utopia","hydro_ror_pp",y)=ResidualCapacity("utopia","hydro_ror_pp",y-1)*(1-.02) ;);
@@ -419,7 +420,7 @@ parameter InputActivityRatio(r,t,f,m,y) /
   UTOPIA.oil_pp.oil_ref.1.(2020*2060) 2.86
   UTOPIA.geothermal_pp.geo_heat.1.(2020*2060) 1 
   UTOPIA.wind_pp.wind.1.(2020*2060) 1
-  UTOPIA.pv.sun.1.(2020*2060) 1
+  UTOPIA.pv_pp.sun.1.(2020*2060) 1
   UTOPIA.bio_pp.biomass.1.(2020*2060) 3.23
   UTOPIA.hydro_ror_pp.water.1.(2020*2060) 1
   UTOPIA.hydro_dam_pp.water.1.(2020*2060) 1
@@ -448,7 +449,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   UTOPIA.oil_pp.electricity.1.(2020*2060) 1
   UTOPIA.geothermal_pp.electricity.1.(2020*2060) 1
   UTOPIA.wind_pp.electricity.1.(2020*2060) 1
-  UTOPIA.pv.electricity.1.(2020*2060) 1
+  UTOPIA.pv_pp.electricity.1.(2020*2060) 1
   UTOPIA.bio_pp.electricity.1.(2020*2060) 1
   UTOPIA.hydro_ror_pp.electricity.1.(2020*2060) 1
   UTOPIA.hydro_dam_pp.electricity.1.(2020*2060) 1
@@ -463,7 +464,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
 * InputActivityRatio(r,'IMPDSL1','OIL',m,y)$(not OutputActivityRatio(r,'SRE','DSL',m,y) eq 0) = 1/OutputActivityRatio(r,'SRE','DSL',m,y); 
 * InputActivityRatio(r,'IMPGSL1','OIL',m,y)$(not OutputActivityRatio(r,'SRE','GSL',m,y) eq 0) = 1/OutputActivityRatio(r,'SRE','GSL',m,y); 
 
-*------------------------------------------------------------------------	
+*------------------------------------------------------------------------   
 * Parameters - Technology costs       
 *------------------------------------------------------------------------
 #[M€/GW]
@@ -481,7 +482,7 @@ parameter CapitalCost /
   UTOPIA.oil_pp.(2020*2060) 1800
   UTOPIA.geothermal_pp.(2020*2060) 3500
   UTOPIA.wind_pp.(2020*2060) 1350
-  UTOPIA.pv.(2020*2060) 1200
+  UTOPIA.pv_pp.(2020*2060) 1200
   UTOPIA.bio_pp.(2020*2060) 3500
   UTOPIA.hydro_ror_pp.(2020*2060) 2300
   UTOPIA.hydro_dam_pp.(2020*2060) 1900
@@ -497,7 +498,7 @@ parameter VariableCost(r,t,m,y) /
   UTOPIA.oil_pp.1.(2020*2060) 14.33
   UTOPIA.geothermal_pp.1.(2020*2060) 5.22
   UTOPIA.wind_pp.1.(2020*2060) 0
-  UTOPIA.pv.1.(2020*2060) 0
+  UTOPIA.pv_pp.1.(2020*2060) 0
   UTOPIA.bio_pp.1.(2020*2060) 124.6 
   UTOPIA.hydro_ror_pp.1.(2020*2060) 0 
   UTOPIA.hydro_dam_pp.1.(2020*2060) 0
@@ -517,7 +518,7 @@ parameter FixedCost /
   UTOPIA.oil_pp.(2020*2060) 32
   UTOPIA.geothermal_pp.(2020*2060) 170
   UTOPIA.wind_pp.(2020*2060) 38
-  UTOPIA.pv.(2020*2060) 23 
+  UTOPIA.pv_pp.(2020*2060) 23 
   UTOPIA.bio_pp.(2020*2060) 70 
   UTOPIA.hydro_ror_pp.(2020*2060) 100
   UTOPIA.hydro_dam_pp.(2020*2060) 55
@@ -525,16 +526,16 @@ parameter FixedCost /
   
 /;
 *UTOPIA.coal_pp.(2020*2060) 35 #max tra normali e USC
-*UTOPIA.pv.(2020*2060) 23 #media tra rooftop e US
+*UTOPIA.pv_pp.(2020*2060) 23 #media tra rooftop e US
 *UTOPIA.bio_pp.(2020*2060) 70 # usato bioenergy
-*------------------------------------------------------------------------	
+*------------------------------------------------------------------------   
 * Parameters - Storage       
 *------------------------------------------------------------------------
 
 parameter TechnologyToStorage(r,m,t,s) /
   UTOPIA.1.rainfall.dam 1
   UTOPIA.2.psh_pp.dam 1
-  UTOPIA.1.pv.batteries 1
+  UTOPIA.1.pv_pp.batteries 1
   UTOPIA.1.wind_pp.batteries 1
   UTOPIA.1.hydro_ror_pp.batteries 1
 /;
@@ -568,7 +569,7 @@ ResidualStorageCapacity(r,'dam',y) = 999;
 ResidualStorageCapacity(r,'batteries',y) = 0 ;
 
 
-*------------------------------------------------------------------------	
+*------------------------------------------------------------------------   
 * Parameters - Capacity and investment constraints       
 *------------------------------------------------------------------------
 
@@ -579,14 +580,14 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
   UTOPIA.psh_pp.(2020*2060) 9.11 
   UTOPIA.hydro_ror_pp.(2020*2060) 9 
   UTOPIA.wind_pp.(2020*2060) 38.82
-  UTOPIA.pv.(2020*2060) 71.6
+  UTOPIA.pv_pp.(2020*2060) 71.6
 
   UTOPIA.coal_pp.(2020*2060) 1e+3
   UTOPIA.ccgt_pp.(2020*2060) 1e+3
   UTOPIA.oil_pp.(2020*2060) 1e+3
   UTOPIA.geothermal_pp.(2020*2060) 0.817
   
-  UTOPIA.bio_pp.(2020*2060) 1e+3
+  UTOPIA.bio_pp.(2020*2060) 15
 *questi valori sono statiu presi da OSeMOSYS progetto vecchio
 /;
 *UTOPIA.hydro_dam_pp.(2020*2060) 12.5 #assuming 85% of the potential already exploited
@@ -605,18 +606,18 @@ TotalAnnualMinCapacityInvestment(r,t,y) = 0;
 parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
 
   UTOPIA.coal_pp.(2020*2060) 1e-5
-  UTOPIA.ccgt_pp.(2020*2060) 1e-5
+  UTOPIA.ccgt_pp.(2020*2060) 5
   UTOPIA.oil_pp.(2020*2060) 1e-5
   UTOPIA.geothermal_pp.(2020*2060) 0.2
-  UTOPIA.wind_pp.(2020*2060) 0.7
-  UTOPIA.pv.(2020*2060) 1.2
-  UTOPIA.bio_pp.(2020*2060) 1e+3
+  UTOPIA.wind_pp.(2020*2060) 0.35
+  UTOPIA.pv_pp.(2020*2060) 0.55
+  UTOPIA.bio_pp.(2020*2060) 10
 *questi valori sono statiu presi da OSeMOSYS progetto vecchio
 
 /;
 TotalAnnualMaxCapacityInvestment(r,t,y)$(TotalAnnualMaxCapacityInvestment(r,t,y) = 0) = 99999;
 
-*------------------------------------------------------------------------	
+*------------------------------------------------------------------------   
 * Parameters - Activity constraints       
 *------------------------------------------------------------------------
 
@@ -629,7 +630,7 @@ TotalTechnologyModelPeriodActivityUpperLimit(r,t) = 99999;
 TotalTechnologyModelPeriodActivityLowerLimit(r,t) = 0;
 
 
-*------------------------------------------------------------------------	
+*------------------------------------------------------------------------   
 * Parameters - Reserve margin
 *-----------------------------------------------------------------------
 
@@ -643,7 +644,7 @@ parameter ReserveMargin(r,y) /
 /;
 
 
-*------------------------------------------------------------------------	
+*------------------------------------------------------------------------   
 * Parameters - RE Generation Target       
 *------------------------------------------------------------------------
 
@@ -654,13 +655,13 @@ RETagFuel(r,f,y) = 0;
 REMinProductionTarget(r,y) = 0;
 
 
-*------------------------------------------------------------------------	
+*------------------------------------------------------------------------   
 * Parameters - Emissions       
 *------------------------------------------------------------------------
 *MtonCO2/TJ
 parameter EmissionActivityRatio(r,t,e,m,y) /
   UTOPIA.coal_pp.CO2.1.(2020*2060)  0.258929
-  UTOPIA.ccgt_pp.CO2.1.(2020*2060)  0.109524
+  UTOPIA.ccgt_pp.CO2.1.(2020*2060) 0.109524
   UTOPIA.bio_pp.CO2.1.(2020*2060)  0.039583
   UTOPIA.oil_pp.CO2.1.(2020*2060)  0.163393
   
