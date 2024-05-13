@@ -316,8 +316,8 @@ CapacityFactor(r,'nuclear_pp',l,y) = 0.95;
 
 CapacityFactor(r,'wind_pp','WD',y) = 0.3;
 CapacityFactor(r,'wind_pp','WN',y) =0.4;
-CapacityFactor(r,'wind_pp','SPD',y) =0.2;
-CapacityFactor(r,'wind_pp','SPN',y) =0.3;
+CapacityFactor(r,'wind_pp','SPD',y) =0.15;
+CapacityFactor(r,'wind_pp','SPN',y) =0.2;
 CapacityFactor(r,'wind_pp','SD',y) =0.1;
 CapacityFactor(r,'wind_pp','SN',y) =0.15;
 CapacityFactor(r,'wind_pp','FD',y) =0.2;
@@ -325,12 +325,12 @@ CapacityFactor(r,'wind_pp','FN',y) =0.3;
 
 CapacityFactor(r,'windOFF_pp','WD',y) = 0.4;
 CapacityFactor(r,'windOFF_pp','WN',y) =0.5;
-CapacityFactor(r,'windOFF_pp','SPD',y) =0.3;
-CapacityFactor(r,'windOFF_pp','SPN',y) =0.4;
-CapacityFactor(r,'windOFF_pp','SD',y) =0.2;
-CapacityFactor(r,'windOFF_pp','SN',y) =0.25;
-CapacityFactor(r,'windOFF_pp','FD',y) =0.3;
-CapacityFactor(r,'windOFF_pp','FN',y) =0.4;
+CapacityFactor(r,'windOFF_pp','SPD',y) =0.25;
+CapacityFactor(r,'windOFF_pp','SPN',y) =0.3;
+CapacityFactor(r,'windOFF_pp','SD',y) =0.25;
+CapacityFactor(r,'windOFF_pp','SN',y) =0.3;
+CapacityFactor(r,'windOFF_pp','FD',y) =0.35;
+CapacityFactor(r,'windOFF_pp','FN',y) =0.45;
 
 CapacityFactor(r,'pv_pp','WD',y) = 0.1;
 CapacityFactor(r,'pv_pp','WN',y) =0.000001;
