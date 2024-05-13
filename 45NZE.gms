@@ -403,7 +403,7 @@ parameter ResidualCapacity(r,t,y)
     ResidualCapacity("utopia","nuclear_pp",y)=0;
     );
     loop(y$(2022 <= y.val and y.val <= 2024), ResidualCapacity("utopia","coal_pp",y)=ResidualCapacity("utopia","coal_pp",y-1)*(1-.01) ;);
-    loop(y$(y.val > 2023), ResidualCapacity("utopia","coal_pp",y)=ResidualCapacity("utopia","coal_pp",y-1)*(1-.50););
+    loop(y$(y.val > 2024), ResidualCapacity("utopia","coal_pp",y)=ResidualCapacity("utopia","coal_pp",y-1)*(1-.50););
     loop(y$(2022 <= y.val and y.val <= 2035), ResidualCapacity("utopia","ccgt_pp",y)=ResidualCapacity("utopia","ccgt_pp",y-1)*(1-.05) ;);
     loop(y$(y.val > 2035), ResidualCapacity("utopia","ccgt_pp",y)=ResidualCapacity("utopia","ccgt_pp",y-1)*(1-.20););
     loop(y$(2022 <= y.val and y.val <= 2035), ResidualCapacity("utopia","wind_pp",y)=ResidualCapacity("utopia","wind_pp",y-1)*(1-.01) ;);
