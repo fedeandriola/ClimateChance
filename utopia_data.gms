@@ -578,13 +578,14 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
   UTOPIA.hydro_dam_pp.(2020*2060) 12.5 
   UTOPIA.psh_pp.(2020*2060) 9.11 
   UTOPIA.hydro_ror_pp.(2020*2060) 9 
+  UTOPIA.wind_pp.(2020*2060) 38.82
+  UTOPIA.pv.(2020*2060) 71.6
 
   UTOPIA.coal_pp.(2020*2060) 1e+3
   UTOPIA.ccgt_pp.(2020*2060) 1e+3
   UTOPIA.oil_pp.(2020*2060) 1e+3
   UTOPIA.geothermal_pp.(2020*2060) 0.817
-  UTOPIA.wind_pp.(2020*2060) 1e+3
-  UTOPIA.pv.(2020*2060) 1e+3
+  
   UTOPIA.bio_pp.(2020*2060) 1e+3
 *questi valori sono statiu presi da OSeMOSYS progetto vecchio
 /;
@@ -607,8 +608,8 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
   UTOPIA.ccgt_pp.(2020*2060) 1e-5
   UTOPIA.oil_pp.(2020*2060) 1e-5
   UTOPIA.geothermal_pp.(2020*2060) 0.2
-  UTOPIA.wind_pp.(2020*2060) 0
-  UTOPIA.pv.(2020*2060) 10
+  UTOPIA.wind_pp.(2020*2060) 0.7
+  UTOPIA.pv.(2020*2060) 1.2
   UTOPIA.bio_pp.(2020*2060) 1e+3
 *questi valori sono statiu presi da OSeMOSYS progetto vecchio
 
