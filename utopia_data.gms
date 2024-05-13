@@ -442,6 +442,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   UTOPIA.sun_market.sun.1.(2020*2060) 1
   UTOPIA.wind_market.wind.1.(2020*2060) 1
   UTOPIA.oil_refinery.oil_ref.1.(2020*2060) 1 
+
   UTOPIA.coal_pp.electricity.1.(2020*2060) 1
   UTOPIA.ccgt_pp.electricity.1.(2020*2060) 1
   UTOPIA.oil_pp.electricity.1.(2020*2060) 1
@@ -465,7 +466,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
 *------------------------------------------------------------------------	
 * Parameters - Technology costs       
 *------------------------------------------------------------------------
-#[M€/GW]aa
+#[M€/GW]
 parameter CapitalCost / 
   UTOPIA.coal_market.(2020*2060) 0
   UTOPIA.gas_market.(2020*2060) 0
@@ -489,7 +490,7 @@ parameter CapitalCost /
 /;
 *UTOPIA.oil_refinery.(2020*2060) 0 #it is not binding, so it can install as much as it wants
 
-*[M€/PJ]
+*[M€/PJ/a]
 parameter VariableCost(r,t,m,y) / 
   UTOPIA.coal_pp.1.(2020*2060) 13.3 
   UTOPIA.ccgt_pp.1.(2020*2060) 15.31
@@ -508,7 +509,7 @@ parameter VariableCost(r,t,m,y) /
 
  VariableCost(r,t,m,y)$(VariableCost(r,t,m,y) = 0) = 1e-5;
 
-*[M€/GW/a]
+*[M€/GW]
 parameter FixedCost / 
   
   UTOPIA.coal_pp.(2020*2060) 35
@@ -596,7 +597,7 @@ TotalAnnualMaxCapacity(r,t,y)$(TotalAnnualMaxCapacity(r,t,y) = 0) = 99999;
 parameter TotalAnnualMinCapacity(r,t,y) /
 /;
 
-TotalAnnualMaxCapacityInvestment(r,t,y) = 99999999;
+#TotalAnnualMaxCapacityInvestment(r,t,y) = 99999999;
 
 TotalAnnualMinCapacityInvestment(r,t,y) = 0;
 #da verificare i parametri
@@ -612,7 +613,7 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
 *questi valori sono statiu presi da OSeMOSYS progetto vecchio
 
 /;
-
+TotalAnnualMaxCapacityInvestment(r,t,y)$(TotalAnnualMaxCapacityInvestment(r,t,y) = 0) = 99999;
 
 *------------------------------------------------------------------------	
 * Parameters - Activity constraints       
