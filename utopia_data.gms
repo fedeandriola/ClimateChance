@@ -321,13 +321,13 @@ CapacityFactor(r,'wind_pp','FD',y) =0.2;
 CapacityFactor(r,'wind_pp','FN',y) =0.3;
 
 CapacityFactor(r,'pv','WD',y) = 0.1;
-CapacityFactor(r,'pv','WN',y) =0;
-CapacityFactor(r,'pv','SPD',y) =0.4;
-CapacityFactor(r,'pv','SPN',y) =0;
-CapacityFactor(r,'pv','SD',y) =0.8;
-CapacityFactor(r,'pv','SN',y) =0;
+CapacityFactor(r,'pv','WN',y) =0.00001;
+CapacityFactor(r,'pv','SPD',y) =0.25;
+CapacityFactor(r,'pv','SPN',y) =0.0001;
+CapacityFactor(r,'pv','SD',y) =0.33;
+CapacityFactor(r,'pv','SN',y) =0.000001;
 CapacityFactor(r,'pv','FD',y) =0.4;
-CapacityFactor(r,'pv','FN',y) =0;
+CapacityFactor(r,'pv','FN',y) =0.00001;
 
 loop(y,CapacityFactor(r,'hydro_dam_pp','WD',y) = (0.0004*(y.val-2006)+0.2411));
 loop(y,CapacityFactor(r,'hydro_dam_pp','WN',y) = (0.0004*(y.val-2006)+0.2411));
