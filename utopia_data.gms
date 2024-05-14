@@ -97,7 +97,7 @@ set renewable_tech(TECHNOLOGY) / geothermal_pp, wind_pp, pv_pp, hydro_ror_pp/;
 set renewable_fuel(FUEL) /water, sun, wind, geo_heat/; 
 
 #Characterize fuels 
-set primary_fuel(FUEL) / coal, gas, waste, biomass, oil_crude /;
+set primary_fuel(FUEL) / coal, gas, biomass, oil_crude /;
 set secondary_carrier(FUEL) / oil_ref /;
 set final_demand(FUEL) / electricity/;
 
