@@ -444,16 +444,14 @@ parameter FixedCost /
 *------------------------------------------------------------------------
 
 parameter TechnologyToStorage(r,m,t,s) /
-  UTOPIA.1.rainfall.dam 1
   UTOPIA.2.psh_pp.dam 1
 /;
 
 parameter TechnologyFromStorage(r,m,t,s) /
-  UTOPIA.1.hydro_dam_pp.dam  1
   UTOPIA.1.psh_pp.dam  1
 /;
 
-StorageLevelStart(r,'dam') = 999;
+StorageLevelStart(r,'dam') = 3;
 
 StorageMaxChargeRate(r,s) = 99;
 
@@ -472,7 +470,6 @@ CapitalCostStorage(r,'dam',y) = 0;
 
 
 ResidualStorageCapacity(r,'dam',y) = 999;
-
 
 
 *------------------------------------------------------------------------   
