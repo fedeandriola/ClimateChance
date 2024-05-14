@@ -658,15 +658,15 @@ parameter EmissionActivityRatio(r,t,e,m,y) /
   UTOPIA.bio_pp.CO2.1.(2020*2060)  0
   UTOPIA.oil_pp.CO2.1.(2020*2060)  0.299875
   UTOPIA.oil_refinery.CO2.1.(2020*2060)  7300 
-  UTOPIA.bio_pp.CO2.1.(2020*2060)  0.06388
-  UTOPIA.pv_pp.CO2.1.(2020*2060)  0.013889
-  UTOPIA.hydro_dam_pp.CO2.1.(2020*2060)  0.00667
-  UTOPIA.hydro_ror_pp.CO2.1.(2020*2060)  0.00667
-  UTOPIA.psh_pp.CO2.1.(2020*2060)  0.00667
-  UTOPIA.geothermal_pp.CO2.1.(2020*2060) 0.010556 
-  UTOPIA.wind_pp.CO2.1.(2020*2060)  0.0031944
-  UTOPIA.windOFF_pp.CO2.1.(2020*2060)  0.0031944
-  UTOPIA.nuclear_pp.CO2.1.(2020*2060)  0.00333
+*UTOPIA.bio_pp.CO2.1.(2020*2060)  0.06388
+*UTOPIA.pv_pp.CO2.1.(2020*2060)  0.013889
+*UTOPIA.hydro_dam_pp.CO2.1.(2020*2060)  0.00667
+*UTOPIA.hydro_ror_pp.CO2.1.(2020*2060)  0.00667
+*UTOPIA.psh_pp.CO2.1.(2020*2060)  0.00667
+*UTOPIA.geothermal_pp.CO2.1.(2020*2060) 0.010556 
+*UTOPIA.wind_pp.CO2.1.(2020*2060)  0.0031944
+*UTOPIA.windOFF_pp.CO2.1.(2020*2060)  0.0031944
+*UTOPIA.nuclear_pp.CO2.1.(2020*2060)  0.00333
 /;
 
 EmissionsPenalty(r,e,y) = 0;

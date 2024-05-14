@@ -505,7 +505,7 @@ parameter CapitalCost /
 *UTOPIA.hydro_ror_pp.2020 2300
 *UTOPIA.hydro_dam_pp.2020 1900
 *UTOPIA.psh_pp.2020 1900 
-*UTOPIA.nuclear_pp.(2020*2060) 4000
+ UTOPIA.nuclear_pp.(2020*2060) 4000
 /;
 
 loop(y,CapitalCost("UTOPIA","geothermal_pp",y) = 3500* (1-0.003846)**(y.val-2020));
@@ -686,15 +686,14 @@ parameter EmissionActivityRatio(r,t,e,m,y) /
   UTOPIA.oil_pp.CO2.1.(2020*2060)  0.299875
   UTOPIA.oil_refinery.CO2.1.(2020*2060)  7300 
   UTOPIA.bio_pp.CO2.1.(2020*2060)  0.06388
-  UTOPIA.pv_pp.CO2.1.(2020*2060)  0.013889
-  UTOPIA.hydro_dam_pp.CO2.1.(2020*2060)  0.00667
-  UTOPIA.hydro_ror_pp.CO2.1.(2020*2060)  0.00667
-  UTOPIA.psh_pp.CO2.1.(2020*2060)  0.00667
-  UTOPIA.geothermal_pp.CO2.1.(2020*2060) 0.010556 
-  UTOPIA.wind_pp.CO2.1.(2020*2060)  0.0031944
-  UTOPIA.windOFF_pp.CO2.1.(2020*2060)  0.0031944
-  UTOPIA.nuclear_pp.CO2.1.(2020*2060)  0.00333
-
+*UTOPIA.pv_pp.CO2.1.(2020*2060)  0.013889
+*UTOPIA.hydro_dam_pp.CO2.1.(2020*2060)  0.00667
+*UTOPIA.hydro_ror_pp.CO2.1.(2020*2060)  0.00667
+*UTOPIA.psh_pp.CO2.1.(2020*2060)  0.00667
+*UTOPIA.geothermal_pp.CO2.1.(2020*2060) 0.010556 
+*UTOPIA.wind_pp.CO2.1.(2020*2060)  0.0031944
+*UTOPIA.windOFF_pp.CO2.1.(2020*2060)  0.0031944
+*UTOPIA.nuclear_pp.CO2.1.(2020*2060)  0.00333
 /;
 
 EmissionsPenalty(r,e,y) = 0;
