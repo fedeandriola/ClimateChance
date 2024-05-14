@@ -303,8 +303,8 @@ CapacityToActivityUnit(r,t)$power_plants(t) = 31.536; #PJ/GW/y
 
 CapacityToActivityUnit(r,t)$(CapacityToActivityUnit(r,t) = 0) = 1;
 
-* RSP 4.5        -((0,016875 *(y.val -2020))*0,75* 0,003)) riduzione percentuale di impianti termici al variare della temperatura dei fiumi
-* RSP 8.5        -((0,036875 *(y.val -2020))*0,75* 0,003)) riduzione percentuale di impianti termici al variare della temperatura dei fiumi
+* RSP 4.5        -((0.016875 *(y.val -2020))*0.75* 0.003)) riduzione percentuale di impianti termici al variare della temperatura dei fiumi
+* RSP 8.5        -((0.036875 *(y.val -2020))*0.75* 0.003)) riduzione percentuale di impianti termici al variare della temperatura dei fiumi
 * DA AGGIUNGERE AI CAPACITY FACTOR FOSSILI
 
 CapacityFactor(r,'coal_pp',l,y) = 0.85;
@@ -694,7 +694,16 @@ parameter EmissionActivityRatio(r,t,e,m,y) /
   UTOPIA.ccgt_pp.CO2.1.(2020*2060)  0.122217
   UTOPIA.bio_pp.CO2.1.(2020*2060)  0
   UTOPIA.oil_pp.CO2.1.(2020*2060)  0.299875
-  UTOPIA.oil_refinery.CO2.1.(2020*2060)  7300
+  UTOPIA.oil_refinery.CO2.1.(2020*2060)  7300 
+  UTOPIA.bio_pp.CO2.1.(2020*2060)  0.06388
+  UTOPIA.pv_pp.CO2.1.(2020*2060)  0.013889
+  UTOPIA.hydro_dam_pp.CO2.1.(2020*2060)  0.00667
+  UTOPIA.hydro_ror_pp.CO2.1.(2020*2060)  0.00667
+  UTOPIA.psh_pp.CO2.1.(2020*2060)  0.00667
+  UTOPIA.geothermal_pp.CO2.1.(2020*2060) 0.010556 
+  UTOPIA.wind_pp.CO2.1.(2020*2060)  0.0031944
+  UTOPIA.windOFF_pp.CO2.1.(2020*2060)  0.0031944
+  UTOPIA.nuclear_pp.CO2.1.(2020*2060)  0.00333
 /;
 
 EmissionsPenalty(r,e,y) = 0;
