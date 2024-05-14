@@ -357,9 +357,13 @@ loop(y,CapacityFactor(r,'hydro_ror_pp','SN',y) = (-0.0006*(y.val-2006)+0.423));
 loop(y,CapacityFactor(r,'hydro_ror_pp','FD',y) = (0.0011*(y.val-2006)+0.5324));
 loop(y,CapacityFactor(r,'hydro_ror_pp','FN',y) = (0.0011*(y.val-2006)+0.5324));
 
-CapacityFactor(r,t,l,y)$(CapacityFactor(r,t,l,y) = 0) = 1; 
+CapacityFactor(r,t,l,y)$(CapacityFactor(r,t,l,y) = 0) = 1;
 
 AvailabilityFactor(r,t,y) = 1;
+
+AvailabilityFactor(r,'coal_pp',y) = 0.32;
+AvailabilityFactor(r,'oil_pp',y) = 0.1;
+
 
 parameter OperationalLife(r,t) /
   UTOPIA.coal_pp 35
