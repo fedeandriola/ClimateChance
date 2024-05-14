@@ -475,15 +475,25 @@ parameter CapitalCost /
   UTOPIA.coal_pp.(2020*2060) 2000
   UTOPIA.ccgt_pp.(2020*2060) 900
   UTOPIA.oil_pp.(2020*2060) 1800
-  UTOPIA.geothermal_pp.(2020*2060) 3500
-  UTOPIA.wind_pp.(2020*2060) 1350
-  UTOPIA.pv.(2020*2060) 1200
-  UTOPIA.bio_pp.(2020*2060) 3500
-  UTOPIA.hydro_ror_pp.(2020*2060) 2300
-  UTOPIA.hydro_dam_pp.(2020*2060) 1900
-  UTOPIA.psh_pp.(2020*2060) 1900 
 
+*UTOPIA.geothermal_pp.2020 3500
+*UTOPIA.wind_pp.2020 1350
+*UTOPIA.pv.2020 1200
+*UTOPIA.bio_pp.2020 3500
+*UTOPIA.hydro_ror_pp.2020 2300
+*UTOPIA.hydro_dam_pp.2020 1900
+*UTOPIA.psh_pp.2020 1900 
+*UTOPIA.nuclear_pp.(2020*2060) 4000
 /;
+
+loop(y,CapitalCost("UTOPIA","geothermal_pp",y) = 3500* (1-0.003846)**(y.val-2020));
+loop(y,CapitalCost("UTOPIA","wind_pp",y) = 1350* (1-0.012996)**(y.val-2020) );
+*loop(y,CapitalCOst("UTOPIA","windOFF",y) = 3200 * (1-0.0105)**(y.val-2020));
+loop(y,CapitalCost("UTOPIA","pv",y) = 1200* (1-0.03128)**(y.val-2020) );
+loop(y,CapitalCost("UTOPIA","bio_pp",y) = 3500* (1-0.003029)**(y.val-2020) );
+loop(y,CapitalCost("UTOPIA","hydro_ror_pp",y) = 2300* (1-0.006109)**(y.val-2020) );
+loop(y,CapitalCost("UTOPIA","hydro_dam_pp",y) = 1900* (1-0.004287)**(y.val-2020) );
+loop(y,CapitalCost("UTOPIA","psh_pp",y) = 1900* (1-0.004287)**(y.val-2020) );
 *UTOPIA.oil_refinery.(2020*2060) 0 #it is not binding, so it can install as much as it wants
 
 *[M€/PJ/a]
@@ -643,11 +653,11 @@ REMinProductionTarget(r,y) = 0;
 *------------------------------------------------------------------------
 *MtonCO2/TJ
 parameter EmissionActivityRatio(r,t,e,m,y) /
-  UTOPIA.coal_pp.CO2.1.(2020*2060)  0.258929
-  UTOPIA.ccgt_pp.CO2.1.(2020*2060)  0.109524
-  UTOPIA.bio_pp.CO2.1.(2020*2060)  0.039583
-  UTOPIA.oil_pp.CO2.1.(2020*2060)  0.163393
-  
+  UTOPIA.coal_pp.CO2.1.(2020*2060)  0.28979
+  UTOPIA.ccgt_pp.CO2.1.(2020*2060)  0.122217
+  UTOPIA.bio_pp.CO2.1.(2020*2060)  0
+  UTOPIA.oil_pp.CO2.1.(2020*2060)  0.299875
+  UTOPIA.oil_refinery.CO2.1.(2020*2060)  7300
 /;
 
 EmissionsPenalty(r,e,y) = 0;
