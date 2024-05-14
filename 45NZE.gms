@@ -307,9 +307,9 @@ CapacityToActivityUnit(r,t)$(CapacityToActivityUnit(r,t) = 0) = 1;
 * RSP 8.5        -((0,036875 *(y.val -2020))*0,75* 0,003)) riduzione percentuale di impianti termici al variare della temperatura dei fiumi
 * DA AGGIUNGERE AI CAPACITY FACTOR FOSSILI
 
-CapacityFactor(r,'coal_pp',l,y) = 0.28;
+CapacityFactor(r,'coal_pp',l,y) = 0.85;
 CapacityFactor(r,'ccgt_pp',l,y) = 0.85;
-CapacityFactor(r,'oil_pp',l,y) = 0.085;
+CapacityFactor(r,'oil_pp',l,y) = 0.85;
 CapacityFactor(r,'geothermal_pp',l,y) = 0.84; 
 CapacityFactor(r,'bio_pp',l,y) = 0.68;
 CapacityFactor(r,'nuclear_pp',l,y) = 0.95;
@@ -371,6 +371,8 @@ loop(y,CapacityFactor(r,'hydro_ror_pp','FN',y) = (0.0011*(y.val-2006)+0.5324));
 CapacityFactor(r,t,l,y)$(CapacityFactor(r,t,l,y) = 0) = 1; 
 
 AvailabilityFactor(r,t,y) = 1;
+AvailabilityFactor(r,"coal_pp",y) = 0.32;
+AvailabilityFactor(r,"oil_pp",y) = 0.1;
 
 parameter OperationalLife(r,t) /
   UTOPIA.coal_pp 35
