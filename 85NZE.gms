@@ -340,32 +340,32 @@ CapacityFactor(r,'pv_pp','SN',y) =0;
 CapacityFactor(r,'pv_pp','FD',y) =0.4;
 CapacityFactor(r,'pv_pp','FN',y) =0;
 
-loop(y,CapacityFactor(r,'hydro_dam_pp','WD',y) = (0.0004*(y.val-2006)+0.2411));
-loop(y,CapacityFactor(r,'hydro_dam_pp','WN',y) = (0.0004*(y.val-2006)+0.2411));
-loop(y,CapacityFactor(r,'hydro_dam_pp','SPD',y) = (-0.0006*(y.val-2006)+0.3739));
-loop(y,CapacityFactor(r,'hydro_dam_pp','SPN',y) = (-0.0006*(y.val-2006)+0.3739));
-loop(y,CapacityFactor(r,'hydro_dam_pp','SD',y) = (-0.000005*(y.val-2006)+0.2012));
-loop(y,CapacityFactor(r,'hydro_dam_pp','SN',y) = (-0.000005*(y.val-2006)+0.2012));
-loop(y,CapacityFactor(r,'hydro_dam_pp','FD',y) = (0.0009*(y.val-2006)+0.3411));
-loop(y,CapacityFactor(r,'hydro_dam_pp','FN',y) = (0.0009*(y.val-2006)+0.3411));
+loop(y,CapacityFactor(r,'hydro_dam_pp','WD',y) = (0.0011*(y.val-2006)+0.2239));
+loop(y,CapacityFactor(r,'hydro_dam_pp','WN',y) = (0.0011*(y.val-2006)+0.2239));
+loop(y,CapacityFactor(r,'hydro_dam_pp','SPD',y) = (-0.0016*(y.val-2006)+0.4112));
+loop(y,CapacityFactor(r,'hydro_dam_pp','SPN',y) = (-0.0016*(y.val-2006)+0.4112));
+loop(y,CapacityFactor(r,'hydro_dam_pp','SD',y) = (-0.0008*(y.val-2006)+0.2247));
+loop(y,CapacityFactor(r,'hydro_dam_pp','SN',y) = (-0.0008*(y.val-2006)+0.2247));
+loop(y,CapacityFactor(r,'hydro_dam_pp','FD',y) = (0.0011*(y.val-2006)+0.3684));
+loop(y,CapacityFactor(r,'hydro_dam_pp','FN',y) = (0.0011*(y.val-2006)+0.3684));
 
-loop(y,CapacityFactor(r,'psh_pp','WD',y) = (0.0004*(y.val-2006)+0.2411));
-loop(y,CapacityFactor(r,'psh_pp','WN',y) = (0.0004*(y.val-2006)+0.2411));
-loop(y,CapacityFactor(r,'psh_pp','SPD',y) = (-0.0006*(y.val-2006)+0.3739));
-loop(y,CapacityFactor(r,'psh_pp','SPN',y) = (-0.0006*(y.val-2006)+0.3739));
-loop(y,CapacityFactor(r,'psh_pp','SD',y) = (-0.000005*(y.val-2006)+0.2012));
-loop(y,CapacityFactor(r,'psh_pp','SN',y) = (-0.000005*(y.val-2006)+0.2012));
-loop(y,CapacityFactor(r,'psh_pp','FD',y) = (0.0009*(y.val-2006)+0.3411));
-loop(y,CapacityFactor(r,'psh_pp','FN',y) = (0.0009*(y.val-2006)+0.3411));
+loop(y,CapacityFactor(r,'psh_pp','WD',y) = (0.0011*(y.val-2006)+0.2239));
+loop(y,CapacityFactor(r,'psh_pp','WN',y) = (0.0011*(y.val-2006)+0.2239));
+loop(y,CapacityFactor(r,'psh_pp','SPD',y) = (-0.0016*(y.val-2006)+0.4112));
+loop(y,CapacityFactor(r,'psh_pp','SPN',y) = (-0.0016*(y.val-2006)+0.4112));
+loop(y,CapacityFactor(r,'psh_pp','SD',y) = (-0.0008*(y.val-2006)+0.2247));
+loop(y,CapacityFactor(r,'psh_pp','SN',y) = (-0.0008*(y.val-2006)+0.2247));
+loop(y,CapacityFactor(r,'psh_pp','FD',y) = (0.0011*(y.val-2006)+0.3684));
+loop(y,CapacityFactor(r,'psh_pp','FN',y) = (0.0011*(y.val-2006)+0.3684));
 
-loop(y,CapacityFactor(r,'hydro_ror_pp','WD',y) = (0.0006*(y.val-2006)+0.4251));
-loop(y,CapacityFactor(r,'hydro_ror_pp','WN',y) = (0.0006*(y.val-2006)+0.4251));
-loop(y,CapacityFactor(r,'hydro_ror_pp','SPD',y) = (-0.0007*(y.val-2006)+0.7069));
-loop(y,CapacityFactor(r,'hydro_ror_pp','SPN',y) = (-0.0007*(y.val-2006)+0.7069));
-loop(y,CapacityFactor(r,'hydro_ror_pp','SD',y) = (-0.0006*(y.val-2006)+0.423));
-loop(y,CapacityFactor(r,'hydro_ror_pp','SN',y) = (-0.0006*(y.val-2006)+0.423));
-loop(y,CapacityFactor(r,'hydro_ror_pp','FD',y) = (0.0011*(y.val-2006)+0.5324));
-loop(y,CapacityFactor(r,'hydro_ror_pp','FN',y) = (0.0011*(y.val-2006)+0.5324));
+loop(y,CapacityFactor(r,'hydro_ror_pp','WD',y) = (0.0019*(y.val-2006)+0.3894));
+loop(y,CapacityFactor(r,'hydro_ror_pp','WN',y) = (0.0019*(y.val-2006)+0.3894));
+loop(y,CapacityFactor(r,'hydro_ror_pp','SPD',y) = (-0.0026*(y.val-2006)+0.7702));
+loop(y,CapacityFactor(r,'hydro_ror_pp','SPN',y) = (-0.0026*(y.val-2006)+0.7702));
+loop(y,CapacityFactor(r,'hydro_ror_pp','SD',y) = (-0.0016*(y.val-2006)+0.4531));
+loop(y,CapacityFactor(r,'hydro_ror_pp','SN',y) = (-0.0016*(y.val-2006)+0.4531));
+loop(y,CapacityFactor(r,'hydro_ror_pp','FD',y) = (0.001*(y.val-2006)+0.5528));
+loop(y,CapacityFactor(r,'hydro_ror_pp','FN',y) = (0.001*(y.val-2006)+0.5528));
 
 CapacityFactor(r,t,l,y)$(CapacityFactor(r,t,l,y) = 0) = 1; 
 
