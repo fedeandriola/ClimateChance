@@ -32,6 +32,7 @@ set     TECHNOLOGY      /
         sun_market 'sun market'
         wind_market 'wind market'
         uranium_market 'uranium market'
+        geo_source 'geothermal source'
         rainfall 'rainfall'
         oil_refinery 'refineries' # perchè abbiamo tenuto le oil refineries? abbiamo il prezzo del petrolio, ci servono davvero?
         coal_pp 'coal'
@@ -88,14 +89,14 @@ set     DAILYTIMEBRACKET / 1, 2 /;
 set     STORAGE / dam /; 
 
 # characterize technologies 
-set markets(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, sun_market, wind_market, uranium_market /;
+set markets(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, sun_market, wind_market, uranium_market, geo_source /;
 set power_plants(TECHNOLOGY) / coal_pp, ccgt_pp, bio_pp, oil_pp, geothermal_pp, wind_pp,windOFF_pp, pv_pp, hydro_ror_pp, hydro_dam_pp, psh_pp, nuclear_pp/;
 set storage_plants(TECHNOLOGY) / hydro_dam_pp /;
 set fuel_transformation(TECHNOLOGY) / oil_refinery /;
 set appliances(TECHNOLOGY) /electricity_demand /;
 #set unmet_demand(TECHNOLOGY) / /;
 #set transport(TECHNOLOGY) / TXD, TXE, TXG /;
-set primary_sources(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, rainfall, sun_market, wind_market, uranium_market /;
+set primary_sources(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, rainfall, sun_market, wind_market, uranium_market, geo_source /;
 #set secondary_imports(TECHNOLOGY) / IMPDSL1, IMPGSL1 /;
 
 set renewable_tech(TECHNOLOGY) / geothermal_pp, wind_pp, pv_pp, hydro_ror_pp/; 
@@ -106,7 +107,7 @@ set renewable_fuel(FUEL) /water, sun, wind, geo_heat/;
 #set secondary_production(TECHNOLOGY) /COAL, NUCLEAR, HYDRO, STOR_HYDRO, DIESEL_GEN, SRE/;
 
 #Characterize fuels 
-set primary_fuel(FUEL) / coal, gas, waste, biomass, oil_crude, uranium /;
+set primary_fuel(FUEL) / coal, gas, waste, biomass, oil_crude, uranium, geo_heat /;
 set secondary_carrier(FUEL) / oil_ref /;
 set final_demand(FUEL) / electricity/;
 
