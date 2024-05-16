@@ -464,7 +464,7 @@ parameter InputActivityRatio(r,t,f,m,y) /
   UTOPIA.psh_pp.electricity.2.(2020*2060) 1.33
   UTOPIA.battery_controller.electricity.2.(2020*2060) 1.1
   UTOPIA.battery_controller.elCharge.1.(2020*2060) 1
-  UTOPIA.ev_controller.electricity.2.(2020*2060) 1.1
+*  UTOPIA.ev_controller.electricity.2.(2020*2060) 1.1
   UTOPIA.ev_controller.evCharge.1.(2020*2060) 1
   /;
 *UTOPIA.oil_refinery.oil_crude.1.(2020*2060) 1.02 #da trovare
@@ -502,7 +502,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   UTOPIA.battery_controller.electricity.1.(2020*2060) 1
   UTOPIA.battery_controller.elCharge.2.(2020*2060) 1
   UTOPIA.ev_controller.electricity.1.(2020*2060) 1
-  UTOPIA.ev_controller.evCharge.2.(2020*2060) 1
+*  UTOPIA.ev_controller.evCharge.2.(2020*2060) 1
 /;
 *UTOPIA.psh_pp.electricity.1.(2020*2060) 1 #turbine mode
 *UTOPIA.psh_pp.water.2.(2020*2060) 1 #pumping mode
