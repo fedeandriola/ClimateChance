@@ -321,7 +321,7 @@ CapacityFactor(r,'geothermal_pp',l,y) = 0.84;
 CapacityFactor(r,'bio_pp',l,y) = 0.68;
 CapacityFactor(r,'nuclear_pp',l,y) = 0.95;
 CapacityFactor(r,'battery_controller',l,y) = 0.95;
-CapacityFactor(r,'ev_controller',l,y) = 0.5;
+CapacityFactor(r,'ev_controller',l,y) = 0.9;
 
 CapacityFactor(r,'wind_pp','WD',y) = 0.3;
 CapacityFactor(r,'wind_pp','WN',y) =0.4;
@@ -561,7 +561,7 @@ parameter VariableCost(r,t,m,y) /
   UTOPIA.nuclear_pp.1.(2020*2060) 0
   UTOPIA.battery_controller.1.(2020*2060) 0 
   UTOPIA.battery_controller.2.(2020*2060) 0
-  UTOPIA.ev_controller.1.(2020*2060) 139 
+  UTOPIA.ev_controller.1.(2020*2060) 40 
 /;
 *UTOPIA.coal_pp.1.(2020*2060) 13.3 #max tra normali e USC
 *UTOPIA.bio_pp.1.(2020*2060) 124.6 # usato bioenergy considerando che il WTE è poco
@@ -606,9 +606,9 @@ parameter TechnologyFromStorage(r,m,t,s) /
 
 StorageLevelStart(r,"dam") = 0.191;
 
-StorageMaxChargeRate(r,"dam") = 1;
+StorageMaxChargeRate(r,"dam") = 99;
 
-StorageMaxDischargeRate(r,"dam") = 1;
+StorageMaxDischargeRate(r,"dam") = 99;
 
 MinStorageCharge(r,"dam",y) = 0;
 
@@ -622,9 +622,9 @@ ResidualStorageCapacity(r,"dam",y) = 0.191;
 
 StorageLevelStart(r,"battery") = 0.011;
 
-StorageMaxChargeRate(r,"battery") = 1;
+StorageMaxChargeRate(r,"battery") = 99;
 
-StorageMaxDischargeRate(r,"battery") = 1;
+StorageMaxDischargeRate(r,"battery") = 99;
 
 MinStorageCharge(r,"battery",y) = 0;
 
@@ -661,7 +661,7 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
   UTOPIA.bio_pp.(2020*2060) 1000
   UTOPIA.nuclear_pp.(2020*2060) 1000
   UTOPIA.battery_controller.(2020*2060) 100
-  UTOPIA.ev_controller.(2020*2060) 30
+  UTOPIA.ev_controller.(2020*2060) 100
 /;
 *UTOPIA.hydro_dam_pp.(2020*2060) 12.5 #assuming 85% of the potential already exploited
 *UTOPIA.psh_pp.(2020*2060) 9.11 #assuming 85% of the potential already exploited
