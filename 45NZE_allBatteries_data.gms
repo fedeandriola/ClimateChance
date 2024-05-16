@@ -464,6 +464,7 @@ parameter InputActivityRatio(r,t,f,m,y) /
   UTOPIA.psh_pp.electricity.2.(2020*2060) 1.33
   UTOPIA.battery_controller.electricity.2.(2020*2060) 1.1
   UTOPIA.battery_controller.elCharge.1.(2020*2060) 1
+  UTOPIA.ev_controller.electricity.2.(2020*2060) 1.1
   UTOPIA.ev_controller.evCharge.1.(2020*2060) 1
   /;
 *UTOPIA.oil_refinery.oil_crude.1.(2020*2060) 1.02 #da trovare
@@ -501,6 +502,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   UTOPIA.battery_controller.electricity.1.(2020*2060) 1
   UTOPIA.battery_controller.elCharge.2.(2020*2060) 1
   UTOPIA.ev_controller.electricity.1.(2020*2060) 1
+  UTOPIA.ev_controller.evCharge.2.(2020*2060) 1
 /;
 *UTOPIA.psh_pp.electricity.1.(2020*2060) 1 #turbine mode
 *UTOPIA.psh_pp.water.2.(2020*2060) 1 #pumping mode
@@ -612,11 +614,11 @@ MinStorageCharge(r,"dam",y) = 0;
 
 OperationalLifeStorage(r,"dam") = 99;
 
-CapitalCostStorage(r,"dam",y) = 9999999;
+CapitalCostStorage(r,"dam",y) = 0;
 
 ResidualStorageCapacity(r,"dam",y) = 0.191;
-loop(y$(2021 <= y.val and y.val <= 2030), ResidualStorageCapacity(r,"dam",y)=ResidualStorageCapacity(r,"dam",y-1)+ 0.00756 ;);
-loop(y$(2030 <= y.val and y.val <= 2060), ResidualStorageCapacity(r,"dam",y)=ResidualStorageCapacity(r,"dam",y-1)+0.00576 ;);
+*loop(y$(2021 <= y.val and y.val <= 2030), ResidualStorageCapacity(r,"dam",y)=ResidualStorageCapacity(r,"dam",y-1)+ 0.00756 ;);
+*loop(y$(2030 <= y.val and y.val <= 2060), ResidualStorageCapacity(r,"dam",y)=ResidualStorageCapacity(r,"dam",y-1)+0.00576 ;);
 
 StorageLevelStart(r,"battery") = 0.011;
 
@@ -650,16 +652,16 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
   UTOPIA.hydro_ror_pp.(2020*2060) 9
 
   UTOPIA.coal_pp.(2020*2060) 1000
-  UTOPIA.ccgt_pp.(2020*2060) 60
+  UTOPIA.ccgt_pp.(2020*2060) 1000
   UTOPIA.oil_pp.(2020*2060) 1000
   UTOPIA.geothermal_pp.(2020*2060) 1
-  UTOPIA.wind_pp.(2020*2060) 38.82
-  UTOPIA.windOFF_pp.(2020*2060) 38.82
+  UTOPIA.wind_pp.(2020*2060) 100
+  UTOPIA.windOFF_pp.(2020*2060) 100
   UTOPIA.pv_pp.(2020*2060)  100  
   UTOPIA.bio_pp.(2020*2060) 1000
   UTOPIA.nuclear_pp.(2020*2060) 1000
   UTOPIA.battery_controller.(2020*2060) 100
-  UTOPIA.ev_controller.(2020*2060) 18
+  UTOPIA.ev_controller.(2020*2060) 30
 /;
 *UTOPIA.hydro_dam_pp.(2020*2060) 12.5 #assuming 85% of the potential already exploited
 *UTOPIA.psh_pp.(2020*2060) 9.11 #assuming 85% of the potential already exploited
@@ -677,18 +679,18 @@ TotalAnnualMinCapacityInvestment(r,t,y) = 0;
 parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
 
   UTOPIA.coal_pp.(2020*2060) 0.000001
-  UTOPIA.ccgt_pp.(2020*2060) 0.0001 
+  UTOPIA.ccgt_pp.(2020*2060) 5
   UTOPIA.oil_pp.(2020*2060) 0.000001
   UTOPIA.geothermal_pp.(2020*2060) 0.5
-  UTOPIA.wind_pp.(2020*2060) 2
-  UTOPIA.windOFF_pp.(2020*2060) 2 
+  UTOPIA.wind_pp.(2020*2060) 5
+  UTOPIA.windOFF_pp.(2020*2060) 5
   UTOPIA.pv_pp.(2020*2060) 5
-  UTOPIA.bio_pp.(2020*2060) 3
-  UTOPIA.hydro_dam_pp.(2020*2060) 1
-  UTOPIA.psh_pp.(2020*2060) 1
-  UTOPIA.hydro_ror_pp.(2020*2060) 1
+  UTOPIA.bio_pp.(2020*2060) 5
+  UTOPIA.hydro_dam_pp.(2020*2060) 5
+  UTOPIA.psh_pp.(2020*2060) 5
+  UTOPIA.hydro_ror_pp.(2020*2060) 5
   UTOPIA.battery_controller.(2020*2060) 5
-  UTOPIA.ev_controller.(2020*2060) 0.2
+  UTOPIA.ev_controller.(2020*2060) 5
 
 /;
 
