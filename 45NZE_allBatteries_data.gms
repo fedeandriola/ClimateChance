@@ -287,13 +287,13 @@ parameter SpecifiedAnnualDemand(r,f,y);
 
 parameter SpecifiedDemandProfile(r,f,l,y) / 
   UTOPIA.electricity.WD.(2020*2060)  .14
-  UTOPIA.electricity.WN.(2020*2060)  .07
+  UTOPIA.electricity.WN.(2020*2060)  .075
   UTOPIA.electricity.SPD.(2020*2060)  .19
-  UTOPIA.electricity.SPN.(2020*2060)  .08
+  UTOPIA.electricity.SPN.(2020*2060)  .085
   UTOPIA.electricity.SD.(2020*2060)  .17
-  UTOPIA.electricity.SN.(2020*2060)  .12
+  UTOPIA.electricity.SN.(2020*2060)  .105
   UTOPIA.electricity.FD.(2020*2060)  .16
-  UTOPIA.electricity.FN.(2020*2060)  .07
+  UTOPIA.electricity.FN.(2020*2060)  .075
 /;
 *se definiamo specified annual demand non va definita
 
