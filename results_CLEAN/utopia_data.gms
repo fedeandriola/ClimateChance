@@ -36,7 +36,7 @@ set     TECHNOLOGY      /
         coal_pp 'coal'
         ccgt_pp 'combined cycle gas turbine'
         bio_pp 'bio energy'
-        oil_pp 'oil power plant' #comprende anche tutti i derivati
+        oil_pp 'oil power plant' 
         geothermal_pp 'geothermal'
         wind_pp 'wind'
         pv_pp 'solar panels'
@@ -330,8 +330,8 @@ parameter InputActivityRatio(r,t,f,m,y) /
   UTOPIA.bio_pp.biomass.1.(2020*2060) 3.23
   UTOPIA.hydro_ror_pp.water.1.(2020*2060) 1
   UTOPIA.hydro_dam_pp.water.1.(2020*2060) 1
-  UTOPIA.psh_pp.water.1.(2020*2060) 1  #turbine mode
-  UTOPIA.psh_pp.electricity.2.(2020*2060) 1.3  # pump mode
+  UTOPIA.psh_pp.water.1.(2020*2060) 1  
+  UTOPIA.psh_pp.electricity.2.(2020*2060) 1.3 
   UTOPIA.electricity_demand.electricity.1.(2020*2060) 1 
   /;
 
@@ -355,9 +355,8 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   UTOPIA.bio_pp.electricity.1.(2020*2060) 1
   UTOPIA.hydro_ror_pp.electricity.1.(2020*2060) 1
   UTOPIA.hydro_dam_pp.electricity.1.(2020*2060) 1
-  UTOPIA.psh_pp.electricity.1.(2020*2060) 1 #turbine mode
-  UTOPIA.psh_pp.water.2.(2020*2060) 1 #pump mode
-/;
+  UTOPIA.psh_pp.electricity.1.(2020*2060) 1 
+  UTOPIA.psh_pp.water.2.(2020*2060) 1
 
 
 *------------------------------------------------------------------------   
@@ -460,9 +459,9 @@ ResidualStorageCapacity(r,'dam',y) = 999;
 CapacityOfOneTechnologyUnit(r,t,y) = 0;
 
 parameter TotalAnnualMaxCapacity(r,t,y) /
-  UTOPIA.hydro_dam_pp.(2020*2060) 12.5 #assuming 85% of the potential already exploited
-  UTOPIA.psh_pp.(2020*2060) 9.11 #assuming 85% of the potential already exploited
-  UTOPIA.hydro_ror_pp.(2020*2060) 9 #assuming 75% of the potential already exploited
+  UTOPIA.hydro_dam_pp.(2020*2060) 12.5 
+  UTOPIA.psh_pp.(2020*2060) 9.11 
+  UTOPIA.hydro_ror_pp.(2020*2060) 9 
   UTOPIA.wind_pp.(2020*2060) 38.82
   UTOPIA.pv_pp.(2020*2060) 71.6
 
