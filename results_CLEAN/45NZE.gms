@@ -224,6 +224,7 @@ CapacityFactor(r,'bio_pp',l,y) = 0.68;
 CapacityFactor(r,'nuclear_pp',l,y) = 0.95;
 CapacityFactor(r,'battery_controller',l,y) = 0.95;
 CapacityFactor(r,'ev_controller',l,y) = 0.95;
+CapacityFactor(r,'ccgt_ccs_pp',l,y) =0.85;
 
 CapacityFactor(r,'wind_pp','WD',y) = 0.3;
 CapacityFactor(r,'wind_pp','WN',y) =0.4;
@@ -281,7 +282,7 @@ loop(y,CapacityFactor(r,'hydro_ror_pp','FN',y) = (0.0011*(y.val-2006)+0.5324));
 
 CapacityFactor(r,t,l,y)$(CapacityFactor(r,t,l,y) = 0) = 1; 
 
-CapacityFactor(r,'ccgt_ccs_pp',l,y) =0.85;
+
 
 AvailabilityFactor(r,t,y) = 1;
 AvailabilityFactor(r,"coal_pp",y) = 0.32;
@@ -593,7 +594,7 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
   UTOPIA.hydro_ror_pp.(2020*2060) 5
   UTOPIA.battery_controller.(2020*2060) 5
   UTOPIA.ev_controller.(2020*2060) 5
-   UTOPIA.ccgt_ccs_pp.(2020*2060) 5
+ UTOPIA.ccgt_ccs_pp.(2020*2060) 5
 
 /;
 
