@@ -570,7 +570,6 @@ parameter EmissionActivityRatio(r,t,e,m,y) /
   UTOPIA.ccgt_pp.CO2.1.(2020*2060)  0.122217
   UTOPIA.bio_pp.CO2.1.(2020*2060)  0
   UTOPIA.oil_pp.CO2.1.(2020*2060)  0.299875
-  UTOPIA.oil_refinery.CO2.1.(2020*2060)  7300 
   UTOPIA.bio_pp.CO2.1.(2020*2060)  0.06388
 *UTOPIA.pv_pp.CO2.1.(2020*2060)  0.013889
 *UTOPIA.hydro_dam_pp.CO2.1.(2020*2060)  0.00667
