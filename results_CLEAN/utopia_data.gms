@@ -431,7 +431,7 @@ parameter TechnologyFromStorage(r,m,t,s) /
   UTOPIA.1.psh_pp.dam  1
 /;
 
-StorageLevelStart(r,'dam') = 3;
+StorageLevelStart(r,'dam') = 0.191;
 
 StorageMaxChargeRate(r,s) = 99;
 
@@ -445,11 +445,7 @@ OperationalLifeStorage(r,'dam') = 99;
 
 CapitalCostStorage(r,'dam',y) = 0;
 
-
-CapitalCostStorage(r,'dam',y) = 0;
-
-
-ResidualStorageCapacity(r,'dam',y) = 999;
+ResidualStorageCapacity(r,'dam',y) = 0.191;
 
 
 *------------------------------------------------------------------------   
@@ -460,7 +456,7 @@ CapacityOfOneTechnologyUnit(r,t,y) = 0;
 
 parameter TotalAnnualMaxCapacity(r,t,y) /
   UTOPIA.hydro_dam_pp.(2020*2060) 12.5 
-  UTOPIA.psh_pp.(2020*2060) 9.11 
+  UTOPIA.psh_pp.(2020*2060) 18 
   UTOPIA.hydro_ror_pp.(2020*2060) 9 
   UTOPIA.wind_pp.(2020*2060) 38.82
   UTOPIA.pv_pp.(2020*2060) 71.6
@@ -492,12 +488,12 @@ TotalAnnualMinCapacityInvestment(r,'pv_pp',y) = 0.55;
 parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
 
   UTOPIA.coal_pp.(2020*2060) 1e-5
-  UTOPIA.ccgt_pp.(2020*2060) 2
+  UTOPIA.ccgt_pp.(2020*2060) 5
   UTOPIA.oil_pp.(2020*2060) 1e-5
   UTOPIA.geothermal_pp.(2020*2060) 0.2
-  UTOPIA.wind_pp.(2020*2060) 1
-  UTOPIA.pv_pp.(2020*2060) 1
-  UTOPIA.bio_pp.(2020*2060) 2
+  UTOPIA.wind_pp.(2020*2060) 5
+  UTOPIA.pv_pp.(2020*2060) 5
+  UTOPIA.bio_pp.(2020*2060) 5
 
 
 /;
