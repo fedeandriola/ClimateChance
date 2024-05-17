@@ -337,6 +337,7 @@ parameter ResidualCapacity(r,t,y)
     loop(y$(2022 <= y.val and y.val <= 2040), ResidualCapacity("utopia","bio_pp",y)=ResidualCapacity("utopia","bio_pp",y-1)*(1-.01) ;);
     loop(y$(y.val > 2040), ResidualCapacity("utopia","bio_pp",y)=ResidualCapacity("utopia","bio_pp",y-1)*(1-.05););
     loop(y$(2022 <= y.val and y.val <= 2024), ResidualCapacity("utopia","oil_pp",y)=ResidualCapacity("utopia","oil_pp",y-1)*(1-.01) ;);
+    loop(y$(y.val > 2024), ResidualCapacity("utopia","oil_pp",y)=ResidualCapacity("utopia","oil_pp",y-1)*(1-.50););
     loop(y$(2022 <= y.val and y.val <= 2040), ResidualCapacity("utopia","battery_controller",y)=ResidualCapacity("utopia","battery_controller",y-1)*(1-.001) ;);
     loop(y$(y.val > 2040), ResidualCapacity("utopia","battery_controller",y)=ResidualCapacity("utopia","battery_controller",y-1)*(1-.20););
     loop(y$(2022 <= y.val and y.val <= 2035), ResidualCapacity("utopia","ev_controller",y)=ResidualCapacity("utopia","ev_controller",y-1)*(1-.005) ;);
