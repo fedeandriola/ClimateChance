@@ -360,9 +360,6 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   UTOPIA.psh_pp.water.2.(2020*2060) 1 
 /;
 
-# By default, assume for imported secondary fuels the same efficiency of the internal refineries
-* InputActivityRatio(r,'IMPDSL1','OIL',m,y)$(not OutputActivityRatio(r,'SRE','DSL',m,y) eq 0) = 1/OutputActivityRatio(r,'SRE','DSL',m,y); 
-* InputActivityRatio(r,'IMPGSL1','OIL',m,y)$(not OutputActivityRatio(r,'SRE','GSL',m,y) eq 0) = 1/OutputActivityRatio(r,'SRE','GSL',m,y); 
 
 *------------------------------------------------------------------------   
 * Parameters - Technology costs       
