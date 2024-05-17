@@ -102,7 +102,7 @@ set renewable_fuel(FUEL) /water, sun, wind, geo_heat/;
 
 
 #Characterize fuels 
-set primary_fuel(FUEL) / coal, gas, waste, biomass, oil_crude, uranium, geo_heat /;
+set primary_fuel(FUEL) / coal, gas, biomass, oil_crude, uranium, geo_heat /;
 set secondary_carrier(FUEL) / oil_ref /;
 set final_demand(FUEL) / electricity/;
 
@@ -335,16 +335,16 @@ parameter ResidualCapacity(r,t,y)
     loop(y$(2022 <= y.val and y.val <= 2040), ResidualCapacity("utopia","bio_pp",y)=ResidualCapacity("utopia","bio_pp",y-1)*(1-.01) ;);
     loop(y$(y.val > 2040), ResidualCapacity("utopia","bio_pp",y)=ResidualCapacity("utopia","bio_pp",y-1)*(1-.05););
     loop(y$(2022 <= y.val and y.val <= 2024), ResidualCapacity("utopia","oil_pp",y)=ResidualCapacity("utopia","oil_pp",y-1)*(1-.01) ;);
-    loop(y$(y.val > 2024), ResidualCapa loop(y$(2022 <= y.val and y.val <= 2040), ResidualCapacity("utopia","battery_controller",y)=ResidualCapacity("utopia","battery_controller",y-1)*(1-.001) ;);
+    loop(y$(2022 <= y.val and y.val <= 2040), ResidualCapacity("utopia","battery_controller",y)=ResidualCapacity("utopia","battery_controller",y-1)*(1-.001) ;);
     loop(y$(y.val > 2040), ResidualCapacity("utopia","battery_controller",y)=ResidualCapacity("utopia","battery_controller",y-1)*(1-.20););
     loop(y$(2022 <= y.val and y.val <= 2035), ResidualCapacity("utopia","ev_controller",y)=ResidualCapacity("utopia","ev_controller",y-1)*(1-.005) ;);
-    loop(y$(y.val > 2035), ResidualCapacity("utopia","ev_controller",y)=ResidualCapacity("utopia","ev_controller",y-1)*(1-.10););city("utopia","oil_pp",y)=ResidualCapacity("utopia","oil_pp",y-1)*(1-.50););
+    loop(y$(y.val > 2035), ResidualCapacity("utopia","ev_controller",y)=ResidualCapacity("utopia","ev_controller",y-1)*(1-.10););
 
     
     display ResidualCapacity;
 
 
-if set no_initial_capacity ResidualCapacity(r,t,y) = 0; 
+*if set no_initial_capacity ResidualCapacity(r,t,y) = 0; 
 parameter InputActivityRatio(r,t,f,m,y) / 
   UTOPIA.oil_refinery.oil_crude.1.(2020*2060) 1.02 
   UTOPIA.coal_pp.coal.1.(2020*2060) 2.63
@@ -373,7 +373,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   UTOPIA.biomass_market.biomass.1.(2020*2060) 1
   UTOPIA.rainfall.water.1.(2020*2060) 1
   UTOPIA.sun_market.sun.1.(2020*2060) 1
-  UTOPIA.geo_market.geo_heat.1.(2020*2060) 1
+  UTOPIA.geo_source.geo_heat.1.(2020*2060) 1
   UTOPIA.battery_market.elCharge.1.(2020*2060) 1
   UTOPIA.ev_market.evCharge.1.(2020*2060) 1
   UTOPIA.wind_market.wind.1.(2020*2060) 1
