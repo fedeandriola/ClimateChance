@@ -51,6 +51,7 @@ set     TECHNOLOGY      /
         battery_market 'battery market'
         ev_market 'ev market'
         ev_controller 'ev chargers'
+        ccgt_ccs_pp 'ccgt & carbon capture technology'
 /;
 
 set     TIMESLICE       /
@@ -92,7 +93,7 @@ set     STORAGE / dam , battery /;
 
 # characterize technologies 
 set markets(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, sun_market, wind_market, uranium_market, geo_source,ev_market,ev_controller /;
-set power_plants(TECHNOLOGY) / coal_pp, ccgt_pp, bio_pp, oil_pp, geothermal_pp, wind_pp,windOFF_pp, pv_pp, hydro_ror_pp, hydro_dam_pp, psh_pp, nuclear_pp,battery_controller,ev_controller/;
+set power_plants(TECHNOLOGY) / coal_pp, ccgt_pp, bio_pp, oil_pp, geothermal_pp, wind_pp,windOFF_pp, pv_pp, hydro_ror_pp, hydro_dam_pp, psh_pp, nuclear_pp,battery_controller,ev_controller, ccgt_ccs_pp/;
 set storage_plants(TECHNOLOGY) / hydro_dam_pp /;
 set fuel_transformation(TECHNOLOGY) / oil_refinery /;
 set appliances(TECHNOLOGY) /electricity_demand /;
@@ -280,6 +281,8 @@ loop(y,CapacityFactor(r,'hydro_ror_pp','FN',y) = (0.0011*(y.val-2006)+0.5324));
 
 CapacityFactor(r,t,l,y)$(CapacityFactor(r,t,l,y) = 0) = 1; 
 
+CapacityFactor(r,'ccgt_ccs_pp',l,y) =0.85;
+
 AvailabilityFactor(r,t,y) = 1;
 AvailabilityFactor(r,"coal_pp",y) = 0.32;
 AvailabilityFactor(r,"oil_pp",y) = 0.1;
@@ -298,6 +301,7 @@ parameter OperationalLife(r,t) /
   UTOPIA.nuclear_pp 60
   UTOPIA.battery_controller 20
   UTOPIA.ev_controller 20
+  UTOPIA.ccgt_ccs_pp 20
 /;
 
 OperationalLife(r,t)$(OperationalLife(r,t) = 0) = 20;
@@ -318,6 +322,7 @@ parameter ResidualCapacity(r,t,y)
     ResidualCapacity("utopia","nuclear_pp",y)=0;
     ResidualCapacity("utopia","battery_controller",y)=1.6;
     ResidualCapacity("utopia","ev_controller",y)=0.25;
+    ResidualCapacity("utopia","ccgt_ccs_pp",y)=0;
     );
     loop(y$(2022 <= y.val and y.val <= 2024), ResidualCapacity("utopia","coal_pp",y)=ResidualCapacity("utopia","coal_pp",y-1)*(1-.01) ;);
     loop(y$(y.val > 2024), ResidualCapacity("utopia","coal_pp",y)=ResidualCapacity("utopia","coal_pp",y-1)*(1-.50););
@@ -366,6 +371,7 @@ parameter InputActivityRatio(r,t,f,m,y) /
   UTOPIA.battery_controller.electricity.2.(2020*2060) 1.1
   UTOPIA.battery_controller.elCharge.1.(2020*2060) 1
   UTOPIA.ev_controller.evCharge.1.(2020*2060) 1
+  UTOPIA.ccgt_ccs_pp.gas.1.(2020*2060) 2.0755
   /;
 
 
@@ -398,6 +404,7 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   UTOPIA.battery_controller.electricity.1.(2020*2060) 1
   UTOPIA.battery_controller.elCharge.2.(2020*2060) 1
   UTOPIA.ev_controller.electricity.1.(2020*2060) 1
+  UTOPIA.ccgt_ccs_pp.electricity.1.(2020*2060) 1
 /;
 
 
@@ -430,7 +437,7 @@ parameter CapitalCost /
   UTOPIA.nuclear_pp.(2020*2060) 4000
   UTOPIA.battery_controller.(2020*2060) 0
   UTOPIA.ev_controller.(2020*2060) 0
-
+  UTOPIA.ccgt_ccs_pp.(2020*2060) 1580
 /;
 
 loop(y,CapitalCost("UTOPIA","geothermal_pp",y) = 3500* (1-0.003846)**(y.val-2020));
@@ -460,6 +467,7 @@ parameter VariableCost(r,t,m,y) /
   UTOPIA.battery_controller.1.(2020*2060) 0 
   UTOPIA.battery_controller.2.(2020*2060) 0
   UTOPIA.ev_controller.1.(2020*2060) 70
+  UTOPIA.ccgt_ccs_pp.1.(2020*2060) 16.31
 /;
 
 
@@ -482,7 +490,8 @@ parameter FixedCost /
   UTOPIA.nuclear_pp.(2020*2060) 0.11
   UTOPIA.battery_controller.(2020*2060) 0.000001
   UTOPIA.ev_controller.(2020*2060) 0.000001
-  
+  UTOPIA.ccgt_ccs_pp.(2020*2060) 10.5
+
 /;
 
 *------------------------------------------------------------------------   
@@ -557,6 +566,7 @@ parameter TotalAnnualMaxCapacity(r,t,y) /
   UTOPIA.nuclear_pp.(2020*2060) 100
   UTOPIA.battery_controller.(2020*2060) 100
   UTOPIA.ev_controller.(2020*2060) 100
+  UTOPIA.ccgt_ccs_pp.(2020*2060) 100
 /;
 
 TotalAnnualMaxCapacity(r,t,y)$(TotalAnnualMaxCapacity(r,t,y) = 0) = 99999;
@@ -583,6 +593,7 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
   UTOPIA.hydro_ror_pp.(2020*2060) 5
   UTOPIA.battery_controller.(2020*2060) 5
   UTOPIA.ev_controller.(2020*2060) 5
+   UTOPIA.ccgt_ccs_pp.(2020*2060) 5
 
 /;
 
@@ -639,7 +650,7 @@ parameter EmissionActivityRatio(r,t,e,m,y) /
   UTOPIA.bio_pp.CO2.1.(2020*2060)  0
   UTOPIA.oil_pp.CO2.1.(2020*2060)  0.299875 
   UTOPIA.bio_pp.CO2.1.(2020*2060)  0.06388
-
+  UTOPIA.ccgt_ccs_pp.CO2.1.(2020*2060)  0
 /;
 
 EmissionsPenalty(r,e,y) = 0;
