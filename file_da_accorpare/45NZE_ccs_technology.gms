@@ -434,7 +434,7 @@ parameter InputActivityRatio(r,t,f,m,y) /
   UTOPIA.nuclear_pp.uranium.1.(2020*2060) 1
   UTOPIA.psh_pp.electricity.2.(2020*2060) 1.15
   
-  UTOPIA.ccgt_ccs_pp.wind.1.(2020*2060) 1
+  UTOPIA.ccgt_ccs_pp.gas.1.(2020*2060) 2.0755
   UTOPIA.dacc.electricity.1.(2020*2060) 1
   /;
 *UTOPIA.oil_refinery.oil_crude.1.(2020*2060) 1.02 #da trovare
@@ -506,7 +506,7 @@ parameter CapitalCost /
   UTOPIA.psh_pp.2020 1900
   UTOPIA.nuclear_pp.(2020*2060) 4000
 
-  UTOPIA.ccgt_ccs_pp.(2020*2060) 1
+  UTOPIA.ccgt_ccs_pp.(2020*2060) 1580
   UTOPIA.dacc.(2020*2060) 10000
 
 /;
@@ -537,7 +537,7 @@ parameter VariableCost(r,t,m,y) /
   UTOPIA.psh_pp.2.(2020*2060) 0
   UTOPIA.nuclear_pp.1.(2020*2060) 0
   
-  UTOPIA.ccgt_ccs_pp.1.(2020*2060) 1
+  UTOPIA.ccgt_ccs_pp.1.(2020*2060) 16.31
   UTOPIA.dacc.1.(2020*2060) 1
 /;
 *UTOPIA.coal_pp.1.(2020*2060) 13.3 #max tra normali e USC
@@ -561,7 +561,7 @@ parameter FixedCost /
   UTOPIA.psh_pp.(2020*2060) 48
   UTOPIA.nuclear_pp.(2020*2060) 0.11
   
-  UTOPIA.ccgt_ccs_pp.(2020*2060) 1
+  UTOPIA.ccgt_ccs_pp.(2020*2060) 10.5
   UTOPIA.dacc.(2020*2060) 1
   
 /;
@@ -663,7 +663,7 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
   UTOPIA.nuclear_pp.(2020*2060) 1
   
   
-  UTOPIA.ccgt_ccs_pp.(2020*2060) 1
+  UTOPIA.ccgt_ccs_pp.(2020*2060) 5
   UTOPIA.dacc.(2020*2060) 1
 
 /;
@@ -730,7 +730,7 @@ parameter EmissionActivityRatio(r,t,e,m,y) /
   UTOPIA.windOFF_pp.CO2.1.(2020*2060)  0.0031944
   UTOPIA.nuclear_pp.CO2.1.(2020*2060)  0.00333
 
-  UTOPIA.ccgt_ccs_pp.CO2.1.(2020*2060)  0.01833255
+  UTOPIA.ccgt_ccs_pp.CO2.1.(2020*2060)  0
 *  UTOPIA.dacc.CO2.1.(2020*2060) -0.05
 /;
 
