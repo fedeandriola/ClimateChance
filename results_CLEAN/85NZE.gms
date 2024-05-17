@@ -306,6 +306,7 @@ parameter ResidualCapacity(r,t,y)
     ResidualCapacity("utopia","coal_pp",y)=5.658;
     ResidualCapacity("utopia","ccgt_pp",y)=43.991;
     ResidualCapacity("utopia","wind_pp",y)=11.9;
+    ResidualCapacity("utopia","wind_pp",y)=0;
     ResidualCapacity("utopia","pv_pp",y)=25.064;
     ResidualCapacity("utopia","hydro_dam_pp",y)=10.502;
     ResidualCapacity("utopia","hydro_ror_pp",y)=6.661;
@@ -432,7 +433,7 @@ parameter CapitalCost /
 
 loop(y,CapitalCost("UTOPIA","geothermal_pp",y) = 3500* (1-0.003846)**(y.val-2020));
 loop(y,CapitalCost("UTOPIA","wind_pp",y) = 1350* (1-0.012996)**(y.val-2020) );
-*loop(y,CapitalCOst("UTOPIA","windOFF",y) = 3200 * (1-0.0105)**(y.val-2020));
+loop(y,CapitalCost("UTOPIA","windOFF_pp",y) = 3200 * (1-0.0105)**(y.val-2020));
 loop(y,CapitalCost("UTOPIA","pv_pp",y) = 1200* (1-0.03128)**(y.val-2020) );
 loop(y,CapitalCost("UTOPIA","bio_pp",y) = 3500* (1-0.003029)**(y.val-2020) );
 loop(y,CapitalCost("UTOPIA","hydro_ror_pp",y) = 2300* (1-0.006109)**(y.val-2020) );
