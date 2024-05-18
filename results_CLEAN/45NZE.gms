@@ -648,7 +648,6 @@ REMinProductionTarget(r,y) = 0;
 parameter EmissionActivityRatio(r,t,e,m,y) /
   UTOPIA.coal_pp.CO2.1.(2020*2060)  0.28979
   UTOPIA.ccgt_pp.CO2.1.(2020*2060)  0.122217
-  UTOPIA.bio_pp.CO2.1.(2020*2060)  0
   UTOPIA.oil_pp.CO2.1.(2020*2060)  0.299875 
   UTOPIA.bio_pp.CO2.1.(2020*2060)  0.06388
   UTOPIA.ccgt_ccs_pp.CO2.1.(2020*2060)  0
