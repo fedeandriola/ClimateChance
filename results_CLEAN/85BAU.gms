@@ -443,10 +443,9 @@ MinStorageCharge(r,s,y) = 0;
 OperationalLifeStorage(r,'dam') = 99;
 
 
-CapitalCostStorage(r,'dam',y) = 0;
+CapitalCostStorage(r,"dam",y) = 999999;
 
-
-ResidualStorageCapacity(r,'dam',y) = 0.191;
+ResidualStorageCapacity(r,"dam",y) = 0.3;
 
 
 *------------------------------------------------------------------------   
