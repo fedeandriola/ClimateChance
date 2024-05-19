@@ -670,7 +670,7 @@ EmissionsPenalty(r,e,y) = 0;
 AnnualExogenousEmission(r,e,y) = 0;
 
 AnnualEmissionLimit(r,e,y) = 999999 ;
-AnnualEmissionLimit(r,e,"2060")= 0;
+*AnnualEmissionLimit(r,e,"2060")= 0;
 *loop(y$(y.val >= 2022),AnnualEmissionLimit("utopia","CO2",y) = AnnualEmissionLimit("utopia","CO2",y-1) -2);
 *loop(y$(y.val >= 2021),AnnualEmissionLimit("utopia","CO2",y) = AnnualEmissionLimit("utopia","CO2",y-1) * 0.95 ;);
 *loop(y$(y.val>=2050), AnnualEmissionLimit("utopia", "CO2",y) = 0 ;);
