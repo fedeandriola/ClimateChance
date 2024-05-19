@@ -658,3 +658,53 @@ AnnualEmissionLimit(r,e,y) = 9999;
 ModelPeriodExogenousEmission(r,e) = 0;
 
 ModelPeriodEmissionLimit(r,e) = 9999;
+
+*parameter AnnualEmissionLimit(r,e,y) /
+*utopia.co2.(2020*2060) 0
+*/;
+
+*AnnualEmissionLimit("utopia","co2","2030")= 58;
+*AnnualEmissionLimit("utopia","co2","2050")=38;
+
+*****LINEARE******
+* TARGET FIT55
+* loop(y$(2030>=y.val),AnnualEmissionLimit("utopia","CO2",y) = -3.31 * (y.val-2020)+89);
+* loop(y$(2030<y.val),AnnualEmissionLimit("utopia","CO2",y) = -0.95 *(y.val-2020)+67.5);
+
+* NZE2050 DOPO IL FIT55 2030
+* loop(y$(2030>=y.val),AnnualEmissionLimit("utopia","CO2",y) = -3.31 * (y.val-2020)+89);
+* loop(y$(2030<y.val and y.val<=2050),AnnualEmissionLimit("utopia","CO2",y) = -2.9 *(y.val-2020)+87);
+* loop(y$(2050<y.val),AnnualEmissionLimit("utopia","CO2",y) = 0);
+
+* TOTALE TARGET FIT55
+* loop(y$(2020<=y.val and y.val<=2050),AnnualEmissionLimit("utopia","CO2",y) = -1.6667 *(y.val - 2020)+89);
+* loop(y$(2050<y.val), AnnualEmissionLimit("utopia","CO2",y) = 39);
+
+* TOTALE NZE 2050
+* loop(y$(2020<=y.val and y.val<=2050),AnnualEmissionLimit("utopia","CO2",y) = -2.9666*(y.val-2020) +89);
+* loop(y$(2050<y.val),AnnualEmissionLimit("utopia","CO2",y) = 0);
+
+*****parabolico******
+* TARGET FIT55
+* loop(y$(2030>=y.val),AnnualEmissionLimit("utopia","CO2",y) =  0.31*(y.val-2020)**2 -6.2*(y.val-2020) + 89);
+* TARGET FIT55 + PREVISIONE 2050 
+* loop(y$(2030<=y.val and y.val<=2050),AnnualEmissionLimit("utopia","CO2",y) =  0.0475*(y.val-2020)**2 -2.85*(y.val-2020) + 81.8);
+* loop(y$(2050<y.val),AnnualEmissionLimit("utopia","CO2",y) = 39);
+* TARGET FIT55 + NZE2050
+* loop(y$(2030<=y.val and y.val<=2050),AnnualEmissionLimit("utopia","CO2",y) =  0.14452*(y.val-2020)**2 -8.7*(y.val-2020) + 131);
+* loop(y$(2050<y.val),AnnualEmissionLimit("utopia","CO2",y) = 0);
+
+*previsione fit55 2050
+* loop(y$(y.val>=2020 and y.val<=2050),AnnualEmissionLimit("utopia","CO2",y) =  0.055*(y.val-2020)**2 -3.33*(y.val-2020) + 89);
+* loop(y$(2050<y.val),AnnualEmissionLimit("utopia","CO2",y) = 39);
+
+*NZE2050
+* loop(y$(y.val>=2020 and y.val<=2050),AnnualEmissionLimit("utopia","CO2",y) =  0.09899*(y.val-2020)**2 -5.93*(y.val-2020) + 89);
+* loop(y$(2050<y.val),AnnualEmissionLimit("utopia","CO2",y) = 0);
+
+
+******TARGET NZE 2060*******
+* LINEARE ->
+* loop(y$(y.val>=2020),AnnualEmissionLimit("utopia","CO2",y) =  -2.225*(y.val-2020) + 89);
+* PARABOLICO ->
+* loop(y$(y.val>=2020),AnnualEmissionLimit("utopia","CO2",y) =  0.0556*(y.val-2020)**2 -4.45*(y.val-2020) + 89);
