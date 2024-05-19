@@ -492,7 +492,7 @@ parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
   UTOPIA.oil_pp.(2020*2060) 1e-5
   UTOPIA.geothermal_pp.(2020*2060) 0.2
   UTOPIA.wind_pp.(2020*2060) 1
-  UTOPIA.pv_pp.(2020*2060) 1
+  UTOPIA.pv_pp.(2020*2060) 1.5
   UTOPIA.bio_pp.(2020*2060) 5
 
 
