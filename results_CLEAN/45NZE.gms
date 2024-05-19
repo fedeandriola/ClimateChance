@@ -663,6 +663,13 @@ ModelPeriodExogenousEmission(r,e) = 0;
 
 ModelPeriodEmissionLimit(r,e) = 9999;
 
+*parameter AnnualEmissionLimit(r,e,y) /
+*utopia.co2.(2020*2060) 0
+*/;
+
+*AnnualEmissionLimit("utopia","co2","2030")= 58;
+*AnnualEmissionLimit("utopia","co2","2050")=38;
+
 *****LINEARE******
 * TARGET FIT55
 * loop(y$(2030>=y.val),AnnualEmissionLimit("utopia","CO2",y) = -3.31 * (y.val-2020)+89);
@@ -672,10 +679,6 @@ ModelPeriodEmissionLimit(r,e) = 9999;
 * loop(y$(2030>=y.val),AnnualEmissionLimit("utopia","CO2",y) = -3.31 * (y.val-2020)+89);
 * loop(y$(2030<y.val and y.val<=2050),AnnualEmissionLimit("utopia","CO2",y) = -2.9 *(y.val-2020)+87);
 * loop(y$(2050<y.val),AnnualEmissionLimit("utopia","CO2",y) = 0);
-
-*parameter AnnualEmissionLimit(r,e,y) /
-*utopia.co2.(2020*2060) 0
-*/;
 
 * TOTALE TARGET FIT55
 * loop(y$(2020<=y.val and y.val<=2050),AnnualEmissionLimit("utopia","CO2",y) = -1.6667 *(y.val - 2020)+89);
