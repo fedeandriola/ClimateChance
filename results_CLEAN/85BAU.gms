@@ -479,21 +479,21 @@ parameter TotalAnnualMinCapacity(r,t,y) /
 parameter TotalAnnualMinCapacityInvestment(r,t,y)/
 /;
   
-TotalAnnualMinCapacityInvestment(r,t,y) = 0;
-TotalAnnualMinCapacityInvestment(r,'wind_pp',y) = 0.35;
-TotalAnnualMinCapacityInvestment(r,'pv_pp',y) = 0.55;
+*TotalAnnualMinCapacityInvestment(r,t,y) = 0;
+*TotalAnnualMinCapacityInvestment(r,'wind_pp',y) = 0.35;
+*TotalAnnualMinCapacityInvestment(r,'pv_pp',y) = 0.55;
 
 
 
 parameter TotalAnnualMaxCapacityInvestment(r,t,y) /
 
   UTOPIA.coal_pp.(2020*2060) 1e-5
-  UTOPIA.ccgt_pp.(2020*2060) 2
+  UTOPIA.ccgt_pp.(2020*2060) 5
   UTOPIA.oil_pp.(2020*2060) 1e-5
   UTOPIA.geothermal_pp.(2020*2060) 0.2
-  UTOPIA.wind_pp.(2020*2060) 1
-  UTOPIA.pv_pp.(2020*2060) 1
-  UTOPIA.bio_pp.(2020*2060) 2
+  UTOPIA.wind_pp.(2020*2060) 5
+  UTOPIA.pv_pp.(2020*2060) 5
+  UTOPIA.bio_pp.(2020*2060) 5
 
 
 /;
