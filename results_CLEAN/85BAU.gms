@@ -557,16 +557,17 @@ AnnualExogenousEmission(r,e,y) = 0;
 * AnnualEmissionLimit("utopia","co2","2030")= 62;
 * AnnualEmissionLimit("utopia","co2","2060")= 15;
 
-* loop(y$(2030>=y.val),AnnualEmissionLimit("utopia","CO2",y) = -2.7 * (y.val-2020)+89);
+* loop(y$(y.val>=2020 and y.val<=2030),AnnualEmissionLimit("utopia","CO2",y) = -2.7 * (y.val-2020) +89 ;);
 
 *****FIT55 2050******
 
 * lineare
-* loop(y$(2030<y.val),AnnualEmissionLimit("utopia","CO2",y) = -2.35 * (y.val-2020)+85.5);
+* loop(y$(y.val>2030 and y.val<=2050),AnnualEmissionLimit("utopia","CO2",y) = -2.35 * (y.val-2020) +85.5 ;);
+* loop(y$(y.val>2050),AnnualEmissionLimit("utopia","CO2",y) = 15 ;);
 
 * parabolico
-* loop(y$(2030<y.val),AnnualEmissionLimit("utopia","CO2",y) =  0.1175*(y.val-2020)**2 -7.05*(y.val-2020) + 120.8);
-
+* loop(y$(y.val>2030 and y.val<=2050),AnnualEmissionLimit("utopia","CO2",y) =  0.1175*(y.val-2020)**2 -7.05*(y.val-2020) + 120.8);
+* loop(y$(y.val>2050),AnnualEmissionLimit("utopia","CO2",y) = 15 ;);
 
 *****FIT55 2060******
 
@@ -575,6 +576,7 @@ AnnualExogenousEmission(r,e,y) = 0;
 
 * parabolico
 * loop(y$(2030<y.val),AnnualEmissionLimit("utopia","CO2",y) =  -0.05222*(y.val-2020)**2 +1.044*(y.val-2020) + 56.78);
+
 
 
 ModelPeriodExogenousEmission(r,e) = 0;
