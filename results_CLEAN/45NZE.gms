@@ -650,7 +650,7 @@ parameter EmissionActivityRatio(r,t,e,m,y) /
   UTOPIA.ccgt_pp.CO2.1.(2020*2060)  0.122217
   UTOPIA.oil_pp.CO2.1.(2020*2060)  0.299875 
   UTOPIA.bio_pp.CO2.1.(2020*2060)  0.06388
-  UTOPIA.ccgt_ccs_pp.CO2.1.(2020*2060)  0
+  UTOPIA.ccgt_ccs_pp.CO2.1.(2020*2060)  0.0122217
 /;
 
 EmissionsPenalty(r,e,y) = 0;
