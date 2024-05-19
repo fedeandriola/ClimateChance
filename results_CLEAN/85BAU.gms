@@ -553,7 +553,29 @@ EmissionsPenalty(r,e,y) = 0;
 
 AnnualExogenousEmission(r,e,y) = 0;
 
-AnnualEmissionLimit(r,e,y) = 9999;
+*****VALORI SINGOLI******
+* AnnualEmissionLimit("utopia","co2","2030")= 62;
+* AnnualEmissionLimit("utopia","co2","2060")= 15;
+
+* loop(y$(2030>=y.val),AnnualEmissionLimit("utopia","CO2",y) = -2.7 * (y.val-2020)+89);
+
+*****FIT55 2050******
+
+* lineare
+* loop(y$(2030<y.val),AnnualEmissionLimit("utopia","CO2",y) = -2.35 * (y.val-2020)+85.5);
+
+* parabolico
+* loop(y$(2030<y.val),AnnualEmissionLimit("utopia","CO2",y) =  0.1175*(y.val-2020)**2 -7.05*(y.val-2020) + 120.8);
+
+
+*****FIT55 2060******
+
+* lineare
+* loop(y$(2030<y.val),AnnualEmissionLimit("utopia","CO2",y) = -1.5667 * (y.val-2020)+77.67);
+
+* parabolico
+* loop(y$(2030<y.val),AnnualEmissionLimit("utopia","CO2",y) =  -0.05222*(y.val-2020)**2 +1.044*(y.val-2020) + 56.78);
+
 
 ModelPeriodExogenousEmission(r,e) = 0;
 

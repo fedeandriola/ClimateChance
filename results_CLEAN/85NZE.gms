@@ -660,7 +660,7 @@ ModelPeriodExogenousEmission(r,e) = 0;
 ModelPeriodEmissionLimit(r,e) = 9999;
 
 *parameter AnnualEmissionLimit(r,e,y) /
-*utopia.co2.(2020*2060) 0
+*utopia.co2.(2020*2060) 0 
 */;
 
 *AnnualEmissionLimit("utopia","co2","2030")= 58;
