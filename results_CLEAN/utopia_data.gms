@@ -356,13 +356,14 @@ parameter OutputActivityRatio(r,t,f,m,y) /
   UTOPIA.hydro_ror_pp.electricity.1.(2020*2060) 1
   UTOPIA.hydro_dam_pp.electricity.1.(2020*2060) 1
   UTOPIA.psh_pp.electricity.1.(2020*2060) 1 
-  UTOPIA.psh_pp.water.2.(2020*2060) 1
+  UTOPIA.psh_pp.water.2.(2020*2060) 1 /;
 
 
 *------------------------------------------------------------------------   
 * Parameters - Technology costs       
 *------------------------------------------------------------------------
 #[M€/GW]
+
 parameter CapitalCost / 
   UTOPIA.coal_market.(2020*2060) 0
   UTOPIA.gas_market.(2020*2060) 0
@@ -381,9 +382,7 @@ parameter CapitalCost /
   UTOPIA.bio_pp.(2020*2060) 3500
   UTOPIA.hydro_ror_pp.(2020*2060) 2300
   UTOPIA.hydro_dam_pp.(2020*2060) 1900
-  UTOPIA.psh_pp.(2020*2060) 1900 
-
-/;
+  UTOPIA.psh_pp.(2020*2060) 1900 /;
 
 
 *[M€/PJ]
@@ -443,9 +442,9 @@ MinStorageCharge(r,s,y) = 0;
 OperationalLifeStorage(r,'dam') = 99;
 
 
-CapitalCostStorage(r,"dam",y) = 999999;
+CapitalCostStorage(r,'dam',y) = 0;
 
-ResidualStorageCapacity(r,"dam",y) = 0.3;
+ResidualStorageCapacity(r,'dam',y) = 0.191;
 
 
 *------------------------------------------------------------------------   
@@ -479,9 +478,9 @@ parameter TotalAnnualMinCapacity(r,t,y) /
 parameter TotalAnnualMinCapacityInvestment(r,t,y)/
 /;
   
-*TotalAnnualMinCapacityInvestment(r,t,y) = 0;
-*TotalAnnualMinCapacityInvestment(r,'wind_pp',y) = 0.35;
-*TotalAnnualMinCapacityInvestment(r,'pv_pp',y) = 0.55;
+TotalAnnualMinCapacityInvestment(r,t,y) = 0;
+TotalAnnualMinCapacityInvestment(r,'wind_pp',y) = 0.35;
+TotalAnnualMinCapacityInvestment(r,'pv_pp',y) = 0.55;
 
 
 
@@ -553,31 +552,7 @@ EmissionsPenalty(r,e,y) = 0;
 
 AnnualExogenousEmission(r,e,y) = 0;
 
-*****VALORI SINGOLI******
-* AnnualEmissionLimit("utopia","co2","2030")= 62;
-* AnnualEmissionLimit("utopia","co2","2060")= 15;
-
-* loop(y$(y.val>=2020 and y.val<=2030),AnnualEmissionLimit("utopia","CO2",y) = -2.7 * (y.val-2020) +89 ;);
-
-*****FIT55 2050******
-
-* lineare
-* loop(y$(y.val>2030 and y.val<=2050),AnnualEmissionLimit("utopia","CO2",y) = -2.35 * (y.val-2020) +85.5 ;);
-* loop(y$(y.val>2050),AnnualEmissionLimit("utopia","CO2",y) = 15 ;);
-
-* parabolico
-* loop(y$(y.val>2030 and y.val<=2050),AnnualEmissionLimit("utopia","CO2",y) =  0.1175*(y.val-2020)**2 -7.05*(y.val-2020) + 120.8);
-* loop(y$(y.val>2050),AnnualEmissionLimit("utopia","CO2",y) = 15 ;);
-
-*****FIT55 2060******
-
-* lineare
-* loop(y$(2030<y.val),AnnualEmissionLimit("utopia","CO2",y) = -1.5667 * (y.val-2020)+77.67);
-
-* parabolico
-* loop(y$(2030<y.val),AnnualEmissionLimit("utopia","CO2",y) =  -0.05222*(y.val-2020)**2 +1.044*(y.val-2020) + 56.78);
-
-
+AnnualEmissionLimit(r,e,y) = 9999;
 
 ModelPeriodExogenousEmission(r,e) = 0;
 
