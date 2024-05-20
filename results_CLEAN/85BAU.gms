@@ -486,8 +486,8 @@ parameter TotalAnnualMinCapacityInvestment(r,t,y)/
 /;
   
 *TotalAnnualMinCapacityInvestment(r,t,y) = 0;
-*TotalAnnualMinCapacityInvestment(r,'wind_pp',y) = 0.35;
-*TotalAnnualMinCapacityInvestment(r,'pv_pp',y) = 0.55;
+TotalAnnualMinCapacityInvestment(r,'wind_pp',y) = 0.35;
+TotalAnnualMinCapacityInvestment(r,'pv_pp',y) = 0.55;
 
 
 
