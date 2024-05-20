@@ -377,15 +377,24 @@ parameter CapitalCost /
   UTOPIA.coal_pp.(2020*2060) 2000
   UTOPIA.ccgt_pp.(2020*2060) 900
   UTOPIA.oil_pp.(2020*2060) 1800
-  UTOPIA.geothermal_pp.(2020*2060) 3500
-  UTOPIA.wind_pp.(2020*2060) 1350
-  UTOPIA.pv_pp.(2020*2060) 1200
-  UTOPIA.bio_pp.(2020*2060) 3500
-  UTOPIA.hydro_ror_pp.(2020*2060) 2300
-  UTOPIA.hydro_dam_pp.(2020*2060) 1900
-  UTOPIA.psh_pp.(2020*2060) 1900 
+*  UTOPIA.geothermal_pp.(2020*2060) 3500
+*  UTOPIA.wind_pp.(2020*2060) 1350
+*  UTOPIA.pv_pp.(2020*2060) 1200
+*  UTOPIA.bio_pp.(2020*2060) 3500
+*  UTOPIA.hydro_ror_pp.(2020*2060) 2300
+*  UTOPIA.hydro_dam_pp.(2020*2060) 1900
+*  UTOPIA.psh_pp.(2020*2060) 1900 
 
 /;
+
+loop(y,CapitalCost("UTOPIA","geothermal_pp",y) = 3500* (1-0.003846)**(y.val-2020));
+loop(y,CapitalCost("UTOPIA","wind_pp",y) = 1350* (1-0.012996)**(y.val-2020) );
+loop(y,CapitalCost("UTOPIA","pv_pp",y) = 1200* (1-0.03128)**(y.val-2020) );
+loop(y,CapitalCost("UTOPIA","bio_pp",y) = 3500* (1-0.003029)**(y.val-2020) );
+loop(y,CapitalCost("UTOPIA","hydro_ror_pp",y) = 2300* (1-0.006109)**(y.val-2020) );
+loop(y,CapitalCost("UTOPIA","hydro_dam_pp",y) = 1900* (1-0.004287)**(y.val-2020) );
+loop(y,CapitalCost("UTOPIA","psh_pp",y) = 1900* (1-0.004287)**(y.val-2020) );
+
 
 *[M€/PJ]
 parameter VariableCost(r,t,m,y) / 
