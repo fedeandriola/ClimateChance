@@ -26,7 +26,7 @@ set     YEAR    / 2020*2060 /;
 set     TECHNOLOGY      /
         coal_market 'coal market'
         gas_market 'gas market'
-        biomass_market 'biomass'
+        biomass_market 'biomass market'
         oil_market 'oil market'
         sun_market 'sun market'
         wind_market 'wind market'
@@ -42,14 +42,14 @@ set     TECHNOLOGY      /
         pv_pp 'solar panels'
         hydro_ror_pp 'hydro run of river'
         hydro_dam_pp 'hydro dam'
-        psh_pp 'pumped hydro and storage'
+        psh_pp 'pumped hydro storage'
         electricity_demand 'electricity demand'
 /;
 
 set     TIMESLICE       /
         FD 'Fall - day'
         FN 'Fall - night'
-        SPD 'Spring - dat '
+        SPD 'Spring - day '
         SPN 'Spring - night'
         SD 'Summer - day'
         SN 'Summer - night'
@@ -91,7 +91,7 @@ set appliances(TECHNOLOGY) /electricity_demand /;
 set primary_sources(TECHNOLOGY) / coal_market, gas_market, biomass_market, oil_market, rainfall, sun_market, wind_market /;
 
 
-set renewable_tech(TECHNOLOGY) / geothermal_pp, wind_pp, pv_pp, hydro_ror_pp/; 
+set renewable_tech(TECHNOLOGY) / geothermal_pp, wind_pp, pv_pp, hydro_ror_pp,hydro_dam_pp/; 
 set renewable_fuel(FUEL) /water, sun, wind, geo_heat/; 
 
 #Characterize fuels 
@@ -207,7 +207,7 @@ CapacityToActivityUnit(r,t)$(CapacityToActivityUnit(r,t) = 0) = 1;
 
 * RSP 4.5        -((0,016875 *(y.val -2020))*0,75* 0,003)) riduzione percentuale di impianti termici al variare della temperatura dei fiumi
 * RSP 8.5        -((0,036875 *(y.val -2020))*0,75* 0,003)) riduzione percentuale di impianti termici al variare della temperatura dei fiumi
-* DA AGGIUNGERE AI CAPACITY FACTOR FOSSILI
+
 
 CapacityFactor(r,'coal_pp',l,y) = 0.85;
 CapacityFactor(r,'ccgt_pp',l,y) = 0.85;
@@ -452,9 +452,9 @@ MinStorageCharge(r,s,y) = 0;
 OperationalLifeStorage(r,'dam') = 99;
 
 
-CapitalCostStorage(r,'dam',y) = 0;
+CapitalCostStorage(r,'dam',y) = 999999;
 
-ResidualStorageCapacity(r,'dam',y) = 0.191;
+ResidualStorageCapacity(r,'dam',y) = 0.3;
 
 
 *------------------------------------------------------------------------   
